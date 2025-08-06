@@ -23,3 +23,32 @@ gallery.addEventListener('mouseenter', () => {
 gallery.addEventListener('mouseleave', () => {
   track.style.animationPlayState = 'running';
 });
+
+// DIRECTIONAL NAVIGATION HOVER EFFECTS
+document.querySelectorAll('.nav-links a').forEach(link => {
+  let mouseX = 0;
+  
+  // Track mouse position when entering the link
+  link.addEventListener('mouseenter', (e) => {
+    const rect = link.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    mouseX = e.clientX;
+    
+    // Remove any existing direction classes
+    link.classList.remove('hover-from-left', 'hover-from-right');
+    
+    // Add direction class based on cursor position
+    if (mouseX < centerX) {
+      // Cursor entered from left side - animate right
+      link.classList.add('hover-from-left');
+    } else {
+      // Cursor entered from right side - animate left  
+      link.classList.add('hover-from-right');
+    }
+  });
+  
+  // Clean up on mouse leave
+  link.addEventListener('mouseleave', () => {
+    link.classList.remove('hover-from-left', 'hover-from-right');
+  });
+});
