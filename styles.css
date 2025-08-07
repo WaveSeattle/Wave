@@ -108,100 +108,85 @@
   }
   .nav-links {
     display: flex;
-  gap: 2.5rem;
+    gap: 2.5rem;
     list-style: none;
   }
-  /* NAVIGATION LINKS WITH SHIMMER EFFECT */
+  
+  /* NAVIGATION LINKS WITH UNDERLINE ANIMATION */
   .nav-links a {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-  font-size: 16px;
+    font-size: 16px;
     text-decoration: none;
     color: var(--white);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  position: relative;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-/* DIRECTIONAL SHIMMER: Light follows cursor direction */
-.nav-links a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  /* SHIMMER GRADIENT: Creates light sweep effect */
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease-out;
-  opacity: 0;
-}
-
-/* RIGHT DIRECTION: Default hover from left to right */
-.nav-links a:hover::before {
-  left: 100%;
-  opacity: 1;
-}
-
-/* LEFT DIRECTION: When hovering from right side */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(-90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: right 0.6s ease-out;
-  opacity: 0;
-}
-
-/* DIRECTIONAL HOVER STATES: Triggered by JavaScript */
-/* When cursor enters from LEFT - shimmer moves RIGHT */
-.nav-links a.hover-from-left::before {
-  left: 100%;
-  opacity: 1;
-}
-
-/* When cursor enters from RIGHT - shimmer moves LEFT */
-.nav-links a.hover-from-right::after {
-  right: 100%;
-  opacity: 1;
-}
-
-/* Hide default hover effect when using directional */
-.nav-links a.hover-from-left:hover::before,
-.nav-links a.hover-from-right:hover::before {
-  opacity: 0;
-}
-
-/* PROFESSIONAL HOVER EFFECT */
-  .nav-links a:hover {
-    color: var(--red);
-  /* GLASSMORPHISM BACKGROUND: Semi-transparent white */
-  background: rgba(255, 255, 255, 0.1);
-  /* 3D LIFT EFFECT: Elevates link on hover */
-  transform: translateY(-2px);
-  /* COLORED SHADOW: Aqua shadow for depth */
-  box-shadow: 0 4px 12px rgba(35, 181, 211, 0.2);
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: font-weight 0.3s ease;
   }
+  
+  /* NON-CLICKABLE DROPDOWN TRIGGER STYLING */
+  .nav-dropdown-trigger {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: font-weight 0.3s ease;
+    display: block;
+  }
+
+  /* UNDERLINE ANIMATION FOR BOTH LINKS AND DROPDOWN TRIGGER */
+  .nav-links a::after,
+  .nav-dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  /* HOVER EFFECT WITH UNDERLINE EXPANSION AND BOLD TEXT */
+  .nav-links a:hover,
+  .nav-dropdown-trigger:hover {
+    font-weight: 800;
+  }
+
+  .nav-links a:hover::after,
+  .nav-dropdown-trigger:hover::after {
+    width: 100%;
+  }
+  
+  /* DROPDOWN MENU STYLING */
+  .dropdown-container {
+    position: relative;
+  }
+  
   .dropdown {
     position: absolute;
     top: 100%;
     left: 0;
     display: none;
-  background: rgba(29, 78, 137, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: rgba(29, 78, 137, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    z-index: 1001;
+    list-style: none;
+    padding: 0;
   }
-  .nav-links li:hover .dropdown {
+  
+  .dropdown-container:hover .dropdown {
     display: block;
-  animation: fadeInUp 0.3s ease;
-}
+    animation: fadeInUp 0.3s ease;
+  }
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -212,11 +197,15 @@
     transform: translateY(0);
   }
   }
+  .dropdown li {
+    list-style: none;
+  }
+  
   .dropdown li a {
     display: block;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  margin: 0.2rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    margin: 0.2rem;
   }
   
   /* ------------------------------
