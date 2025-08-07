@@ -206,6 +206,16 @@
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     margin: 0.2rem;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1002;
+  }
+  
+  .dropdown li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--aqua);
   }
   
   /* ------------------------------
