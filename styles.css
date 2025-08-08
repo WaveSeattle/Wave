@@ -345,8 +345,11 @@
    CATEGORY HERO - INTERACTIVE IMAGE SHOWCASE
 ------------------------------ */
 .category-hero {
-  background: var(--sky);
+  background: var(--white);
   padding: 2rem 0;
+  /* POSITIONING: Accommodates overlapping wave */
+  position: relative;
+  z-index: 1;
 }
 
 /* IMAGE CONTAINER WITH PROFESSIONAL SHADOWS */
@@ -358,6 +361,8 @@
   /* DEEP SHADOW: Creates floating effect */
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   margin: 0 1rem;
+  /* Z-INDEX: Ensures image appears above wave */
+  z-index: 2;
 }
 
 /* HERO IMAGE WITH ZOOM EFFECT */
@@ -382,6 +387,8 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  /* Z-INDEX: Ensures buttons appear above wave */
+  z-index: 3;
 }
 
 /* GLASSMORPHISM BUTTONS WITH ADVANCED EFFECTS */
@@ -437,11 +444,11 @@
 }
   
   /* ------------------------------
-     INTRO (What is WAVE)
-  ------------------------------ */
-  .intro {
-  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 100%);
-    color: var(--dark-navy);
+   INTRO (What is WAVE) - PROFESSIONAL SECTION
+------------------------------ */
+.intro {
+  background: var(--white);
+  color: var(--dark-navy);
   padding: 5rem 1rem;
   position: relative;
 }
@@ -452,9 +459,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(35, 181, 211, 0.05) 0%, transparent 50%);
+  /* MINIMAL OVERLAY: Very subtle professional effect */
+  background: radial-gradient(circle at 70% 30%, rgba(35, 181, 211, 0.02) 0%, transparent 80%);
   z-index: 1;
-  }
+}
   .intro-content {
     display: flex;
     flex-wrap: wrap;
@@ -532,8 +540,8 @@
    SOCIAL PROOF - PREMIUM STATS SECTION
 ------------------------------ */
 .social-proof {
-  /* AQUA GRADIENT BACKGROUND: Professional gradient */
-  background: linear-gradient(135deg, var(--aqua) 0%, #1D9FB8 100%);
+  /* PROFESSIONAL CONTAINED BACKGROUND: Clean white with subtle gradient */
+  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 100%);
   color: var(--dark-navy);
   padding: 5rem 1rem;
   text-align: center;
@@ -541,7 +549,7 @@
   overflow: hidden;
 }
 
-/* LIGHT OVERLAY EFFECTS: Creates depth and visual interest */
+/* SUBTLE OVERLAY EFFECTS: Professional depth without overwhelming */
 .social-proof::before {
   content: '';
   position: absolute;
@@ -549,9 +557,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* DUAL RADIAL GRADIENTS: Multiple light sources */
-  background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(29, 78, 137, 0.15) 0%, transparent 50%);
+  /* SINGLE RADIAL GRADIENT: Subtle professional lighting */
+  background: radial-gradient(circle at 70% 30%, rgba(35, 181, 211, 0.08) 0%, transparent 60%);
   z-index: 1;
 }
 
@@ -573,21 +580,21 @@
     gap: 2rem;
   flex-wrap: wrap;
   }
-  /* PREMIUM STAT CARDS WITH GLASSMORPHISM */
+  /* PREMIUM STAT CARDS WITH PROFESSIONAL DESIGN */
 .stat-card {
-  /* GLASSMORPHISM EFFECT: Semi-transparent with blur */
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  /* CLEAN WHITE BACKGROUND: Professional solid background */
+  background: var(--white);
   padding: 2.5rem 2rem;
   /* MODERN ROUNDED CORNERS: Large border radius */
   border-radius: 20px;
   min-width: 200px;
-  /* LAYERED SHADOWS: Multiple shadows for depth */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1),
-              0 8px 20px rgba(29, 78, 137, 0.15);
+  /* PROFESSIONAL SHADOWS: Subtle depth without overwhelming */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08),
+              0 4px 12px rgba(29, 78, 137, 0.1);
   /* PROFESSIONAL EASING: Smooth cubic-bezier transition */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  /* AQUA BORDER: Subtle brand color accent */
+  border: 2px solid rgba(35, 181, 211, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -612,13 +619,13 @@
   transform: rotate(45deg) translate(30%, 30%);
 }
 
-/* ADVANCED 3D HOVER EFFECT */
+/* PROFESSIONAL HOVER EFFECT */
 .stat-card:hover {
-  /* 3D TRANSFORMATION: Lift and scale effect */
-  transform: translateY(-10px) scale(1.05);
-  /* ENHANCED SHADOWS: Stronger depth on hover */
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15),
-              0 15px 35px rgba(35, 181, 211, 0.3);
+  /* SUBTLE 3D TRANSFORMATION: Gentle lift effect */
+  transform: translateY(-5px);
+  /* ENHANCED SHADOWS: Professional depth on hover */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12),
+              0 8px 20px rgba(35, 181, 211, 0.15);
   /* BORDER COLOR CHANGE: Aqua highlight */
   border-color: var(--aqua);
 }
@@ -645,18 +652,18 @@
      GALLERY (Infinite Scroll)
   ------------------------------ */
  /* ------------------------------
-   GALLERY - INFINITE SCROLL WITH ADVANCED EFFECTS
+   GALLERY - INFINITE SCROLL WITH PROFESSIONAL EFFECTS
 ------------------------------ */
 .gallery {
-  /* SUBTLE GRADIENT BACKGROUND: Light blue gradient */
-  background: linear-gradient(135deg, var(--sky) 0%, rgba(230, 244, 248, 0.8) 100%);
+  /* CLEAN WHITE BACKGROUND: Professional solid background */
+  background: var(--white);
   color: var(--dark-navy);
   padding: 4rem 0;
   overflow: hidden;
   position: relative;
 }
 
-/* BACKGROUND OVERLAY: Adds depth to gallery section */
+/* SUBTLE BACKGROUND OVERLAY: Professional depth */
 .gallery::before {
   content: '';
   position: absolute;
@@ -664,8 +671,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* RADIAL GRADIENT OVERLAY: Subtle lighting effect */
-  background: radial-gradient(circle at 80% 20%, rgba(29, 78, 137, 0.05) 0%, transparent 50%);
+  /* MINIMAL RADIAL GRADIENT: Very subtle professional lighting */
+  background: radial-gradient(circle at 80% 20%, rgba(35, 181, 211, 0.03) 0%, transparent 70%);
   z-index: 1;
 }
 .gallery .container {
@@ -916,23 +923,43 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* Wave animation for hero background */
+/* PROFESSIONAL WAVE ANIMATION - INTEGRATED WITH NEXT SECTION */
 .wave-animation {
   position: absolute;
-  bottom: 0;
+  bottom: -30px; /* OVERLAP: Extends 25% into next section */
   left: 0;
   width: 100%;
-  height: 80px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23E6F4F8'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-  animation: waveFloat 6s ease-in-out infinite;
+  height: 120px;
+  /* MULTI-LAYER WAVES: Creates depth with multiple wave layers */
+  background: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23E6F4F8' opacity='0.8'%3E%3C/path%3E%3C/svg%3E") repeat-x,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23FFFFFF' opacity='0.3'%3E%3C/path%3E%3C/svg%3E") repeat-x;
+  background-size: 1200px 120px, 800px 80px;
+  background-position: 0 0, 0 20px;
+  /* SMOOTH WAVE ANIMATION: Professional floating effect */
+  animation: waveFloat 8s ease-in-out infinite, waveMove 20s linear infinite;
+  opacity: 0.9;
+  /* Z-INDEX: Ensures wave appears above next section */
+  z-index: 10;
 }
 
+/* WAVE FLOAT: Gentle up and down movement */
 @keyframes waveFloat {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+  }
+}
+
+/* WAVE MOVE: Horizontal wave movement */
+@keyframes waveMove {
+  0% {
+    background-position: 0 0, 0 20px;
+  }
+  100% {
+    background-position: -1200px 0, -800px 20px;
   }
 }
 
