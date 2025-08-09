@@ -10,6 +10,7 @@
   <link rel="shortcut icon" href="media/logo.png" type="image/png">
 </head>
 <body>
+  <!-- NAVBAR (same as index) -->
   <header class="navbar">
     <div class="container nav-content">
       <div class="nav-main">
@@ -34,6 +35,7 @@
               <li><a href="events/bollywood-ball.html">Bollywood Ball</a></li>
               <li><a href="events/dandiya-night.html">Dandiya Night</a></li>
               <li><a href="events/iacs-summer-fest-booth.html">IACS Summer Fest Booth</a></li>
+              <li><a href="events/bollywood-ball.html">View All Events</a></li>
             </ul>
           </li>
           <li><a class="nav-dropdown-trigger" href="join-us.html">Join Us</a></li>
@@ -45,8 +47,91 @@
     </div>
   </header>
 
-  <!-- Blank by request -->
+  <!-- HERO: video background + overlay text -->
+  <section class="hero hero-join">
+    <div class="hero-video-bg">
+      <!-- Replace with your real video path or YouTube embed below -->
+      <video autoplay muted loop playsinline poster="media/hero3.jpg">
+        <source src="media/volunteer-hero.mp4" type="video/mp4">
+      </video>
+      <!-- For YouTube instead, comment the <video> and use:
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&controls=0&loop=1&playlist=VIDEO_ID&modestbranding=1&playsinline=1"
+              title="Volunteer with WAVE" frameborder="0" allow="autoplay; fullscreen"></iframe>
+      -->
+    </div>
+    <div class="hero-overlay container">
+      <h1>Volunteer with Us</h1>
+      <p>Join a community of <strong>70+ dedicated volunteers</strong>.</p>
+      <a class="pulse-border" href="https://docs.google.com/forms/d/e/1FAIpQLScegl8nNWzkw-LE1Py4JNpfjLYq3Toj4NaBBxOKucG1w-vZ6A/closedform" target="_blank" rel="noopener">
+        Join Us
+      </a>
+    </div>
+    <div class="wave-animation"></div>
+  </section>
 
+  <!-- IMAGE LEFT • HOW YOU CAN HELP (right) -->
+  <section class="intro">
+    <div class="container intro-content">
+      <div class="video">
+        <img src="media/hero1.jpg" alt="Volunteer action" style="width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);">
+      </div>
+      <div class="text">
+        <h2>How You Can Help</h2>
+        <p>WAVE volunteers power our events, outreach, and fundraising—supporting pediatric cancer research and uncompensated care at Seattle Children’s.</p>
+        <ul style="margin-left:1rem; color:#2E3A4E; line-height:1.8;">
+          <li>Help run charity events and community booths</li>
+          <li>Coordinate sponsorships and local partnerships</li>
+          <li>Create content to raise awareness</li>
+          <li>Support families with resources and logistics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS TO JOIN: text left, image right -->
+  <section class="intro">
+    <div class="container intro-content">
+      <div class="text">
+        <h2>Volunteer Application Process</h2>
+        <ol style="margin-left:1.25rem; color:#2E3A4E; line-height:1.9;">
+          <li><strong>Submit Application</strong> — Fill out the online volunteer form (link above). Answer the essay prompts thoughtfully.</li>
+          <li><strong>Application Review + Reference Check</strong> — Our team reviews your application and may contact references.</li>
+          <li><strong>Orientation Session + Training</strong> — Learn our mission, values, safety, and event procedures.</li>
+          <li><strong>Onboarding Process</strong> — Paperwork, scheduling, and welcome to the team!</li>
+        </ol>
+        <a class="btn pulse-border" href="https://docs.google.com/forms/d/e/1FAIpQLScegl8nNWzkw-LE1Py4JNpfjLYq3Toj4NaBBxOKucG1w-vZ6A/closedform" target="_blank" rel="noopener">
+          Apply Now
+        </a>
+      </div>
+      <div class="video">
+        <img src="media/hero4.jpg" alt="Orientation" style="width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);">
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEER TESTIMONIALS (carousel: 3 at a time) -->
+  <section class="social-proof" aria-labelledby="vol-testimonials">
+    <div class="container">
+      <h2 id="vol-testimonials">Volunteer Testimonials</h2>
+      <div class="testimonial-viewport">
+        <div class="testimonial-track">
+          <!-- 9 cards: edit text later -->
+          <article class="tcard"><p>“Volunteering with WAVE gave me purpose. I learned how to run events, talk to donors, and see our impact on families battling cancer.”</p><span>— Aarav Mehta</span></article>
+<article class="tcard"><p>“The team is welcoming and organized. I gained leadership experience while helping fund research that truly changes lives.”</p><span>— Sofia Martinez</span></article>
+<article class="tcard"><p>“Seeing kids smile at community events is unforgettable. WAVE makes it easy to contribute and grow your skills.”</p><span>— Daniel Roberts</span></article>
+<article class="tcard"><p>“Orientation and training were smooth, and I always knew what to do. I’ve made close friends through volunteering.”</p><span>— Priya Nair</span></article>
+<article class="tcard"><p>“I helped coordinate a booth and learned real project management. It’s rewarding to see donations turn into research.”</p><span>— Ethan Chen</span></article>
+<article class="tcard"><p>“The mentorship is awesome. Older volunteers helped me build confidence and speak with sponsors.”</p><span>— Maya Thompson</span></article>
+<article class="tcard"><p>“Every hour matters here. I’ve watched our efforts support families through uncompensated care at Seattle Children’s.”</p><span>— Lucas Nguyen</span></article>
+<article class="tcard"><p>“I joined to help—and stayed because the mission is real. We raise funds that accelerate safer treatments.”</p><span>— Isabella Rossi</span></article>
+<article class="tcard"><p>“WAVE taught me teamwork under pressure. Event days are busy, fun, and meaningful.”</p><span>— Noah Patel</span></article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (same as index) -->
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-3col">
@@ -72,7 +157,7 @@
       </div>
     </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
-<html>
-
+</html>

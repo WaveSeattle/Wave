@@ -10,6 +10,8 @@
   <link rel="shortcut icon" href="media/logo.png" type="image/png">
 </head>
 <body>
+
+  <!-- NAVBAR (same as index) -->
   <header class="navbar">
     <div class="container nav-content">
       <div class="nav-main">
@@ -46,8 +48,74 @@
     </div>
   </header>
 
-  <!-- Blank by request -->
+  <!-- HERO with background image -->
+  <section class="hero hero-donate">
+    <div class="hero-content container">
+      <h1>Donate Now</h1>
+      <p>Your gift fuels pediatric cancer research and helps families at Seattle Children’s.</p>
+      <a class="pulse-border" href="https://give.seattlechildrens.org/fundraiser/5028615" target="_blank" rel="noopener">
+        Give to Seattle Children’s
+      </a>
+    </div>
+    <div class="wave-animation"></div>
+  </section>
 
+  <!-- OUR IMPACT (3 cards) -->
+  <section class="social-proof" aria-labelledby="impact-heading">
+    <div class="container">
+      <h2 id="impact-heading">Our Impact</h2>
+      <div class="stats">
+        <div class="stat-card">
+          <h3 class="counter" data-target="150">0</h3>
+          <p>People Helped</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="counter" data-target="500000">0</h3>
+          <p>Dollars Raised</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="counter" data-target="1200">0</h3>
+          <p>Donations Made</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO LEFT • COPY RIGHT -->
+  <section class="intro">
+    <div class="container intro-content">
+      <div class="video">
+        <!-- Use your real video file or YouTube embed -->
+        <!-- Local file example: -->
+        <video controls poster="media/hero2.jpg" style="width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);">
+          <source src="media/impact-video.mp4" type="video/mp4">
+        </video>
+        <!-- Or YouTube (uncomment and remove the <video> above):
+        <iframe width="100%" height="315" style="border:0;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);" 
+                src="https://www.youtube.com/embed/VIDEO_ID" 
+                title="WAVE Impact" allowfullscreen></iframe>
+        -->
+      </div>
+      <div class="text">
+        <h2>How Your Donation Helps</h2>
+        <p>
+          WAVE is a youth-led guild supporting <strong>pediatric cancer research</strong> and
+          <strong>uncompensated care</strong>. We raise funds so researchers can develop better, safer
+          treatments—and so families can focus on healing, not bills.
+        </p>
+        <p>
+          We donate to <strong>Seattle Children’s</strong>, where your gift powers clinical trials, lab equipment,
+          and direct support for children in active treatment. Every contribution—large or small—moves
+          us closer to a future where kids beat cancer faster and with fewer side effects.
+        </p>
+        <a class="btn pulse-border" href="https://give.seattlechildrens.org/fundraiser/5028615" target="_blank" rel="noopener">
+          Donate Securely
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (same as index) -->
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-3col">
@@ -73,7 +141,7 @@
       </div>
     </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
-<html>
-
+</html>

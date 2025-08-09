@@ -153,3 +153,77 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.classList.remove('hover-from-left', 'hover-from-right');
   });
 });
+// ---------- Volunteer Testimonials: infinite right→left, 3-at-a-time ----------
+(function volunteerTestimonialsLoop(){
+  const viewport = document.querySelector('.testimonial-viewport');
+  const track    = document.querySelector('.testimonial-track');
+  if (!viewport || !track) return;
+
+  const INTERVAL_MS = 7000;    // 7 seconds per slide
+  const TRANSITION  = 600;     // CSS transition ms (keep in sync with CSS)
+
+  let index = 0;               // page index (0-based, leftmost page)
+  let visible = 3;             // we’ll clamp to 3 on desktop (2/1 on smaller)
+  let timer  = null;
+
+  function countVisible(){
+    const w = viewport.clientWidth;
+    if (w < 640) return 1;
+    if (w < 900) return 2;
+    return 3;
+  }
+
+  function pageWidth(){
+    return viewport.clientWidth; // move by exact viewport width so 3 are fully visible
+  }
+
+  function setTranslate(px, animate=true){
+    track.style.transition = animate ? `transform ${TRANSITION}ms ease` : 'none';
+    track.style.transform  = `translateX(${-px}px)`;
+  }
+
+  function setup(){
+    // remove old clones
+    track.querySelectorAll('.tcard[data-clone]').forEach(n => n.remove());
+
+    visible = countVisible();
+
+    // clone first "visible" cards to end for seamless wrap
+    const originals = Array.from(track.querySelectorAll('.tcard:not([data-clone])'));
+    originals.slice(0, Math.min(visible, originals.length)).forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('data-clone','1');
+      track.appendChild(clone);
+    });
+
+    index = 0;
+    setTranslate(0, false);
+  }
+
+  function step(){
+    const originalsCount = track.querySelectorAll('.tcard:not([data-clone])').length;
+    visible = countVisible();
+    const pages = Math.max(1, Math.ceil(originalsCount / visible));
+
+    index += 1;
+    setTranslate(index * pageWidth(), true);
+
+    // When we slide onto the clones (index === pages), jump back to 0 *after* transition
+    if (index === pages) {
+      track.addEventListener('transitionend', () => {
+        index = 0;
+        setTranslate(0, false);   // instant jump to start, no flicker
+      }, { once: true });
+    }
+  }
+
+  function start(){ stop(); timer = setInterval(step, INTERVAL_MS); }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+
+  window.addEventListener('resize', () => { setup(); });
+  viewport.addEventListener('mouseenter', stop);
+  viewport.addEventListener('mouseleave', start);
+
+  setup();
+  start();
+})();
