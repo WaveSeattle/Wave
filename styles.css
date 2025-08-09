@@ -779,6 +779,59 @@
   }
 }
   
+  /* ------------------------------
+     LOGO MARQUEE (RTL Infinite)
+  ------------------------------ */
+  .logo-marquee {
+    background: var(--white);
+    color: var(--dark-navy);
+    padding: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-marquee .container { position: relative; z-index: 1; }
+
+  .logo-viewport {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+  }
+
+  .logo-track {
+    --logo-width: 160px;
+    --logo-height: 64px;
+    --logo-gap: 2rem;
+    display: flex;
+    gap: var(--logo-gap);
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    padding: 0.5rem 0;
+  }
+
+  .logo-placeholder {
+    width: var(--logo-width);
+    height: var(--logo-height);
+    flex: 0 0 auto;
+    border-radius: 12px;
+    background: #f2f4f8;
+    border: 2px dashed #c8d1dc;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Re-entry slide-in effect for cycled items */
+  .logo-reenter {
+    animation: logoReenter 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes logoReenter {
+    0% { opacity: 0; transform: translateX(28px); }
+    60% { opacity: 1; }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Note: movement handled in JS for perfect DOM-cycling loop */
+  
     
   
   /* ------------------------------
@@ -933,23 +986,20 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* PROFESSIONAL WAVE ANIMATION - INTEGRATED WITH NEXT SECTION */
+/* PROFESSIONAL WAVE ANIMATION - SINGLE LAYER, FULL WIDTH, LEFT ➜ RIGHT */
 .wave-animation {
   position: absolute;
-  bottom: -30px; /* OVERLAP: Extends 25% into next section */
+  bottom: -30px; /* keeps ~25% overlap into next section */
   left: 0;
   width: 100%;
   height: 120px;
-  /* MULTI-LAYER WAVES: Creates depth with multiple wave layers */
-  background: 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23E6F4F8' opacity='0.8'%3E%3C/path%3E%3C/svg%3E") repeat-x,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23FFFFFF' opacity='0.3'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-  background-size: 1200px 120px, 800px 80px;
-  background-position: 0 0, 0 20px;
-  /* SMOOTH WAVE ANIMATION: Professional floating effect */
-  animation: waveFloat 8s ease-in-out infinite, waveMove 20s linear infinite;
-  opacity: 0.9;
-  /* Z-INDEX: Ensures wave appears above next section */
+  /* SINGLE LAYER with multiple waves in one SVG path */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath d='M0,60 C120,90 240,30 360,60 C480,90 600,30 720,60 C840,90 960,30 1080,60 C1200,90 1320,30 1440,60 L1440,120 L0,120 Z' fill='%23E6F4F8'/%3E%3C/svg%3E") repeat-x;
+  background-size: 1200px 120px; /* width of one wave tile */
+  background-position: 0 0;
+  /* Only horizontal movement + gentle float */
+  animation: waveFloat 8s ease-in-out infinite, waveMove 16s linear infinite;
+  opacity: 1;
   z-index: 10;
 }
 
@@ -963,14 +1013,10 @@ a:focus {
   }
 }
 
-/* WAVE MOVE: Horizontal wave movement */
+/* WAVE MOVE: Horizontal wave movement (left ➜ right) */
 @keyframes waveMove {
-  0% {
-    background-position: 0 0, 0 20px;
-  }
-  100% {
-    background-position: -1200px 0, -800px 20px;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 1200px 0; }
 }
 
 /* Enhanced loading states */
