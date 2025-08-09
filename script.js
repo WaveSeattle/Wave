@@ -81,6 +81,50 @@ document.querySelectorAll('.counter').forEach(counter => {
     start();
   })();
 
+  // Horizontal timeline: scroll-scrubbed translation (no loop)
+  (function initTimeline() {
+    const section = document.querySelector('.timeline');
+    if (!section) return;
+    const viewport = section.querySelector('.timeline-viewport');
+    const track = section.querySelector('.timeline-track');
+    if (!viewport || !track) return;
+
+    // total scrollable distance equals the overflow width
+    function getMaxTranslate() {
+      const viewportWidth = viewport.clientWidth;
+      const trackWidth = Array.from(track.children).reduce((w, el, i) => w + el.getBoundingClientRect().width + (i ? parseFloat(getComputedStyle(track).gap) : 0), 0);
+      return Math.max(0, trackWidth - viewportWidth);
+    }
+
+    function updateFromScroll() {
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const start = Math.max(0, rect.top - windowHeight); // when bottom hits viewport top, start
+      const end = rect.bottom; // until section bottom leaves viewport
+      const progress = Math.min(1, Math.max(0, (window.scrollY - (window.scrollY + rect.top - windowHeight)) / (end - (rect.top))))
+      const maxT = -getMaxTranslate();
+      const translate = maxT * progress; // 0 to -max
+      track.style.transform = `translateX(${translate}px)`;
+    }
+
+    // Fallback simpler mapping using Intersection + percentage of section scrolled
+    function updateSimple() {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const scrollY = window.scrollY + window.innerHeight; // progress as bottom approaches section
+      const progress = Math.min(1, Math.max(0, (scrollY - sectionTop) / (sectionHeight + window.innerHeight)));
+      const maxT = -getMaxTranslate();
+      track.style.transform = `translateX(${maxT * progress}px)`;
+    }
+
+    const onScroll = () => {
+      updateSimple();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
 // DIRECTIONAL NAVIGATION HOVER EFFECTS
 document.querySelectorAll('.nav-links a').forEach(link => {
   let mouseX = 0;

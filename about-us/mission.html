@@ -6,42 +6,45 @@
   <title>Our Mission • WAVE</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../media/logo.png" type="image/png">
+  <link rel="shortcut icon" href="../media/logo.png" type="image/png">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <header class="navbar">
   <div class="container nav-content">
-    <div class="brand">
-      <img src="../media/logo.png" alt="WAVE Logo" class="logo-img">
-      <span class="brand-name">WAVE</span>
+    <div class="nav-main">
+      <div class="brand">
+        <a href="../index.html" class="brand-link">
+          <img src="../media/logo.png" alt="WAVE Logo" class="logo-img">
+          <span class="brand-name">WAVE</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">About Us</span>
+          <ul class="dropdown">
+            <li><a href="mission.html">Mission</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="meet-the-team.html">Meet the Team</a></li>
+          </ul>
+        </li>
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">Events</span>
+          <ul class="dropdown">
+            <li><a href="../events/bollywood-ball.html">Bollywood Ball</a></li>
+            <li><a href="../events/dandiya-night.html">Dandiya Night</a></li>
+            <li><a href="../events/iacs-summer-fest-booth.html">IACS Summer Fest Booth</a></li>
+            <li><a href="../events/bollywood-ball.html">View All Events</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-dropdown-trigger" href="../join-us.html">Join Us</a></li>
+      </ul>
     </div>
-    <ul class="nav-links">
-      <li class="dropdown-container">
-        <span class="nav-dropdown-trigger">About Us</span>
-        <ul class="dropdown">
-          <li><a href="mission.html">Mission</a></li>
-          <li><a href="impact.html">Impact</a></li>
-          <li><a href="team.html">Team</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-container">
-        <span class="nav-dropdown-trigger">Events</span>
-        <ul class="dropdown">
-          <li><a href="#">Upcoming Events</a></li>
-          <li><a href="#">Past Events</a></li>
-          <li><a href="#">Volunteer</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-container">
-        <span class="nav-dropdown-trigger">Donate</span>
-        <ul class="dropdown">
-          <li><a href="#">Make a Donation</a></li>
-          <li><a href="#">Sponsorship</a></li>
-          <li><a href="#">Monthly Giving</a></li>
-        </ul>
-      </li>
-    </ul>
+    <div class="nav-actions">
+      <a class="donate-cta" href="../donate.html">Donate</a>
+    </div>
   </div>
 </header>
 
@@ -69,9 +72,13 @@
 </section>
 
 
+
 <!-- LOGO MARQUEE (Infinite Right-to-Left Loop) -->
 <section class="logo-marquee" aria-label="Partner logos">
   <div class="container">
+    <div class="text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <h2>Sponsors</h2>
+    </div>
     <div class="logo-viewport">
       <div class="logo-track">
         <!-- Set A (3 placeholders) -->
@@ -87,33 +94,64 @@
   </div>
 </section>
 
-
-
-<!-- OUR APPROACH -->
+<!-- MISSION STATEMENT -->
 <section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <img src="../media/hero3.jpg" alt="Mission Vision" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);">
+    </div>
+    <div class="text">
+      <h2>Why Cancer?</h2>
+      <p>Blah Blah black sheep </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- HORIZONTAL TIMELINE (Right-to-Left) -->
+<section class="timeline" aria-label="WAVE timeline">
   <div class="container">
-    <div class="text" style="text-align: center; max-width: 800px; margin: 0 auto;">
-      <h2>Our Approach</h2>
-      <p>We take a multi-faceted approach to supporting pediatric cancer care:</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
-        <div style="text-align: left;">
-          <h3 style="color: var(--aqua); margin-bottom: 1rem;">Innovative Fundraising</h3>
-          <p>Creating engaging events and campaigns that bring communities together while raising crucial funds for research and care.</p>
+    <div class="timeline-viewport">
+      <div class="timeline-track">
+        <!-- Set A (alternating above/below for visual rhythm) -->
+        <div class="timeline-item above">
+          <img class="timeline-img" src="../media/img1.JPG" alt="Milestone" />
+          <span class="timeline-node" aria-hidden="true"></span>
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-meta">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-desc">Milestone</div>
+          </div>
         </div>
-        <div style="text-align: left;">
-          <h3 style="color: var(--deep-blue); margin-bottom: 1rem;">Direct Support</h3>
-          <p>Ensuring funds go directly to Seattle Children's Hospital to support both research initiatives and families in need.</p>
+        <div class="timeline-item below">
+          <img class="timeline-img" src="../media/img2.JPG" alt="Milestone" />
+          <span class="timeline-node" aria-hidden="true"></span>
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-meta">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-desc">Milestone</div>
+          </div>
         </div>
-        <div style="text-align: left;">
-          <h3 style="color: var(--red); margin-bottom: 1rem;">Youth Leadership</h3>
-          <p>Empowering young people to take leadership roles in advocacy and community mobilization.</p>
+        <div class="timeline-item above">
+          <img class="timeline-img" src="../media/img3.JPG" alt="Milestone" />
+          <span class="timeline-node" aria-hidden="true"></span>
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-meta">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-desc">Milestone</div>
+          </div>
         </div>
-        <div style="text-align: left;">
-          <h3 style="color: var(--dark-navy); margin-bottom: 1rem;">Community Building</h3>
-          <p>Creating lasting connections between families, supporters, and medical professionals.</p>
+        <div class="timeline-item below">
+          <img class="timeline-img" src="../media/img4.JPG" alt="Milestone" />
+          <span class="timeline-node" aria-hidden="true"></span>
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-meta">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-desc">Milestone</div>
+          </div>
         </div>
+        
       </div>
-      <a href="impact.html" class="btn pulse-border" style="margin-top: 3rem;">See Our Impact</a>
     </div>
   </div>
 </section>
@@ -121,11 +159,26 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-content">
-    <p>&copy; 2025 WAVE. All Rights Reserved.</p>
-    <div class="social-links">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Contact</a>
+    <div class="footer-3col">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/wave_seattle/" aria-label="Instagram" target="_blank" rel="noopener">
+          <img src="../media/Insta.png" alt="Instagram" />
+        </a>
+        <a href="https://www.facebook.com/people/Wave-Guild/pfbid02pGg3sQadUXTjCAgSzN8zrMdZnJz6LAHbeEDLwrrZCckAoBpZUopzAxHdpZHr3ZyTl/" aria-label="Facebook" target="_blank" rel="noopener">
+          <img src="../media/FaceBook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.tiktok.com/@wave_seattle" aria-label="TikTok" target="_blank" rel="noopener">
+          <img src="../media/Tiktok.png" alt="TikTok" />
+        </a>
+        <a href="https://linktr.ee/wave_seattle?fbclid=PAY2xjawJqoNxleHRuA2FlbQIxMQABp4_n_kbdopcxn5vjgW3mNvMXeR1de_c41Jz1orFaFKkNtSAL-JyaZEQ9arfe_aem_6kghGS2ERX3b-GrDIuQv9A" aria-label="Linktree" target="_blank" rel="noopener">
+          <img src="../media/linkTree.png" alt="Linktree" />
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2025 WAVE. All Rights Reserved.</p>
+      <div class="footer-contact">
+        <div class="label">Email</div>
+        <a href="mailto:wave.seattle.123@gmail.com">wave.seattle.123@gmail.com</a>
+      </div>
     </div>
   </div>
 </footer>
