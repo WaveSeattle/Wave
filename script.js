@@ -427,3 +427,108 @@ function buildEventGallery(containerId, filenames, basePath = '../media/') {
 
   io.observe(hero);
 })();
+
+
+// ===== Meet the Team page wiring =====
+(function () {
+  const isTeamPage =
+    document.getElementById('exec-row-top') ||
+    document.getElementById('admin-row-top');
+  if (!isTeamPage) return;
+
+  // Data
+  const EXEC = [
+    { name:'Sanjana Medikurthi', role:'Founder & President', img:'../media/img2.JPG',
+      desc:`Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children’s, and keeps the team aligned on mission and outcomes.` },
+    { name:'Moksh Doshi', role:'Vice President', img:'../media/img3.JPG',
+      desc:`Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.` },
+    { name:'Lahari Nellore', role:'Secretary', img:'../media/img4.JPG',
+      desc:`Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.` },
+    { name:'Bhuvan Carjala', role:'Treasurer', img:'../media/img5.JPG',
+      desc:`Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.` },
+    { name:'Sahasra Voruganti', role:'Social Media Manager', img:'../media/img6.JPG',
+      desc:`Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.` },
+  ];
+
+  const ADMIN = [
+    { name:'Laasya Chintamani', role:'Head of Development', img:'../media/img7.JPG',
+      desc:`Supports sponsorships, donor relations, and grant opportunities. Creates materials that clearly communicate impact and needs.` },
+    { name:'Samina Ali', role:'Head of Community Outreach', img:'../media/img8.JPG',
+      desc:`Builds partnerships with schools, cultural orgs, and local groups. Coordinates volunteers and helps recruit new members.` },
+    { name:'Omkar Page', role:'Head of Technology', img:'../media/img9.JPG',
+      desc:`Oversees the website and digital tools, streamlines workflows, and supports event tech (ticketing, forms, analytics).` },
+    { name:'Saketh Desam', role:'Head of Volunteer Connections', img:'../media/img10.JPG',
+      desc:`Leads volunteer intake, onboarding, and scheduling. Ensures volunteers are trained, supported, and recognized.` },
+  ];
+
+  // Render helper
+  function renderTeam(list, mountId, dataList) {
+    const m = document.getElementById(mountId);
+    if (!m) return;
+    m.innerHTML = list.map((p, i) => `
+      <button class="member" data-i="${i}" data-list="${dataList}">
+        <div class="avatar"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="member-name">${p.name}</div>
+        <div class="member-role">${p.role}</div>
+      </button>
+    `).join('');
+  }
+
+  // Exec: 3 top, 2 bottom (same horizontal spacing using 3-col grid)
+  renderTeam(EXEC.slice(0, 3), 'exec-row-top', 'exec');
+  renderTeam(EXEC.slice(3),     'exec-row-bottom', 'exec');
+
+  // Admin: 3 top, 1 bottom centered (3-col grid, middle column)
+  renderTeam(ADMIN.slice(0, 3), 'admin-row-top', 'admin');
+  renderTeam(ADMIN.slice(3),    'admin-row-bottom', 'admin');
+
+  // Modal bindings (+ toggle)
+  const modal   = document.getElementById('team-modal');
+  const closeX  = document.getElementById('tm-close');
+  const closeB  = document.getElementById('tm-close-2');
+  const tmA = document.getElementById('tm-avatar');
+  const tmN = document.getElementById('tm-name');
+  const tmR = document.getElementById('tm-role');
+  const tmD = document.getElementById('tm-desc');
+
+  let openKey = null; // tracks which card is open (listName|index)
+
+  function openModal(person, key) {
+    tmA.src  = person.img;  tmA.alt = person.name;
+    tmN.textContent = person.name;
+    tmR.textContent = person.role;
+    tmD.textContent = person.desc;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    openKey = key;
+  }
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    openKey = null;
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.member');
+    if (btn) {
+      const idx = +btn.dataset.i;
+      const listName = btn.dataset.list;
+      const list = (listName === 'exec') ? EXEC : ADMIN;
+      const person = list[idx];
+      const key = `${listName}|${idx}`;
+
+      // toggle behavior (click same card closes)
+      if (openKey === key && modal.getAttribute('aria-hidden') === 'false') {
+        closeModal();
+      } else if (person) {
+        openModal(person, key);
+      }
+    }
+    // backdrop click closes
+    if (e.target.id === 'team-modal') closeModal();
+  });
+
+  if (closeX) closeX.addEventListener('click', closeModal);
+  if (closeB) closeB.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+})();
