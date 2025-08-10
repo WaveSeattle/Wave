@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bollywood Ball • WAVE</title>
+  <title>Our Events • WAVE</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" href="../media/logo.png" type="image/png">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- NAVBAR (same as others) -->
+<!-- NAVBAR -->
 <header class="navbar">
   <div class="container nav-content">
     <div class="nav-main">
@@ -48,50 +48,53 @@
   </div>
 </header>
 
-<!-- HERO / OVERVIEW -->
-<section class="event-hero">
-  <div class="container event-hero-grid">
-    <figure class="hero-art">
-      <img src="../media/img1.JPG" alt="Bollywood Ball" />
-    </figure>
-
-    <div class="hero-info">
-      <h1>Bollywood Ball @ Lake Washington High School</h1>
-
-      <ul class="hero-meta">
-        <li><strong>Date:</strong> January 15th, 2025</li>
-        <li><strong>Location:</strong> Lake Washington High School, Kirkland, WA</li>
-      </ul>
-
-      <p class="hero-desc">
-        Our first-ever youth-only dance with mocktails and an empowering playlist that brought
-        Seattle’s youth together for a night of joy, unity, and purpose. Proceeds supported
-        research and uncompensated care at Seattle Children’s.
-      </p>
-
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="kpi counter" data-target="5000" data-prefix="$">0</div>
-          <div class="kpi-label">Donations</div>
-        </div>
-        <div class="stat">
-          <div class="kpi counter" data-target="250">0</div>
-          <div class="kpi-label">Attendees</div>
-        </div>
-        <div class="stat">
-          <div class="kpi counter" data-target="32">0</div>
-          <div class="kpi-label">Volunteers</div>
-        </div>
-      </div>
-    </div>
+<!-- HERO: video background + overlay title -->
+<section class="hero hero-events">
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline poster="../media/hero1.jpg">
+      <source src="../media/volunteer-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay container">
+    <h1>Our Events</h1>
+    <p>From cultural nights to community booths—each event fuels research and care.</p>
   </div>
   <div class="wave-animation"></div>
 </section>
 
-<!-- GALLERY -->
-<section class="event-gallery">
-  <div class="gallery-wrap" id="bb-gallery">
-    <!-- JS will inject cards; or add <a class="gcard"><img .../></a> manually -->
+<!-- ROADMAP -->
+<section class="roadmap">
+  <div class="container roadmap-inner">
+    <!-- Wavy SVG spine (fills the section height) -->
+    <svg id="wave-svg" viewBox="0 0 120 1000" preserveAspectRatio="none" aria-hidden="true">
+      <!-- subtle base path -->
+      <path id="wave-base"
+            d="M60 0
+               C 35 70, 85 130, 60 200
+               S 35 330, 60 400
+               S 85 530, 60 600
+               S 35 730, 60 800
+               S 85 930, 60 1000"
+            fill="none" stroke="rgba(29,78,137,0.18)" stroke-width="4" />
+      <!-- animated progress path -->
+      <path id="wave-progress"
+            d="M60 0
+               C 35 70, 85 130, 60 200
+               S 35 330, 60 400
+               S 85 530, 60 600
+               S 35 730, 60 800
+               S 85 930, 60 1000"
+            fill="none" stroke="url(#grad)" stroke-width="6" stroke-linecap="round" />
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="var(--aqua)"/>
+          <stop offset="100%" stop-color="var(--deep-blue)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- Items will be injected here -->
+    <div id="events-roadmap"></div>
   </div>
 </section>
 
@@ -123,20 +126,5 @@
 </footer>
 
 <script src="../script.js"></script>
-<script>
-  // Simple scalable gallery: add as many as you want
-  const photos = [
-    "../media/img1.JPG","../media/img2.JPG","../media/img3.JPG","../media/img4.JPG",
-    "../media/img5.JPG","../media/img6.JPG","../media/img7.JPG","../media/img8.JPG",
-    "../media/img9.JPG","../media/img10.JPG","../media/img11.JPG","../media/img12.JPG"
-  ];
-  const wrap = document.getElementById('bb-gallery');
-  wrap.innerHTML = photos.map(src => `
-    <a class="gcard" href="${src}" target="_blank" rel="noopener">
-      <span class="ring"></span>
-      <img loading="lazy" src="${src}" alt="Event photo">
-    </a>
-  `).join('');
-</script>
 </body>
 </html>

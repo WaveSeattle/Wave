@@ -1194,3 +1194,245 @@ button:active, .btn:active {
     min-height: 220px; /* slightly less tall for small screens */
   }
 }
+
+
+/* --- Events Roadmap (full-bleed, wavy spine, cards alternate) --- */
+.roadmap {
+  position: relative;
+  background: var(--white);
+  color: var(--dark-navy);
+  padding: 0;                 /* full-bleed */
+  overflow: hidden;
+}
+
+/* full-width container on this page only */
+.roadmap .container { width: 100%; max-width: none; padding: 5rem 0; }
+
+/* animated dotted background */
+.roadmap::before,
+.roadmap::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle 1.75px at 20px 20px, rgba(35,181,211,0.16) 2px, transparent 2px);
+  background-size: 46px 46px;
+  animation: dotsDrift 38s linear infinite;
+  z-index: 0;
+}
+.roadmap::after {
+  background-image:
+    radial-gradient(circle 1.5px at 10px 10px, rgba(29,78,137,0.10) 2px, transparent 2px);
+  background-size: 36px 36px;
+  animation-duration: 55s;
+  opacity: .8;
+}
+@keyframes dotsDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 600px 400px; }
+}
+
+/* layout */
+#events-roadmap { position: relative; display: flex; flex-direction: column; gap: 6rem; z-index: 2; }
+
+/* a single row */
+.event-row { position: relative; width: 100%; min-height: 420px; display: flex; }
+
+/* keep a clear center channel for the wave so cards never cover it */
+:root { --wave-col: 140px; --gutter: 28px; }
+
+/* cards */
+.event-card {
+  background: var(--white);
+  color: var(--dark-navy);
+  box-shadow: 0 16px 36px rgba(0,0,0,.12), 0 8px 20px rgba(29,78,137,.14);
+  border-radius: 20px;
+  border: 2px solid rgba(35,181,211,.10);
+  padding: 0 0 1rem;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+
+  /* this math guarantees we never cross the center wave */
+  max-width: min(620px, calc(50vw - (var(--wave-col) / 2) - var(--gutter)));
+  width: 100%;
+  z-index: 2;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.event-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(0,0,0,.16), 0 10px 26px rgba(29,78,137,.18); }
+
+.event-media { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+.event-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.event-body { padding: 1rem 1.25rem 0; }
+.event-body h3 { font-family: 'Poppins', sans-serif; color: var(--deep-blue); margin: .25rem 0 .35rem; }
+.event-meta { font-weight: 800; color: var(--aqua); margin-bottom: .6rem; }
+.event-body p { color: var(--gray-text); margin-bottom: 1rem; }
+
+/* alternate sides */
+.event-row.left  { justify-content: flex-start; padding-right: calc(50% + var(--wave-col)/2 + var(--gutter)); padding-left: var(--gutter); }
+.event-row.right { justify-content: flex-end;   padding-left:  calc(50% + var(--wave-col)/2 + var(--gutter)); padding-right: var(--gutter); }
+
+/* curved mini-connector from card edge toward wave (subtle) */
+.event-row .connector {
+  position: absolute; top: 50%; width: 120px; height: 80px; pointer-events: none; z-index: 1;
+}
+.event-row.left  .connector { left: calc(50% - var(--wave-col)/2 - 120px); transform: translateY(-50%); }
+.event-row.right .connector { right: calc(50% - var(--wave-col)/2 - 120px); transform: translateY(-50%) scaleX(-1); }
+.connector path { fill: none; stroke: rgba(29,78,137,.26); stroke-width: 2; }
+
+/* center wavy spine—always visible */
+#wave-svg {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: var(--wave-col);
+  transform: translateX(-50%);
+  height: 100%;
+  pointer-events: none;
+  z-index: 1; /* above dots, below cards */
+  filter: drop-shadow(0 0 10px rgba(35,181,211,.18));
+}
+
+/* responsive stack */
+@media (max-width: 980px){
+  :root { --wave-col: 70px; --gutter: 18px; }
+  .event-row { min-height: 0; }
+  .event-row.left,
+  .event-row.right { padding-left: calc(var(--wave-col) + 22px); padding-right: var(--gutter); }
+  .event-card { max-width: 100%; }
+  .connector { display: none; }
+  #wave-svg { left: 26px; transform: none; }
+}
+/* === Events: Scroll-in reveal === */
+.event-row .event-card {
+  opacity: 0;
+  transform: translateY(18px) scale(.985);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+.event-row.is-visible .event-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger the reveal slightly (left/right) */
+.event-row.left  .event-card { transition-delay: .05s; }
+.event-row.right .event-card { transition-delay: .12s; }
+
+/* === Blur-up lazy images === */
+.event-media img.blur-up {
+  filter: blur(12px);
+  opacity: .85;
+  transform: scale(1.02);
+  transition: filter .5s ease, opacity .5s ease, transform .5s ease;
+}
+.event-media img.is-loaded {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+/* Remove the subtle connector curves */
+.connector { display: none !important; }
+
+
+
+/* ===== Event page (hero + gallery) ===== */
+
+/* HERO */
+.event-hero { background: var(--white); color: var(--dark-navy); position: relative; padding: 4.5rem 0 3rem; }
+.event-hero .container { position: relative; z-index: 2; }
+
+.event-hero-grid {
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem; align-items: center;
+}
+
+.hero-art {
+  margin: 0; border-radius: 22px; overflow: hidden; position: relative;
+  -webkit-mask-image: linear-gradient(to right, #000 68%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, #000 68%, rgba(0,0,0,0) 100%);
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+}
+.hero-art img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+.hero-info h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  margin-bottom: .75rem;
+  background: linear-gradient(135deg, var(--deep-blue), var(--aqua));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-meta { list-style: none; padding: 0; margin: 0 0 1rem; }
+.hero-meta li { margin: .25rem 0; color: var(--deep-blue); }
+.hero-desc { color: var(--gray-text); margin-bottom: 1.25rem; }
+
+.hero-stats { display: grid; grid-template-columns: repeat(3, minmax(120px,1fr)); gap: 1rem; }
+.hero-stats .stat {
+  background: #fff; border: 2px solid rgba(35,181,211,.12); border-radius: 16px;
+  padding: .9rem 1rem; text-align: center; box-shadow: 0 10px 26px rgba(0,0,0,.08);
+}
+.kpi { font-weight: 800; color: var(--deep-blue); font-size: clamp(1.3rem, 2.3vw, 1.8rem); }
+.kpi-label { color: var(--gray-text); font-weight: 600; font-size: .95rem; }
+
+/* GALLERY */
+.event-gallery { background: var(--white); padding: 2rem 1rem 4rem; }
+.gallery-wrap {
+  width: min(100% - 2rem, 1400px);
+  margin: 0 auto;
+  display: grid; gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.gcard {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #eef6fa;
+  border: 3px solid transparent; /* default border */
+  box-shadow: 0 12px 28px rgba(0,0,0,.08), 0 4px 12px rgba(29,78,137,.1);
+  isolation: isolate;
+  transition: transform 0.4s ease, border-color 0.3s ease;
+}
+.gcard img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  position: relative;
+  z-index: 2; /* Ensure image is above the white mask */
+  transition: transform 0.4s ease;
+}
+
+/* Rotating blue outline */
+.gcard .ring {
+  position: absolute; inset: -2px;
+  border-radius: 18px;
+  background: conic-gradient(from 0deg, var(--aqua), var(--deep-blue), var(--aqua));
+  filter: blur(0.5px);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.gcard::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 14px;
+  background: #fff;
+  z-index: 1;
+}
+
+/* Hover effects */
+.gcard:hover {
+  transform: scale(1.05);
+  border-color: var(--deep-blue);
+}
+.gcard:hover .ring {
+  opacity: 1;
+  animation: spin 1.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

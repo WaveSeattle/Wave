@@ -227,3 +227,203 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   setup();
   start();
 })();
+
+
+
+// --- Events Roadmap: full-bleed + reveals + wave color shift + blur-up images ---
+(function eventsRoadmapFullBleed(){
+  const host   = document.getElementById('events-roadmap');
+  const wave   = document.getElementById('wave-progress');
+  const waveSvg= document.getElementById('wave-svg');
+  if (!host || !wave || !waveSvg) return;
+
+  // Events data
+  const events = [
+    { title:"Bollywood Ball @ Lake Washington High School", date:"2025-01-15", displayDate:"January 15th, 2025",
+      excerpt:"Our first-ever youth-only dance with mocktails and an empowering playlist that brought Seattle’s youth together.",
+      href:"bollywood-ball.html", img:"../media/img1.JPG" },
+    { title:"Dandiya Night 2024 w/ Hopes and Smiles", date:"2024-10-19", displayDate:"October 19th, 2024",
+      excerpt:"A joyful cultural celebration supporting youth mental health projects and community pride.",
+      href:"dandiya-night.html", img:"../media/img2.JPG" },
+    { title:"IACS Summer Fest Booth", date:"2024-06-23", displayDate:"June 23rd, 2024",
+      excerpt:"Sold Italian Sodas to raise funds for uncompensated care and met new families in the community.",
+      href:"iacs-summer-fest-booth.html", img:"../media/img3.JPG" },
+    { title:"TTA Convention Booth", date:"2024-05-24", displayDate:"May 24–26th, 2024",
+      excerpt:"We hosted a booth, shared our mission, and connected with hundreds about the importance of research.",
+      href:"tta-convention-booth.html", img:"../media/img4.JPG" },
+    { title:"IACS Diwali x WAVE", date:"2023-11-18", displayDate:"November 18th, 2023",
+      excerpt:"A vibrant booth engaging youth about empowerment and wellness; inviting them to join our mission.",
+      href:"iacs-diwali-x-wave.html", img:"../media/img5.JPG" },
+    { title:"Dandiya Night 2023 w/ Hopes and Smiles", date:"2023-10-20", displayDate:"October 20th, 2023",
+      excerpt:"A festive evening spotlighting South Asian traditions while raising awareness for pediatric cancer research.",
+      href:"dandiya-night-2023.html", img:"../media/img6.JPG" }
+  ].sort((a,b)=> new Date(b.date) - new Date(a.date)); // newest → oldest
+
+  // Build rows
+  const frag = document.createDocumentFragment();
+  events.forEach((ev, i) => {
+    const side = i % 2 === 0 ? 'left' : 'right';
+    const row = document.createElement('div');
+    row.className = `event-row ${side}`;
+    row.innerHTML = `
+      <div class="event-card">
+        <div class="event-media">
+          <img class="blur-up" src="${ev.img}" alt="${ev.title}" loading="lazy">
+        </div>
+        <div class="event-body">
+          <h3>${ev.title}</h3>
+          <div class="event-meta">${ev.displayDate}</div>
+          <p>${ev.excerpt}</p>
+          <a class="btn pulse-border" href="${ev.href}">Details</a>
+        </div>
+      </div>
+      <svg class="connector" viewBox="0 0 120 80" aria-hidden="true">
+        <path d="M2,40 C40,10 80,10 118,40"></path>
+      </svg>
+    `;
+    frag.appendChild(row);
+  });
+  host.textContent = "";
+  host.appendChild(frag);
+
+  // ---- Blur-up loader for all event images
+  host.querySelectorAll('.event-media img').forEach(img=>{
+    if (img.complete) {
+      img.classList.add('is-loaded'); img.classList.remove('blur-up');
+    } else {
+      img.addEventListener('load', ()=>{ img.classList.add('is-loaded'); img.classList.remove('blur-up'); }, { once:true });
+      img.addEventListener('error', ()=>{ img.classList.remove('blur-up'); }, { once:true });
+    }
+  });
+
+  // ---- Reveal-on-scroll for rows
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  host.querySelectorAll('.event-row').forEach(row => io.observe(row));
+
+  // ---- Wavy spine progress + color shift
+  const gradStops = waveSvg.querySelectorAll('#grad stop'); // 2 stops
+  // base brand colors
+  const cStart = [0x23,0xB5,0xD3]; // var(--aqua)   #23B5D3
+  const cEnd   = [0x1D,0x4E,0x89]; // var(--deep-blue) #1D4E89
+  const lerp = (a,b,t)=> Math.round(a + (b-a)*t);
+  const mixHex = (t)=> `#${[0,1,2].map(i=> lerp(cStart[i], cEnd[i], t).toString(16).padStart(2,'0')).join('')}`;
+
+  function setPathMetrics(){
+    const len = wave.getTotalLength();
+    wave.style.strokeDasharray = len;
+    wave.style.strokeDashoffset = len;
+  }
+  function onScroll(){
+    const section = document.querySelector('.roadmap');
+    const rect = section.getBoundingClientRect();
+    const view = window.innerHeight;
+    const progress = Math.max(0, Math.min(1, (view - rect.top) / (rect.height + view)));
+
+    // stroke progress
+    const len = wave.getTotalLength();
+    wave.style.strokeDashoffset = len * (1 - progress);
+
+    // color shift along progress (top = aqua, bottom = deep-blue)
+    const t1 = Math.max(0, progress - 0.15); // slight offset for variety
+    const t2 = Math.min(1, progress + 0.15);
+    if (gradStops.length >= 2) {
+      gradStops[0].setAttribute('stop-color', mixHex(t1));
+      gradStops[1].setAttribute('stop-color', mixHex(t2));
+    }
+  }
+  setPathMetrics(); onScroll();
+  window.addEventListener('resize', ()=>{ setPathMetrics(); onScroll(); });
+  window.addEventListener('scroll', onScroll, { passive:true });
+})();
+
+// BollyWood Ball Gallery
+
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.getElementById("bb-gallery");
+
+  // Array of image filenames
+  const imageList = [
+    "img1.JPG", "img2.JPG", "img3.JPG", "img4.JPG", "img5.JPG", "img6.JPG",
+    "img7.JPG", "img8.JPG", "img9.JPG", "img10.JPG", "img11.JPG", "img12.JPG"
+  ];
+
+  imageList.forEach((imgName, index) => {
+    const imgCard = document.createElement("a");
+    imgCard.classList.add("gcard");
+    imgCard.href = `../media/${imgName}`;
+    imgCard.target = "_blank";
+    imgCard.rel = "noopener";
+
+    imgCard.innerHTML = `
+      <span class="ring"></span>
+      <img loading="lazy" src="../media/${imgName}" alt="Event photo ${index + 1}">
+    `;
+
+    gallery.appendChild(imgCard);
+  });
+});
+
+
+/* ---------------------------
+   Reusable Event Gallery
+   usage:
+     buildEventGallery('bb-gallery', [
+       'img1.JPG','img2.JPG', ... 'img12.JPG'
+     ], '../media/');
+----------------------------*/
+function buildEventGallery(containerId, filenames, basePath = '../media/') {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+
+  // Prevent duplicates if called twice
+  if (el.dataset.built === '1') return;
+  el.dataset.built = '1';
+
+  const html = filenames.map((name, i) => `
+    <a class="gcard" href="${basePath}${name}" target="_blank" rel="noopener">
+      <span class="ring"></span>
+      <img loading="lazy" src="${basePath}${name}" alt="Event photo ${i + 1}">
+    </a>
+  `).join('');
+  el.innerHTML = html;
+}
+
+/* (Optional) KPI counters start when the hero enters view on event pages */
+(function initEventCounters() {
+  const hero = document.querySelector('.event-hero');
+  if (!hero) return;
+  const counters = hero.querySelectorAll('.counter');
+  if (!counters.length) return;
+
+  const start = () => {
+    counters.forEach(counter => {
+      const target = +counter.dataset.target || 0;
+      const prefix = counter.dataset.prefix || '';
+      let curr = 0;
+      const step = Math.max(1, Math.ceil(target / 80));
+      function tick() {
+        curr += step;
+        if (curr >= target) { counter.textContent = prefix + target.toLocaleString(); return; }
+        counter.textContent = prefix + curr.toLocaleString();
+        requestAnimationFrame(tick);
+      }
+      tick();
+    });
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some(e => e.isIntersecting)) {
+      start();
+      io.disconnect();
+    }
+  }, { threshold: 0.35 });
+
+  io.observe(hero);
+})();

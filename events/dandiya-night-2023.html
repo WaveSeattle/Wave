@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bollywood Ball • WAVE</title>
+  <title>Dandiya Night 2023 • WAVE</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" href="../media/logo.png" type="image/png">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- NAVBAR (same as others) -->
+<!-- NAVBAR -->
 <header class="navbar">
   <div class="container nav-content">
     <div class="nav-main">
@@ -34,8 +34,10 @@
           <span class="nav-dropdown-trigger">Events</span>
           <ul class="dropdown">
             <li><a href="bollywood-ball.html">Bollywood Ball</a></li>
-            <li><a href="dandiya-night.html">Dandiya Night</a></li>
+            <li><a href="dandiya-night-2023.html">Dandiya Night 2023</a></li>
             <li><a href="iacs-summer-fest-booth.html">IACS Summer Fest Booth</a></li>
+            <li><a href="tta-convention-booth.html">TTA Convention Booth</a></li>
+            <li><a href="iacs-diwali-x-wave.html">IACS Diwali x WAVE</a></li>
             <li><a href="index.html">View All Events</a></li>
           </ul>
         </li>
@@ -48,38 +50,36 @@
   </div>
 </header>
 
-<!-- HERO / OVERVIEW -->
+<!-- HERO -->
 <section class="event-hero">
   <div class="container event-hero-grid">
     <figure class="hero-art">
-      <img src="../media/img1.JPG" alt="Bollywood Ball" />
+      <img src="../media/img2.JPG" alt="Dandiya Night 2023" />
     </figure>
 
     <div class="hero-info">
-      <h1>Bollywood Ball @ Lake Washington High School</h1>
-
+      <h1>Dandiya Night 2023</h1>
       <ul class="hero-meta">
-        <li><strong>Date:</strong> January 15th, 2025</li>
-        <li><strong>Location:</strong> Lake Washington High School, Kirkland, WA</li>
+        <li><strong>Date:</strong> October 14th, 2023</li>
+        <li><strong>Location:</strong> Redmond, WA</li>
       </ul>
-
       <p class="hero-desc">
-        Our first-ever youth-only dance with mocktails and an empowering playlist that brought
-        Seattle’s youth together for a night of joy, unity, and purpose. Proceeds supported
-        research and uncompensated care at Seattle Children’s.
+        A vibrant night filled with traditional Dandiya Raas dances, colorful outfits,
+        live music, and community joy. The event supported WAVE’s mission to fund
+        pediatric cancer research at Seattle Children’s Hospital.
       </p>
 
       <div class="hero-stats">
         <div class="stat">
-          <div class="kpi counter" data-target="5000" data-prefix="$">0</div>
+          <div class="kpi counter" data-target="4200" data-prefix="$">0</div>
           <div class="kpi-label">Donations</div>
         </div>
         <div class="stat">
-          <div class="kpi counter" data-target="250">0</div>
+          <div class="kpi counter" data-target="500">0</div>
           <div class="kpi-label">Attendees</div>
         </div>
         <div class="stat">
-          <div class="kpi counter" data-target="32">0</div>
+          <div class="kpi counter" data-target="18">0</div>
           <div class="kpi-label">Volunteers</div>
         </div>
       </div>
@@ -90,9 +90,7 @@
 
 <!-- GALLERY -->
 <section class="event-gallery">
-  <div class="gallery-wrap" id="bb-gallery">
-    <!-- JS will inject cards; or add <a class="gcard"><img .../></a> manually -->
-  </div>
+  <div class="gallery-wrap" id="bb-gallery"></div>
 </section>
 
 <!-- FOOTER -->
@@ -122,21 +120,14 @@
   </div>
 </footer>
 
+<!-- Scripts -->
 <script src="../script.js"></script>
 <script>
-  // Simple scalable gallery: add as many as you want
-  const photos = [
-    "../media/img1.JPG","../media/img2.JPG","../media/img3.JPG","../media/img4.JPG",
-    "../media/img5.JPG","../media/img6.JPG","../media/img7.JPG","../media/img8.JPG",
-    "../media/img9.JPG","../media/img10.JPG","../media/img11.JPG","../media/img12.JPG"
-  ];
-  const wrap = document.getElementById('bb-gallery');
-  wrap.innerHTML = photos.map(src => `
-    <a class="gcard" href="${src}" target="_blank" rel="noopener">
-      <span class="ring"></span>
-      <img loading="lazy" src="${src}" alt="Event photo">
-    </a>
-  `).join('');
+  // Uses shared gallery builder from script.js
+  buildEventGallery('bb-gallery', [
+    'img1.JPG','img2.JPG','img3.JPG','img4.JPG','img5.JPG','img6.JPG',
+    'img7.JPG','img8.JPG','img9.JPG','img10.JPG','img11.JPG','img12.JPG'
+  ], '../media/');
 </script>
 </body>
 </html>
