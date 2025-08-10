@@ -17,18 +17,24 @@ const WaveApp = {
 
   // Initialize all components
   init() {
-    this.initCounters();
-    this.initHeroImageSwitcher();
-    this.initGalleryControls();
-    this.initLogoMarquee();
-    this.initTimeline();
-    this.initNavigationEffects();
-    this.initTestimonials();
-    this.initEventsRoadmap();
-    this.initEventGallery();
-    this.initEventCounters();
-    this.initTimelineVisualization();
-    this.initWaveCanvas();
+    // Core modules
+    CounterAnimations.init();
+    HeroImageSwitcher.init();
+    GalleryControls.init();
+    LogoMarquee.init();
+    TimelineScroll.init();
+    NavigationEffects.init();
+    
+    // Page-specific modules
+    TestimonialsCarousel.init();
+    EventsRoadmap.init();
+    EventGallery.init();
+    EventCounters.init();
+    TimelineVisualization.init();
+    TeamModule.init();
+    
+    // Canvas effects
+    WaveCanvas.init();
   }
 };
 
@@ -1269,21 +1275,7 @@ const WaveCanvas = {
  * Initialize all WAVE application modules when DOM is ready
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // Update WaveApp object with module references
-  WaveApp.initCounters = CounterAnimations.init.bind(CounterAnimations);
-  WaveApp.initHeroImageSwitcher = HeroImageSwitcher.init.bind(HeroImageSwitcher);
-  WaveApp.initGalleryControls = GalleryControls.init.bind(GalleryControls);
-  WaveApp.initLogoMarquee = LogoMarquee.init.bind(LogoMarquee);
-  WaveApp.initTimeline = TimelineScroll.init.bind(TimelineScroll);
-  WaveApp.initNavigationEffects = NavigationEffects.init.bind(NavigationEffects);
-  WaveApp.initTestimonials = TestimonialsCarousel.init.bind(TestimonialsCarousel);
-  WaveApp.initEventsRoadmap = EventsRoadmap.init.bind(EventsRoadmap);
-  WaveApp.initEventGallery = EventGallery.init.bind(EventGallery);
-  WaveApp.initEventCounters = EventCounters.init.bind(EventCounters);
-  WaveApp.initTimelineVisualization = TimelineVisualization.init.bind(TimelineVisualization);
-  WaveApp.initWaveCanvas = WaveCanvas.init.bind(WaveCanvas);
-  
-  // Initialize all modules
+  // Initialize all modules directly
   WaveApp.init();
 });
 
@@ -1314,4 +1306,177 @@ window.buildEventGallery = (containerId, filenames, basePath = '../media/') => {
     </a>
   `).join('');
   element.innerHTML = html;
+};
+
+// =============================================================================
+// TEAM MODULE
+// =============================================================================
+
+const TeamModule = {
+  /**
+   * Initialize team page functionality
+   */
+  init() {
+    const isTeamPage = document.getElementById('exec-row-top') || 
+                      document.getElementById('admin-row-top');
+    if (!isTeamPage) {
+      return;
+    }
+
+    this.setupTeamData();
+    this.renderTeams();
+    this.setupModal();
+  },
+
+  /**
+   * Setup team data
+   */
+  setupTeamData() {
+    this.EXEC = [
+      { name: 'Sanjana Medikurthi', role: 'Founder & President', img: '../media/img2.JPG',
+        desc: 'Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children\'s, and keeps the team aligned on mission and outcomes.' },
+      { name: 'Moksh Doshi', role: 'Vice President', img: '../media/img3.JPG',
+        desc: 'Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.' },
+      { name: 'Lahari Nellore', role: 'Secretary', img: '../media/img4.JPG',
+        desc: 'Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.' },
+      { name: 'Bhuvan Carjala', role: 'Treasurer', img: '../media/img5.JPG',
+        desc: 'Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.' },
+      { name: 'Sahasra Voruganti', role: 'Social Media Manager', img: '../media/img6.JPG',
+        desc: 'Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.' }
+    ];
+
+    this.ADMIN = [
+      { name: 'Laasya Chintamani', role: 'Head of Development', img: '../media/img7.JPG',
+        desc: 'Supports sponsorships, donor relations, and grant opportunities. Creates materials that clearly communicate impact and needs.' },
+      { name: 'Samina Ali', role: 'Head of Community Outreach', img: '../media/img8.JPG',
+        desc: 'Builds partnerships with schools, cultural orgs, and local groups. Coordinates volunteers and helps recruit new members.' },
+      { name: 'Omkar Page', role: 'Head of Technology', img: '../media/img9.JPG',
+        desc: 'Oversees the website and digital tools, streamlines workflows, and supports event tech (ticketing, forms, analytics).' },
+      { name: 'Saketh Desam', role: 'Head of Volunteer Connections', img: '../media/img10.JPG',
+        desc: 'Leads volunteer intake, onboarding, and scheduling. Ensures volunteers are trained, supported, and recognized.' }
+    ];
+  },
+
+  /**
+   * Render team sections
+   */
+  renderTeams() {
+    this.renderTeam(this.EXEC.slice(0, 3), 'exec-row-top', 'exec');
+    this.renderTeam(this.EXEC.slice(3), 'exec-row-bottom', 'exec');
+    this.renderTeam(this.ADMIN.slice(0, 3), 'admin-row-top', 'admin');
+    this.renderTeam(this.ADMIN.slice(3), 'admin-row-bottom', 'admin');
+  },
+
+  /**
+   * Render individual team section
+   * @param {Array} list - Team members list
+   * @param {string} mountId - Container ID
+   * @param {string} dataList - Data list identifier
+   */
+  renderTeam(list, mountId, dataList) {
+    const container = document.getElementById(mountId);
+    if (!container) {
+      return;
+    }
+
+    const html = list.map((person, i) => `
+      <button class="member" data-i="${i}" data-list="${dataList}">
+        <div class="avatar"><img src="${person.img}" alt="${person.name}"></div>
+        <div class="member-name">${person.name}</div>
+        <div class="member-role">${person.role}</div>
+      </button>
+    `).join('');
+    
+    container.innerHTML = html;
+  },
+
+  /**
+   * Setup modal functionality
+   */
+  setupModal() {
+    this.modal = document.getElementById('team-modal');
+    this.closeX = document.getElementById('tm-close');
+    this.closeB = document.getElementById('tm-close-2');
+    this.tmA = document.getElementById('tm-avatar');
+    this.tmN = document.getElementById('tm-name');
+    this.tmR = document.getElementById('tm-role');
+    this.tmD = document.getElementById('tm-desc');
+    this.openKey = null;
+
+    this.setupEventListeners();
+  },
+
+  /**
+   * Setup modal event listeners
+   */
+  setupEventListeners() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.member');
+      if (btn) {
+        const idx = parseInt(btn.dataset.i);
+        const listName = btn.dataset.list;
+        const list = (listName === 'exec') ? this.EXEC : this.ADMIN;
+        const person = list[idx];
+        const key = `${listName}|${idx}`;
+
+        // Toggle behavior (click same card closes)
+        if (this.openKey === key && this.modal.getAttribute('aria-hidden') === 'false') {
+          this.closeModal();
+        } else if (person) {
+          this.openModal(person, key);
+        }
+      }
+      
+      // Backdrop click closes
+      if (e.target.id === 'team-modal') {
+        this.closeModal();
+      }
+    });
+
+    if (this.closeX) {
+      this.closeX.addEventListener('click', () => this.closeModal());
+    }
+    if (this.closeB) {
+      this.closeB.addEventListener('click', () => this.closeModal());
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeModal();
+      }
+    });
+  },
+
+  /**
+   * Open modal with person details
+   * @param {Object} person - Team member data
+   * @param {string} key - Modal key for tracking
+   */
+  openModal(person, key) {
+    if (!this.modal) {
+      return;
+    }
+
+    this.tmA.src = person.img;
+    this.tmA.alt = person.name;
+    this.tmN.textContent = person.name;
+    this.tmR.textContent = person.role;
+    this.tmD.textContent = person.desc;
+    this.modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    this.openKey = key;
+  },
+
+  /**
+   * Close modal
+   */
+  closeModal() {
+    if (!this.modal) {
+      return;
+    }
+
+    this.modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    this.openKey = null;
+  }
 };
