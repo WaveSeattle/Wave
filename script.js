@@ -24,6 +24,7 @@ const WaveApp = {
     LogoMarquee.init();
     TimelineScroll.init();
     NavigationEffects.init();
+    MobileNavigation.init(); // Add mobile navigation
     
     // Page-specific modules
     TestimonialsCarousel.init();
@@ -96,6 +97,135 @@ const HeroImageSwitcher = {
     if (heroDisplay && src) {
       heroDisplay.src = src;
     }
+  }
+};
+
+// =============================================================================
+// MOBILE NAVIGATION MODULE
+// =============================================================================
+
+const MobileNavigation = {
+  /**
+   * Initialize mobile navigation functionality
+   */
+  init() {
+    this.setupMenuToggle();
+    this.setupMenuLinkClicks();
+    this.setupOutsideClick();
+    this.handleResize();
+    this.setupMobileDropdowns();
+  },
+
+  /**
+   * Setup hamburger menu toggle functionality
+   */
+  setupMenuToggle() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    
+    if (!menuToggle || !navLinks) {
+      return;
+    }
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (navLinks.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    });
+  },
+
+  /**
+   * Setup navigation link clicks to close mobile menu
+   */
+  setupMenuLinkClicks() {
+    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    if (!navLinks || !menuToggle) {
+      return;
+    }
+
+    navLinks.addEventListener('click', (e) => {
+      // Close menu when clicking on navigation links (not dropdowns)
+      if (e.target.tagName === 'A') {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  },
+
+  /**
+   * Setup outside click to close mobile menu
+   */
+  setupOutsideClick() {
+    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    if (!navLinks || !menuToggle || !navbar) {
+      return;
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target) && navLinks.classList.contains('active')) {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  },
+
+  /**
+   * Handle window resize to close mobile menu on desktop
+   */
+  handleResize() {
+    window.addEventListener('resize', () => {
+      const navLinks = document.getElementById('nav-links');
+      const menuToggle = document.getElementById('menu-toggle');
+      
+      if (!navLinks || !menuToggle) {
+        return;
+      }
+
+      if (window.innerWidth > 768) {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  },
+
+  /**
+   * Setup mobile dropdown touch functionality
+   */
+  setupMobileDropdowns() {
+    const dropdownTriggers = document.querySelectorAll('.nav-dropdown-trigger');
+    
+    dropdownTriggers.forEach(trigger => {
+      // Handle touch events for mobile dropdown toggles
+      trigger.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const dropdown = trigger.nextElementSibling;
+          if (dropdown && dropdown.classList.contains('dropdown')) {
+            const isVisible = dropdown.style.display === 'block';
+            // Hide all other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => {
+              d.style.display = 'none';
+            });
+            // Toggle current dropdown
+            dropdown.style.display = isVisible ? 'none' : 'block';
+          }
+        }
+      });
+    });
   }
 };
 
