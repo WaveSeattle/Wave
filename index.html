@@ -27,19 +27,20 @@
           <ul class="dropdown">
             <li><a href="about-us/mission.html">Mission</a></li>
             <li><a href="about-us/impact.html">Impact</a></li>
-            <li><a href="about-us/meet-the-team.html">Meet the Team</a></li>
           </ul>
         </li>
+        <li><a class="nav-dropdown-trigger" href="about-us/meet-the-team.html">Meet the Team</a></li>
         <li class="dropdown-container">
           <span class="nav-dropdown-trigger">Events</span>
           <ul class="dropdown">
             <li><a href="events/bollywood-ball.html">Bollywood Ball</a></li>
-            <li><a href="events/dandiya-night.html">Dandiya Night</a></li>
-            <li><a href="events/iacs-summer-fest-booth.html">IACS Summer Fest Booth</a></li>
+            <li><a href="events/dandiya-night-2023.html">Dandiya Night 2023</a></li>
+            <li><a href="events/iacs-summer-fest-booth.html">TTA</a></li>
             <li><a href="events/index.html">View All Events</a></li>
 
           </ul>
         </li>
+        
         <li><a class="nav-dropdown-trigger" href="join-us.html">Join Us</a></li>
       </ul>
     </div>
@@ -50,13 +51,44 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
+
+<section class="hero indexhero">
+  <!-- Background video -->
+  <video class="hero-video" autoplay muted loop playsinline poster="media/hero1.jpg" aria-hidden="true">
+    <source src="media/vid1.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Overlay tint for readability -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
   <div class="hero-content container">
     <h1>Empowering Hope for Children Battling Cancer</h1>
     <p>Join Seattle’s youth-led movement supporting research and uncompensated care at Seattle Children’s Hospital.</p>
     <a class="donate-cta" href="donate.html">Donate Now</a>
   </div>
+
   <div class="wave-animation"></div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+  <div class="container">
+    <h2>Our Impact in Numbers</h2>
+    <div class="stats">
+      <div class="stat-card">
+        <h3 class="counter" data-target="500000">0</h3>
+        <p>Funds Raised</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="counter" data-target="25">0</h3>
+        <p>Events Hosted</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="counter" data-target="1200">0</h3>
+        <p>Volunteer Hours</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- WHAT IS WAVE -->
@@ -111,42 +143,38 @@
 </section>
 
 
-<!-- CATEGORY HERO -->
-<section class="category-hero">
-  <div class="container">
-    <div class="category-image">
-      <img id="hero-display" src="media/hero1.jpg" alt="Impact">
-      <div class="category-buttons">
-        <button onclick="changeHero('media/hero1.jpg')">Wellness</button>
-        <button onclick="changeHero('media/hero2.jpg')">Awareness</button>
-        <button onclick="changeHero('media/hero3.jpg')">Vision</button>
-        <button onclick="changeHero('media/hero4.jpg')">Empowerment</button>
+<!-- CATEGORY HERO (replace your old category-hero section with this) -->
+<section class="category-hero cat-split">
+  <div class="container cat-grid">
+    <!-- LEFT: image with tabs on top -->
+    <div class="cat-media">
+      <div class="cat-media-frame">
+        <img id="cat-hero" src="media/hero1.jpg" alt="Wellness">
+        <div class="cat-tabs" role="tablist" aria-label="WAVE pillars">
+          <button class="active" data-key="wellness" role="tab" aria-selected="true">Wellness</button>
+          <button data-key="awareness" role="tab" aria-selected="false">Awareness</button>
+          <button data-key="vision" role="tab" aria-selected="false">Vision</button>
+          <button data-key="empowerment" role="tab" aria-selected="false">Empowerment</button>
+        </div>
       </div>
     </div>
+
+    <!-- RIGHT: dynamic content card -->
+    <aside class="cat-panel" id="cat-panel" aria-live="polite">
+      <h2 class="cat-title">Wellness</h2>
+      <p class="cat-copy">
+        We champion healthy habits for students and families—mindfulness, movement, and balance—
+        so our volunteers can bring their best selves to the cause and to one another.
+      </p>
+      <a href="about-us/mission.html" class="btn pulse-border">Learn more</a>
+    </aside>
   </div>
 </section>
 
 
-<!-- SOCIAL PROOF -->
-<section class="social-proof">
-  <div class="container">
-    <h2>Our Impact in Numbers</h2>
-    <div class="stats">
-      <div class="stat-card">
-        <h3 class="counter" data-target="500000">0</h3>
-        <p>Funds Raised</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="counter" data-target="25">0</h3>
-        <p>Events Hosted</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="counter" data-target="1200">0</h3>
-        <p>Volunteer Hours</p>
-      </div>
-    </div>
-  </div>
-</section>
+
+
+
 
 
 <!-- FOOTER -->

@@ -247,6 +247,21 @@
   padding: 6rem 1rem;
   overflow: hidden;
 }
+/* Home page (index) – keep video tint only here */
+.indexhero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(100% 60% at 50% 20%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.65) 100%),
+    linear-gradient(0deg, rgba(12,27,51,.45), rgba(12,27,51,.45));
+  z-index:2;                 /* below .hero-content, above video */
+  pointer-events:none;
+}
+
+/* Ensure other heroes don't inherit an overlay */
+.hero:not(.indexhero)::after{ content:none; }
+
 
 /* RADIAL OVERLAY EFFECTS: Creates depth and visual interest */
 .hero::before {
@@ -284,6 +299,22 @@
   /* GLOW ANIMATION: Pulsing glow effect */
   animation: glow 3s ease-in-out infinite alternate;
 }
+.indexhero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+  /* Gradient adjusted to avoid pure white at the start */
+  background: linear-gradient(135deg, #c2e1fb 0%, var(--aqua) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
 
 /* GLOW ANIMATION KEYFRAMES: Creates pulsing light effect */
 @keyframes glow {
@@ -470,6 +501,121 @@
   border-color: var(--aqua);
 }
   
+/* ===== Category Hero (split like "What is WAVE") ===== */
+.category-hero.cat-split {
+  /* same soft off-white feel as intro */
+  background: radial-gradient(1200px 600px at 70% 10%, rgba(35,181,211,0.07), transparent 60%) ,
+              linear-gradient(180deg, #f9fbfc 0%, #ffffff 100%);
+  padding: 3.5rem 1rem;
+}
+.category-hero.cat-split .container {
+  width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;   /* image left bigger */
+  gap: 2rem;
+  align-items: center;               /* vertically center the right card */
+}
+
+/* Left media frame (fixed visual size for all images) */
+.cat-media-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,.12);
+  background: #eef6fa;
+  aspect-ratio: 16 / 9;              /* ensures the same frame size */
+}
+.cat-media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Buttons on the image (single row) */
+.cat-tabs {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+}
+.cat-tabs button {
+  appearance: none;
+  border: none;
+  padding: .7rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  background: #fff;
+  color: var(--deep-blue);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  white-space: nowrap;
+}
+.cat-tabs button:hover { transform: translateY(-2px); }
+.cat-tabs button.active {
+  background: linear-gradient(135deg, var(--aqua), var(--deep-blue));
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(35,181,211,.35);
+}
+
+/* Right panel card */
+.cat-panel {
+  background: #fff;
+  border: 1px solid rgba(29,78,137,.08);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+  padding: 1.6rem 1.4rem;
+}
+.cat-panel .cat-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  margin: 0 0 .5rem;
+  background: linear-gradient(135deg, var(--deep-blue), var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cat-panel .cat-copy {
+  color: var(--gray-text);
+  margin-bottom: 1rem;
+}
+
+/* Responsive stack */
+@media (max-width: 900px) {
+  .cat-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .cat-panel { order: 2; }
+  .cat-media { order: 1; }
+  .cat-tabs { top: 10px; gap: .6rem; }
+  .cat-tabs button { padding: .55rem .9rem; font-size: .9rem; }
+}
+
+.category-info-card {
+  background: rgba(255, 255, 255, 0.6); /* subtle white tint */
+  box-shadow: none; /* remove shadow */
+  border: none; /* remove border */
+  padding: 2rem;
+  border-radius: 1rem; /* keep rounded corners for style */
+  backdrop-filter: blur(6px); /* softens image behind card */
+}
+
+.category-info-card h2 {
+  color: #003366; /* dark blue for readability */
+  margin-bottom: 1rem;
+}
+
+.category-info-card p {
+  color: #333;
+  line-height: 1.5;
+}
+
   /* ------------------------------
    INTRO (What is WAVE) - PROFESSIONAL SECTION
 ------------------------------ */
@@ -598,7 +744,7 @@
     font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 3rem;
-  color: var(--white);
+  color: var(--deep-blue);
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
   .stats {
@@ -683,7 +829,7 @@
 ------------------------------ */
 .gallery {
   /* CLEAN WHITE BACKGROUND: Professional solid background */
-  background: var(--white);
+  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 100%);
   color: var(--dark-navy);
   padding: 4rem 0;
   overflow: hidden;
@@ -1604,13 +1750,72 @@ button:active, .btn:active {
 }
 
 /* Only for the bottom Exec row */
-#exec-row-bottom {
-  grid-template-columns: repeat(2, 1fr) !important; /* 2 equal columns */
-  gap: 0 rem; /* or whatever matches your top row */
-  justify-content: center; /* centers the two columns in the container */
+/* Executive board bottom row (two cards centered, same horizontal gap) */
+#exec-row-bottom{
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.25rem;              /* same as .team-grid gap */
+  justify-content:center;
 }
 
 #exec-row-bottom .member:nth-child(1),
-#exec-row-bottom .member:nth-child(2) {
-  grid-column: auto !important; /* remove forced col 1 & col 3 placement */
+#exec-row-bottom .member:nth-child(2){
+  grid-column:auto !important; /* cancel the 1/3 placement from the generic two-row rule */
 }
+
+
+/* ==== Hero video background ==== */
+
+
+/* Full-bleed video */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0; /* behind everything */
+  filter: saturate(1.05); /* subtle polish */
+}
+
+/* Readability overlay (brand-tinted gradient + subtle vignette) */
+/* Neutral default — no dark overlay on other pages (e.g., Join Us) */
+/* Default: no tint overlay for pages that don't need it */
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: none;
+  mix-blend-mode: normal;
+}
+
+/* Home page (video hero): strong, brand‑tinted overlay for readability */
+.indexhero .hero-overlay{
+  background:
+    radial-gradient(100% 60% at 50% 20%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.65) 100%),
+    linear-gradient(0deg, rgba(12,27,51,.45), rgba(12,27,51,.45));
+  mix-blend-mode: multiply;
+}
+
+
+
+
+
+/* Ensure text sits on top */
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+.hero p {
+  text-shadow: 0 3px 12px rgba(0,0,0,.35);
+}
+
+/* Keep your wave visible above the video */
+.wave-animation {
+  z-index: 4;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; } /* fall back to poster/fallback bg */
+}
+

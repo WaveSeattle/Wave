@@ -532,3 +532,67 @@ function buildEventGallery(containerId, filenames, basePath = '../media/') {
   if (closeB) closeB.addEventListener('click', closeModal);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 })();
+
+/* --- Category Hero wiring (index only) --- */
+// ===== Category hero (index) dynamic copy + image =====
+(function () {
+  const frameImg = document.getElementById('cat-hero');
+  const panel    = document.getElementById('cat-panel');
+  const tabsRoot = document.querySelector('.cat-tabs');
+  if (!frameImg || !panel || !tabsRoot) return; // not on index
+
+  const MAP = {
+    wellness: {
+      img: 'media/hero1.jpg',
+      title: 'Wellness',
+      copy: `We champion healthy habits for students and families—mindfulness, movement,
+             and balance—so our volunteers bring their best selves to the cause and to one another.`
+    },
+    awareness: {
+      img: 'media/hero2.jpg',
+      title: 'Awareness',
+      copy: `We spotlight pediatric cancer facts, amplify community stories, and host campaigns that
+             educate peers, families, and neighbors about early detection and support resources.`
+    },
+    vision: {
+      img: 'media/img5.jpg',
+      title: 'Vision',
+      copy: `Our long-term vision is a community where every child receives cutting-edge care—no matter
+             their circumstances—backed by relentless youth energy and leadership.`
+    },
+    empowerment: {
+      img: 'media/img10.jpg',
+      title: 'Empowerment',
+      copy: `Through events, service, and leadership opportunities, we help young people find their voice,
+             build real-world skills, and make measurable impact for Seattle Children’s.`
+    }
+  };
+
+  function setState(key) {
+    const data = MAP[key];
+    if (!data) return;
+
+    // swap image
+    frameImg.src = data.img;
+    frameImg.alt = data.title;
+
+    // swap right panel content
+    panel.querySelector('.cat-title').textContent = data.title;
+    panel.querySelector('.cat-copy').textContent  = data.copy;
+
+    // active tab styling
+    tabsRoot.querySelectorAll('button').forEach(b => {
+      const isActive = b.dataset.key === key;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  tabsRoot.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-key]');
+    if (btn) setState(btn.dataset.key);
+  });
+
+  // default state
+  setState('wellness');
+})();
