@@ -1674,3 +1674,281 @@ const TeamModule = {
   // default state
   setState('wellness');
 })();
+
+
+
+// Impact Page — All JS for this page
+document.addEventListener('DOMContentLoaded', function () {
+  /* ------------------------------
+   * Shared helpers
+   * ------------------------------ */
+  const prefersReduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Smoothly debounce any function
+  function debounce(fn, wait = 250) {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(null, args), wait);
+    };
+  }
+
+  /* ------------------------------
+   * Testimonials Carousel
+   * ------------------------------ */
+  const viewport = document.querySelector('.testimonial-viewport');
+  const track = document.querySelector('.testimonial-track');
+
+  if (viewport && track) {
+    const INTERVAL_MS = 5000; // 5 seconds per slide
+    const TRANSITION = prefersReduced ? 0 : 600; // respect reduced motion
+
+    let index = 0;
+    let visible = 3;
+    let timer = null;
+
+    function countVisible() {
+      const w = viewport.clientWidth;
+      if (w < 640) return 1;
+      if (w < 900) return 2;
+      return 3;
+    }
+
+    function pageWidth() {
+      return viewport.clientWidth;
+    }
+
+    function setTranslate(px, animate = true) {
+      track.style.transition = animate ? `transform ${TRANSITION}ms ease` : 'none';
+      track.style.transform = `translateX(${-px}px)`;
+    }
+
+    function setup() {
+      // Remove old clones
+      track.querySelectorAll('.tcard[data-clone]').forEach((n) => n.remove());
+
+      visible = countVisible();
+
+      // Clone first "visible" cards to end for seamless wrap
+      const originals = Array.from(track.querySelectorAll('.tcard:not([data-clone])'));
+      if (originals.length === 0) return;
+      originals.slice(0, Math.min(visible, originals.length)).forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('data-clone', '1');
+        track.appendChild(clone);
+      });
+
+      index = 0;
+      setTranslate(0, false);
+    }
+
+    function step() {
+      const originalsCount = track.querySelectorAll('.tcard:not([data-clone])').length;
+      if (originalsCount === 0) return;
+
+      visible = countVisible();
+      const pages = Math.max(1, Math.ceil(originalsCount / visible));
+
+      index += 1;
+      setTranslate(index * pageWidth(), true);
+
+      // When we slide onto the clones, jump back to 0 after transition
+      if (index === pages) {
+        track.addEventListener(
+          'transitionend',
+          () => {
+            index = 0;
+            setTranslate(0, false);
+          },
+          { once: true }
+        );
+      }
+    }
+
+    function start() {
+      stop();
+      if (!prefersReduced) timer = setInterval(step, INTERVAL_MS);
+    }
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Pause on hover + when tab is hidden
+    viewport.addEventListener('mouseenter', stop);
+    viewport.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // Expose a safe resize handler used elsewhere
+    function handleImpactResize() {
+      setup(); // recalc visible + clones and reset position
+    }
+    // Make it available to other blocks if needed
+    window.__impactHandleResize = handleImpactResize;
+
+    // Initialize
+    setup();
+    start();
+
+    // Resize (debounced)
+    window.addEventListener('resize', debounce(handleImpactResize, 200));
+  }
+
+  /* ------------------------------
+   * Counter animation for impact statistics
+   * ------------------------------ */
+  (function countersInit() {
+    const counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
+
+    const nf = new Intl.NumberFormat();
+
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute('data-target'), 10);
+      if (isNaN(target)) return;
+
+      const original = counter.textContent.trim();
+      const hasDollar = original.includes('$');
+      const hasPlus = original.endsWith('+');
+
+      const duration = prefersReduced ? 0 : 2000; // 2s or instant
+      const steps = Math.max(1, Math.round(duration / 16));
+      const step = target / steps;
+      let current = 0;
+
+      const render = (value) => {
+        const n = Math.min(target, Math.floor(value));
+        const formatted = nf.format(n);
+        counter.textContent = `${hasDollar ? '$' : ''}${formatted}${hasPlus ? '+' : ''}`;
+      };
+
+      const animate = () => {
+        current += step;
+        if (current < target) {
+          render(current);
+          requestAnimationFrame(animate);
+        } else {
+          render(target);
+        }
+      };
+
+      const start = () => (duration === 0 ? render(target) : animate());
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              start();
+              io.unobserve(entry.target);
+            }
+          });
+        });
+        io.observe(counter);
+      } else {
+        // Fallback: start immediately
+        start();
+      }
+    });
+  })();
+
+  /* ------------------------------
+   * Honeycomb Gallery Interactions
+   * ------------------------------ */
+  (function honeycombInit() {
+    const items = document.querySelectorAll('.honeycomb-item');
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      // Toggle overlay on click
+      item.addEventListener('click', function () {
+        const overlay = this.querySelector('.overlay');
+        if (!overlay) return;
+        const open = overlay.dataset.open === '1';
+        overlay.style.transform = open ? 'translateY(100%)' : 'translateY(0%)';
+        overlay.dataset.open = open ? '0' : '1';
+      });
+
+      // Hover lift
+      item.addEventListener('mouseenter', function () {
+        this.style.zIndex = '10';
+      });
+
+      item.addEventListener('mouseleave', function () {
+        this.style.zIndex = '1';
+      });
+    });
+  })();
+
+  /* ------------------------------
+   * Smooth scrolling for same-page anchors
+   * ------------------------------ */
+  (function smoothAnchors() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: prefersReduced ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  })();
+
+  /* ------------------------------
+   * Lazy loading for honeycomb images
+   * ------------------------------ */
+  (function lazyImages() {
+    const images = document.querySelectorAll('.honeycomb-content img');
+    if (!images.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            // If you later add data-src, this will swap; otherwise it’s a no-op.
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach((img) => imageObserver.observe(img));
+    }
+  })();
+
+  /* ------------------------------
+   * Responsive + Performance
+   * ------------------------------ */
+  (function responsiveAndPerf() {
+    const onResize = () => {
+      // If carousel exists, reuse its prepared handler
+      if (typeof window.__impactHandleResize === 'function') {
+        window.__impactHandleResize();
+      }
+    };
+
+    window.addEventListener('resize', debounce(onResize, 200));
+
+    // Preload critical images (fix relative paths for /about-us/impact.html)
+    ['../media/hero1.jpg', '../media/hero2.jpg', '../media/hero3.jpg', '../media/hero4.jpg'].forEach(
+      (src) => {
+        const img = new Image();
+        img.src = src;
+      }
+    );
+  })(); 
+});

@@ -2848,3 +2848,194 @@ button:active, .btn:active {
   .hero-video { display: none; } /* fall back to poster/fallback bg */
 }
 
+/* ===== HONEYCOMB GALLERY STYLES ===== */
+.honeycomb-gallery {
+  background: linear-gradient(135deg, var(--white, #fff) 0%, #f8fafc 100%);
+  padding: 5rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.honeycomb-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 120px);
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  grid-auto-flow: dense;
+}
+
+/* Base honeycomb item/content so overlay & image effects work */
+.honeycomb-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000; /* acts as a subtle backdrop while image loads */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.honeycomb-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.honeycomb-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.honeycomb-item.large { grid-column: span 2; grid-row: span 2; }
+.honeycomb-item.medium { grid-column: span 2; grid-row: span 1; }
+.honeycomb-item.small { grid-column: span 1; grid-row: span 1; }
+
+/* Overlay reveal (default hidden; JS toggles transform too) */
+.overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--white, #fff);
+  padding: 2rem 1.5rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.overlay h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effects */
+.honeycomb-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+.honeycomb-item:hover .honeycomb-content img { transform: scale(1.1); }
+.honeycomb-item:hover .overlay { transform: translateY(0); }
+
+/* ===== SOCIAL PROOF - STATS ===== */
+.social-proof {
+  background: linear-gradient(135deg, #e8f4fd 0%, #b3d9f2 50%, #87ceeb 100%);
+  color: var(--dark-navy, #0b1b2b);
+  padding: 5rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* layout for the stat cards */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.stat-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12),
+              0 4px 12px rgba(29, 78, 137, 0.08);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(35, 181, 211, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15),
+              0 8px 20px rgba(35, 181, 211, 0.12);
+  border-color: rgba(35, 181, 211, 0.3);
+}
+
+/* ===== TESTIMONIALS CAROUSEL ===== */
+.testimonial-viewport {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: stretch;
+  transition: transform 0.6s ease-in-out;
+  will-change: transform;
+}
+
+/* 3 / 2 / 1 visible to match JS logic */
+.tcard {
+  flex: 0 0 calc((100% / 3) - 1rem);
+  min-height: 260px;
+  background: var(--white, #fff);
+  color: var(--dark-navy, #0b1b2b);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08),
+              0 4px 12px rgba(29, 78, 137, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ===== RESPONSIVE: HONEYCOMB ===== */
+@media (max-width: 1024px) {
+  .honeycomb-container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 100px);
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tcard { flex-basis: calc((100% / 2) - 0.75rem); }
+}
+
+@media (max-width: 768px) {
+  .honeycomb-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 80px);
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .tcard { flex-basis: 100%; }
+}
+
+@media (max-width: 480px) {
+  .honeycomb-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, 70px);
+    gap: 0.5rem;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-track,
+  .honeycomb-content img,
+  .overlay,
+  .honeycomb-item {
+    transition: none !important;
+  }
+  .honeycomb-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
