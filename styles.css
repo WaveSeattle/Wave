@@ -376,7 +376,7 @@
   border-radius: 50px;
   color: var(--white);
   /* GRADIENT BACKGROUND: Premium gradient effect */
-  background: linear-gradient(135deg, var(--aqua) 0%, #1D9FB8 100%);
+  background: linear-gradient(135deg, #ffd166 0%, #f4a261 100%);
   font-weight: 700;
   font-size: 1.1rem;
   text-decoration: none;
@@ -384,23 +384,37 @@
   letter-spacing: 1px;
   overflow: hidden;
   /* LAYERED SHADOWS: Multiple shadows for depth */
-  box-shadow: 0 8px 25px rgba(35, 181, 211, 0.4),
-              0 4px 15px rgba(0, 0, 0, 0.2);
+ 
   /* SMOOTH CUBIC-BEZIER TRANSITION: Professional easing */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
+ 
+ 
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.9s forwards;
+  box-shadow: 0 8px 24px rgba(244, 162, 97, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  border: 2px solid rgba(255,255,255,0.15);
 }
+
 
 /* ADVANCED HOVER EFFECTS */
 .pulse-border:hover {
-  /* 3D TRANSFORMATION: Lift and scale effect */
-  transform: translateY(-3px) scale(1.05);
-  /* ENHANCED SHADOWS: Stronger shadows on hover */
-  box-shadow: 0 12px 35px rgba(35, 181, 211, 0.6),
-              0 8px 25px rgba(0, 0, 0, 0.3);
-  /* GRADIENT REVERSAL: Changes gradient direction */
-  background: linear-gradient(135deg, #1D9FB8 0%, var(--aqua) 100%);
+  /* Slightly deeper gradient for readability contrast */
+  background: linear-gradient(135deg, #e6b74f 0%, #d98748 100%);
+  
+  /* Keep text white */
+  color: var(--white);
+
+  /* Subtle lift on hover */
+  transform: translateY(-3px);
+
+  /* Stronger glow/shadow */
+  box-shadow: 0 12px 28px rgba(244, 162, 97, 0.45);
+
+  /* Optional: smooth transition */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  opacity: 1;
 }
+
 
 /* ANIMATED BORDER EFFECT */
 .pulse-border::before {
@@ -419,10 +433,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.pulse-border:hover::before {
-  /* BORDER REVEAL: Shows animated border on hover */
-  opacity: 1;
-}
+
 
 /* BORDER ANIMATION KEYFRAMES: Creates moving light effect */
 @keyframes borderAnimation {
@@ -705,6 +716,57 @@
   line-height: 1.7;
   max-width: 500px;
   }
+  /* UNIVERSAL AQUA BUTTON */
+/* AQUA BUTTON WITH SAME SIZE AS PULSE-BORDER */
+.btn {
+  position: relative;
+  display: inline-block;
+
+  /* 🔹 Match pulse-border spacing */
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: var(--white);
+  cursor: pointer;
+  overflow: hidden;
+
+  /* AQUA gradient */
+  background: linear-gradient(135deg, var(--aqua) 0%, #1D9FB8 100%);
+
+  /* Depth */
+  box-shadow: 0 8px 24px rgba(35, 181, 211, 0.35);
+
+  /* Fade-in animation */
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.9s forwards;
+
+  /* Smooth easing */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #1D9FB8 0%, #0d7f94 100%);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(35, 181, 211, 0.45);
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
   .intro .btn {
   background: linear-gradient(135deg, var(--aqua) 0%, #1D9FB8 100%);
     color: var(--white);
@@ -2290,10 +2352,7 @@ button:active, .btn:active {
   animation: fadeInUp 1s ease 0.6s forwards;
 }
 
-.pulse-border {
-  opacity: 0;
-  animation: fadeInUp 1s ease 0.9s forwards;
-  }
+
   /* Donate hero uses a background photo under your existing overlay */
 .hero.hero-donate {
   background: 
