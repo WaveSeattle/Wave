@@ -672,7 +672,8 @@ linear-gradient(
    INTRO (What is WAVE) - PROFESSIONAL SECTION
 ------------------------------ */
 .intro {
-  background: var(--white);
+  background: radial-gradient(1200px 600px at 70% 10%, rgba(35,181,211,0.07), transparent 60%) ,
+  linear-gradient(180deg, #f9fbfc 0%, #ffffff 100%);
   color: var(--dark-navy);
   padding: 5rem 1rem;
   position: relative;
@@ -817,8 +818,9 @@ linear-gradient(
 ------------------------------ */
 .social-proof {
   /* PROFESSIONAL CONTAINED BACKGROUND: Clean white with subtle gradient */
-  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 100%);
-  color: var(--dark-navy);
+  background: linear-gradient(135deg, #e8f4fd 0%, #b3d9f2 50%, #87ceeb 100%);
+  color: var(--dark-navy, #0b1b2b);
+  
   padding: 5rem 1rem;
   text-align: center;
   position: relative;
@@ -931,12 +933,12 @@ linear-gradient(
    GALLERY - INFINITE SCROLL WITH PROFESSIONAL EFFECTS
 ------------------------------ */
 .gallery {
-  /* CLEAN WHITE BACKGROUND: Professional solid background */
-  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 100%);
-  color: var(--dark-navy);
-  padding: 4rem 0;
-  overflow: hidden;
+  background: linear-gradient(135deg, #e8f4fd 0%, #b3d9f2 50%, #87ceeb 100%);
+  color: var(--dark-navy, #0b1b2b);
+  padding: 5rem 1rem;
+  text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 /* SUBTLE BACKGROUND OVERLAY: Professional depth */
@@ -947,8 +949,8 @@ linear-gradient(
   left: 0;
   right: 0;
   bottom: 0;
-  /* MINIMAL RADIAL GRADIENT: Very subtle professional lighting */
-  background: radial-gradient(circle at 80% 20%, rgba(35, 181, 211, 0.03) 0%, transparent 70%);
+  /* SINGLE RADIAL GRADIENT: Subtle professional lighting */
+  background: radial-gradient(circle at 70% 30%, rgba(35, 181, 211, 0.08) 0%, transparent 60%);
   z-index: 1;
 }
 .gallery .container {
@@ -2991,14 +2993,6 @@ button:active, .btn:active {
 .honeycomb-item:hover .overlay { transform: translateY(0); }
 
 /* ===== SOCIAL PROOF - STATS ===== */
-.social-proof {
-  background: linear-gradient(135deg, #e8f4fd 0%, #b3d9f2 50%, #87ceeb 100%);
-  color: var(--dark-navy, #0b1b2b);
-  padding: 5rem 1rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
 
 /* layout for the stat cards */
 .stats {
