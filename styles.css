@@ -2165,29 +2165,28 @@ linear-gradient(
   }
 }
 
-/* IMPROVED TOUCH TARGETS */
 @media (max-width: 768px) {
   .category-buttons button,
   .timeline-item,
-  .stat-card,
-  .tcard {
-    min-height: 48px;
+  .stat-card {
+    /* (optional) touch tweaks for these blocks */
     touch-action: manipulation;
   }
-  
+
   /* Ensure hover states work on touch devices */
   .btn:hover,
   .donate-cta:hover,
   .nav-links a:hover {
     transform: none;
   }
-  
+
   .btn:active,
   .donate-cta:active {
     transform: scale(0.98);
     transition: transform 0.1s ease;
   }
 }
+
 
 /* LOADING STATES & PERFORMANCE */
 @media (max-width: 768px) {
@@ -2443,52 +2442,6 @@ button:active, .btn:active {
   justify-content: flex-start;   /* was center — change to flex-start */
   transition: transform 0.6s ease-in-out;
   will-change: transform;
-}
-
-/* Keep this sizing so 3 are visible and centered within the container width */
-.tcard { flex: 0 0 calc((100% / 3) - 1rem); min-height: 260px; }
-@media (max-width: 900px){ .tcard { flex: 0 0 calc((100% / 2) - 1rem); } }
-@media (max-width: 640px){ .tcard { flex: 0 0 100%; min-height: 220px; } }
-
-.tcard {
-  background: var(--white);
-  color: var(--dark-navy);
-  border-radius: 16px;
-  padding: 1.5rem 1.25rem;
-  box-shadow: 0 12px 28px rgba(0,0,0,.08), 0 4px 12px rgba(29,78,137,.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
-  /* New size: narrower width, taller height */
-  flex: 0 0 calc(28% - 1rem);  /* slightly narrower than 33% */
-  min-height: 260px;           /* taller */
-}
-
-.tcard p {
-  color: var(--gray-text);
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-.tcard span {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 700;
-  color: var(--deep-blue);
-}
-
-@media (max-width: 900px) {
-  .tcard {
-    flex-basis: calc(45% - 1rem); /* narrower on tablet */
-  }
-}
-
-@media (max-width: 640px) {
-  .tcard {
-    flex-basis: 100%; /* full width on mobile */
-    min-height: 220px; /* slightly less tall for small screens */
-  }
 }
 
 
@@ -3106,11 +3059,47 @@ color: var(--dark-navy); }
   transition: transform 0.6s ease-in-out;
   will-change: transform;
 }
+/* Testimonials: page-based carousel */
+.testimonial-viewport {
+  overflow: hidden;
+  position: relative;
+}
 
-/* 3 / 2 / 1 visible to match JS logic */
+.testimonial-track {
+  display: flex;
+  will-change: transform;
+}
+
+.tpage {
+  /* Each page is exactly the width of the viewport */
+  flex: 0 0 100%;
+  display: flex;
+  gap: var(--t-gap, 24px);
+  justify-content: center; /* centers the 3 cards */
+}
+/* ================================
+   TESTIMONIAL CARDS (clean version)
+   ================================ */
+
+/* Testimonial Layout */
+.testimonial-viewport { 
+  overflow: hidden; 
+}
+
+.testimonial-track { 
+  display: flex; 
+  will-change: transform; 
+}
+
+.tpage { 
+  min-width: 100%; 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.25rem; 
+}
+
+/* Each testimonial card */
 .tcard {
-  flex: 0 0 calc((100% / 3) - 1rem);
-  min-height: 260px;
   background: var(--white, #fff);
   color: var(--dark-navy, #0b1b2b);
   border-radius: 16px;
@@ -3120,7 +3109,38 @@ color: var(--dark-navy); }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 260px;
+  box-sizing: border-box;
 }
+
+/* Text inside cards */
+.tcard p {
+  color: var(--gray-text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.tcard span {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+}
+
+/* Responsive: 2 per row on tablet */
+@media (max-width: 900px) {
+  .tpage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive: 1 per row on mobile */
+@media (max-width: 640px) {
+  .tpage {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* ===== RESPONSIVE: HONEYCOMB ===== */
 @media (max-width: 1024px) {
@@ -3131,9 +3151,7 @@ color: var(--dark-navy); }
   }
 }
 
-@media (max-width: 900px) {
-  .tcard { flex-basis: calc((100% / 2) - 0.75rem); }
-}
+
 
 @media (max-width: 768px) {
   .honeycomb-container {
@@ -3143,9 +3161,7 @@ color: var(--dark-navy); }
   }
 }
 
-@media (max-width: 640px) {
-  .tcard { flex-basis: 100%; }
-}
+
 
 @media (max-width: 480px) {
   .honeycomb-container {

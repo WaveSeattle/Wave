@@ -205,13 +205,7 @@
   <div class="container">
     <h2 id="impact-testimonials">What People Say</h2>
     <div class="testimonial-viewport">
-      <div class="testimonial-track">
-        <!-- 10 testimonial cards: simple design -->
-        <article class="tcard">
-          <p>"Wave has transformed how we approach environmental conservation. Their innovative solutions and dedicated team have made a real difference in our community."</p>
-          <span>— Sarah Johnson, Environmental Director</span>
-        </article>
-        
+      <div class="testimonial-track">     
         <article class="tcard">
           <p>"The impact Wave has had on our local ecosystem is remarkable. Their commitment to sustainability and community engagement is truly inspiring."</p>
           <span>— Michael Chen, Community Leader</span>
@@ -291,97 +285,121 @@
 <script src="../script.js"></script>
 
 <script>
-  // Impact Page Testimonials Carousel
-  document.addEventListener('DOMContentLoaded', function() {
-    const viewport = document.querySelector('.testimonial-viewport');
-    const track = document.querySelector('.testimonial-track');
-    if (!viewport || !track) return;
+  // =============================================================================
+  // TESTIMONIALS (shared for Join Us + Impact)
+  // =============================================================================
+  const Testimonials = {
+    INTERVAL_MS: 5000,   // 5s pause between page moves
+    TRANSITION_MS: 600,  // slide animation duration
 
-    const INTERVAL_MS = 5000;    // 5 seconds per slide
-    const TRANSITION = 600;      // CSS transition ms
+    // per-page offsets (px) → adjust to taste
+    OFFSET_PAGES: {
+      0: 0,    // first 3 cards = no shift
+      1: 18,   // second 3 cards = slight shift
+      2: 48    // third 3 cards = bigger shift (more left than before)
+    },
 
-    let index = 0;
-    let visible = 3;
-    let timer = null;
-
-    function countVisible() {
-      const w = viewport.clientWidth;
-      if (w < 640) return 1;
-      if (w < 900) return 2;
-      return 3;
-    }
-
-    function pageWidth() {
-      return viewport.clientWidth;
-    }
-
-    function setTranslate(px, animate = true) {
-      // FIX: wrap transition value in a string and use a template literal
-      track.style.transition = animate ? `transform ${TRANSITION}ms ease` : 'none';
-      // FIX: use a template literal for translateX
-      track.style.transform = `translateX(${-px}px)`;
-    }
-
-    function setup() {
-      // Remove old clones
-      track.querySelectorAll('.tcard[data-clone]').forEach(n => n.remove());
-
-      visible = countVisible();
-
-      // Clone first "visible" cards to end for seamless wrap
-      const originals = Array.from(track.querySelectorAll('.tcard:not([data-clone])'));
-      if (originals.length === 0) return; // safety guard
-      originals.slice(0, Math.min(visible, originals.length)).forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute('data-clone', '1');
-        track.appendChild(clone);
+    init() {
+      document.querySelectorAll('.testimonial-viewport').forEach((viewport) => {
+        const track = viewport.querySelector('.testimonial-track');
+        if (track) this.setupCarousel(viewport, track);
       });
+    },
 
-      index = 0;
-      setTranslate(0, false);
+    setupCarousel(viewport, track) {
+      let index = 0;
+      let timer = null;
+
+      const pageWidth = () => viewport.clientWidth;
+
+      const setTranslate = (px, pageIndex, animate = true) => {
+        const offset = this.OFFSET_PAGES[pageIndex] || 0;
+        const target = px + offset;
+        track.style.transition = animate
+          ? `transform ${this.TRANSITION_MS}ms ease`
+          : 'none';
+        track.style.transform = `translateX(${-target}px)`;
+      };
+
+      const unwrapPages = () => {
+        track.querySelectorAll('.tpage').forEach((p) => {
+          while (p.firstChild) track.insertBefore(p.firstChild, p);
+          p.remove();
+        });
+      };
+
+      const buildPages = () => {
+        track.querySelectorAll('[data-clone]').forEach((n) => n.remove());
+        unwrapPages();
+
+        const cards = [...track.querySelectorAll('.tcard')];
+
+        // group into pages of 3
+        for (let i = 0; i < cards.length; i += 3) {
+          const page = document.createElement('div');
+          page.className = 'tpage';
+          cards.slice(i, i + 3).forEach((c) => page.appendChild(c));
+          track.appendChild(page);
+        }
+
+        // clone first page for loop
+        const first = track.querySelector('.tpage');
+        if (first) {
+          const clone = first.cloneNode(true);
+          clone.setAttribute('data-clone', '1');
+          track.appendChild(clone);
+        }
+
+        index = 0;
+        setTranslate(0, 0, false);
+      };
+
+      const pagesCount = () =>
+        track.querySelectorAll('.tpage:not([data-clone])').length;
+
+      const step = () => {
+        index += 1;
+        setTranslate(index * pageWidth(), index, true);
+
+        if (index === pagesCount()) {
+          track.addEventListener(
+            'transitionend',
+            () => {
+              index = 0;
+              setTranslate(0, 0, false);
+            },
+            { once: true }
+          );
+        }
+      };
+
+      const start = () => {
+        stop();
+        timer = setInterval(step, this.INTERVAL_MS);
+      };
+
+      const stop = () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      viewport.addEventListener('mouseenter', stop);
+      viewport.addEventListener('mouseleave', start);
+
+      window.addEventListener('resize', buildPages);
+
+      buildPages();
+      start();
     }
+  };
 
-    function step() {
-      const originalsCount = track.querySelectorAll('.tcard:not([data-clone])').length;
-      if (originalsCount === 0) return; // safety guard
-      visible = countVisible();
-      const pages = Math.max(1, Math.ceil(originalsCount / visible));
-
-      index += 1;
-      setTranslate(index * pageWidth(), true);
-
-      // When we slide onto the clones, jump back to 0 after transition
-      if (index === pages) {
-        track.addEventListener('transitionend', () => {
-          index = 0;
-          setTranslate(0, false);
-        }, { once: true });
-      }
-    }
-
-    function start() { 
-      stop(); 
-      timer = setInterval(step, INTERVAL_MS); 
-    }
-    
-    function stop() { 
-      if (timer) { 
-        clearInterval(timer); 
-        timer = null; 
-      } 
-    }
-
-    // Pause on hover
-    viewport.addEventListener('mouseenter', stop);
-    viewport.addEventListener('mouseleave', start);
-
-    // Handle window resize
-    window.addEventListener('resize', setup);
-
-    // Initialize and start
-    setup();
-    start();
+  document.addEventListener('DOMContentLoaded', () => {
+    Testimonials.init();
   });
 </script>
+
+
 </body>
 </html>

@@ -167,5 +167,124 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // =============================================================================
+    // TESTIMONIALS (shared for Join Us + Impact)
+    // =============================================================================
+    const Testimonials = {
+      INTERVAL_MS: 5000,   // 5s pause between page moves
+      TRANSITION_MS: 600,  // slide animation duration
+  
+      // per-page offsets (px) → adjust to taste
+      OFFSET_PAGES: {
+        0: 0,    // first 3 cards = no shift
+        1: 18,   // second 3 cards = slight shift
+        2: 48    // third 3 cards = bigger shift (more left than before)
+      },
+  
+      init() {
+        document.querySelectorAll('.testimonial-viewport').forEach((viewport) => {
+          const track = viewport.querySelector('.testimonial-track');
+          if (track) this.setupCarousel(viewport, track);
+        });
+      },
+  
+      setupCarousel(viewport, track) {
+        let index = 0;
+        let timer = null;
+  
+        const pageWidth = () => viewport.clientWidth;
+  
+        const setTranslate = (px, pageIndex, animate = true) => {
+          const offset = this.OFFSET_PAGES[pageIndex] || 0;
+          const target = px + offset;
+          track.style.transition = animate
+            ? `transform ${this.TRANSITION_MS}ms ease`
+            : 'none';
+          track.style.transform = `translateX(${-target}px)`;
+        };
+  
+        const unwrapPages = () => {
+          track.querySelectorAll('.tpage').forEach((p) => {
+            while (p.firstChild) track.insertBefore(p.firstChild, p);
+            p.remove();
+          });
+        };
+  
+        const buildPages = () => {
+          track.querySelectorAll('[data-clone]').forEach((n) => n.remove());
+          unwrapPages();
+  
+          const cards = [...track.querySelectorAll('.tcard')];
+  
+          // group into pages of 3
+          for (let i = 0; i < cards.length; i += 3) {
+            const page = document.createElement('div');
+            page.className = 'tpage';
+            cards.slice(i, i + 3).forEach((c) => page.appendChild(c));
+            track.appendChild(page);
+          }
+  
+          // clone first page for loop
+          const first = track.querySelector('.tpage');
+          if (first) {
+            const clone = first.cloneNode(true);
+            clone.setAttribute('data-clone', '1');
+            track.appendChild(clone);
+          }
+  
+          index = 0;
+          setTranslate(0, 0, false);
+        };
+  
+        const pagesCount = () =>
+          track.querySelectorAll('.tpage:not([data-clone])').length;
+  
+        const step = () => {
+          index += 1;
+          setTranslate(index * pageWidth(), index, true);
+  
+          if (index === pagesCount()) {
+            track.addEventListener(
+              'transitionend',
+              () => {
+                index = 0;
+                setTranslate(0, 0, false);
+              },
+              { once: true }
+            );
+          }
+        };
+  
+        const start = () => {
+          stop();
+          timer = setInterval(step, this.INTERVAL_MS);
+        };
+  
+        const stop = () => {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        };
+  
+        viewport.addEventListener('mouseenter', stop);
+        viewport.addEventListener('mouseleave', start);
+  
+        window.addEventListener('resize', buildPages);
+  
+        buildPages();
+        start();
+      }
+    };
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      Testimonials.init();
+    });
+  </script>
+  
+  
+  
+  
 </body>
 </html>
