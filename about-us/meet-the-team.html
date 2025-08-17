@@ -58,49 +58,195 @@
   </div>
 </header>
 
-
-<!-- HERO (same pattern as your event hero) -->
-<section class="event-hero team-hero">
-  <div class="container event-hero-grid">
-    <figure class="hero-art">
-      <!-- Swap to a real team/whiteboard photo whenever you want -->
-      <img src="../media/img1.JPG" alt="WAVE Team">
-    </figure>
-    <div class="hero-info">
-      <h1>Meet the WAVE Team</h1>
-      <p class="hero-desc" style="margin-top:.25rem">
-        Student leaders united by a mission: supporting pediatric cancer research
-        and uncompensated care at Seattle Children’s. Get to know the people behind WAVE.
-      </p>
-    </div>
+<!-- HERO (matches the other page heroes) -->
+<section class="hero hero-team">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1>Meet the WAVE Team</h1>
+    <p class="hero-desc" style="max-width: 720px; margin: 0 auto">
+      Student leaders united by a mission: supporting pediatric cancer research
+      and uncompensated care at Seattle Children’s. Get to know the people behind WAVE.
+    </p>
   </div>
   <div class="wave-animation"></div>
 </section>
 
+
+<!-- EXECUTIVE BOARD -->
 <!-- EXECUTIVE BOARD -->
 <section class="team-section">
   <div class="container">
     <h2 class="team-title">Executive Board</h2>
 
-    <!-- Fixed rows so spacing & centering are perfect -->
+    <!-- keep the two fixed rows so spacing/centering match your CSS -->
     <div class="exec-wrap">
-      <div id="exec-row-top" class="team-grid three team-row"></div>
-      <div id="exec-row-bottom" class="team-grid two team-row last"></div>
+      <!-- Top row: 3 cards -->
+      <div id="exec-row-top" class="team-grid three team-row">
+        <!-- Sanjana -->
+        <article class="member">
+          <div class="avatar">
+            <img src="../media/team/sanjana.jpg" alt="Sanjana Medikurthi">
+          </div>
+          <div class="member-name">Sanjana Medikurthi</div>
+          <div class="member-role">Founder &amp; President</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/sanjana_med/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/sanjana-medikurthi-bb39752aa/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+
+        <!-- Moksh -->
+        <article class="member">
+          <div class="avatar">
+            <img src="../media/team/moksh.jpg" alt="Moksh Doshi">
+          </div>
+          <div class="member-name">Moksh Doshi</div>
+          <div class="member-role">Vice President</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/mokshdo/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/moksh-%F0%9F%8E%93-doshi-a90071296/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+
+        <!-- Lahari -->
+        <article class="member">
+          <div class="avatar">
+            <img src="../media/team/lahari.jpg" alt="Lahari Nellore">
+          </div>
+          <div class="member-name">Lahari Nellore</div>
+          <div class="member-role">Secretary</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/lahari.nellore/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Bottom row: 2 cards -->
+      <div id="exec-row-bottom" class="team-grid two team-row last">
+        <!-- Bhuvan -->
+        <article class="member">
+          <div class="avatar">
+            <img src="../media/team/bhuvan.jpg" alt="Bhuvan Gajarla">
+          </div>
+          <div class="member-name">Bhuvan Gajarla</div>
+          <div class="member-role">Treasurer</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/bhuvan_gajarla/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/bhuvan-gajarla-663ab4323/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+
+        <!-- Sahasra -->
+        <article class="member">
+          <div class="avatar">
+            <img src="../media/team/sahasra.jpg" alt="Sahasra Voruganti">
+          </div>
+          <div class="member-name">Sahasra Voruganti</div>
+          <div class="member-role">Social Media Manager</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/sahasra.vor/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/sahasra-voruganti-5a1354334/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ADMIN BOARD -->
+<!-- ADMINISTRATIVE BOARD (2024–2025 only, no descriptions/socials) -->
 <section class="team-section alt">
   <div class="container">
-    <h2 class="team-title">Administrative Board</h2>
+    <h2 class="team-title">Administrative Board (2024–2025)</h2>
 
     <div class="admin-wrap">
-      <div id="admin-row-top" class="team-grid three team-row"></div>
-      <div id="admin-row-bottom" class="team-grid one team-row last"></div>
+      <!-- Top row: 3 cards -->
+      <div id="admin-row-top" class="team-grid three team-row">
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/team/placeholder.jpg" alt="Laasya Chintamani headshot">
+          </div>
+          <h3 class="member-name">Laasya Chintamani</h3>
+          <div class="member-role">Head of Development</div>
+        </article>
+
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/team/placeholder.jpg" alt="Samina Ali headshot">
+          </div>
+          <h3 class="member-name">Samina Ali</h3>
+          <div class="member-role">Head of Community Outreach</div>
+        </article>
+
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/team/placeholder.jpg" alt="Omkar Page headshot">
+          </div>
+          <h3 class="member-name">Omkar Page</h3>
+          <div class="member-role">Head of Technology</div>
+        </article>
+      </div>
+
+      <!-- Bottom row: centered single card -->
+      <div id="admin-row-bottom" class="team-grid one team-row last">
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/team/placeholder.jpg" alt="Saketh Desam Charan headshot">
+          </div>
+          <h3 class="member-name">Saketh Desam Charan</h3>
+          <div class="member-role">Head of Member Connections</div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ADMINISTRATIVE BOARD (2023–2024 only, no descriptions/socials) -->
+<section class="team-section">
+  <div class="container">
+    <h2 class="team-title">Administrative Board (2023–2024)</h2>
+
+    <div class="admin-wrap">
+      <!-- Top row: 3 cards -->
+      <div class="team-grid three team-row">
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/hero1.jpg" alt="Bhaswath Datla headshot">
+          </div>
+          <h3 class="member-name">Bhaswath Datla</h3>
+          <div class="member-role">Head of Development</div>
+        </article>
+
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/hero2.jpg" alt="Shaswath Datla headshot">
+          </div>
+          <h3 class="member-name">Shaswath Datla</h3>
+          <div class="member-role">Head of Community Outreach</div>
+        </article>
+
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/hero3.jpg" alt="Pratheek Madamalla headshot">
+          </div>
+          <h3 class="member-name">Pratheek Madamalla</h3>
+          <div class="member-role">Head of Technology</div>
+        </article>
+      </div>
+
+      <!-- Bottom row: centered single card -->
+      <div class="team-grid one team-row last">
+        <article class="member" tabindex="0">
+          <div class="avatar">
+            <img src="../media/hero4.jpg" alt="Puneet Bandlapally headshot">
+          </div>
+          <h3 class="member-name">Puneet Bandlapally</h3>
+          <div class="member-role">Head of Member Connections</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MODAL -->
 <div class="team-modal" id="team-modal" aria-hidden="true">
   <div class="team-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="tm-name">
@@ -114,13 +260,13 @@
     </div>
     <hr class="tm-rule" />
     <p id="tm-desc" class="tm-desc"></p>
-    <!-- New bottom action row -->
+    <div id="tm-socials" class="tm-socials" aria-label="Social links"></div>
+
     <div class="tm-actions">
       <button class="btn-close" id="tm-close-2" type="button">Close</button>
     </div>
   </div>
 </div>
-
 
 <!-- FOOTER -->
 <footer class="footer">

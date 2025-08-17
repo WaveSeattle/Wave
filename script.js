@@ -1442,20 +1442,32 @@ window.buildEventGallery = (containerId, filenames, basePath = '../media/') => {
 // TEAM MODULE
 // =============================================================================
 
+// =============================================================================
+// TEAM MODULE
+// =============================================================================
+
 const TeamModule = {
   /**
    * Initialize team page functionality
    */
   init() {
-    const isTeamPage = document.getElementById('exec-row-top') || 
-                      document.getElementById('admin-row-top');
-    if (!isTeamPage) {
-      return;
-    }
+    const isTeamPage =
+      document.getElementById('exec-row-top') ||
+      document.getElementById('admin-row-top');
+    if (!isTeamPage) return;
 
     this.setupTeamData();
     this.renderTeams();
     this.setupModal();
+  },
+
+  // (kept in case you want to use inline SVG icons later)
+  iconSVG(name) {
+    if (name === 'instagram') {
+      return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.3 2.3.6.6.3 1.1.8 1.4 1.4.3.4.5 1.1.6 2.3.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.9-.6 2.3-.3.6-.8 1.1-1.4 1.4-.4.3-1.1.5-2.3.6-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.3-2.3-.6a3.3 3.3 0 0 1-1.4-1.4c-.3-.4-.5-1.1-.6-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.9.6-2.3.3-.6.8-1.1 1.4-1.4.4-.3 1.1-.5 2.3-.6C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-.9.1-1.4.2-1.7.4-.4.2-.7.5-.9.9-.2.3-.3.8-.4 1.7-.1 1.1-.1 1.5-.1 4.7s0 3.5.1 4.7c.1.9.2 1.4.4 1.7.2.4.5.7.9.9.3.2.8.3 1.7.4 1.1.1 1.5.1 4.7.1s3.5 0 4.7-.1c.9-.1 1.4-.2 1.7-.4.4-.2.7-.5.9-.9.2-.3.3-.8.4-1.7.1-1.1.1-1.5.1-4.7s0-3.5-.1-4.7c-.1-.9-.2-1.4-.4-1.7-.2-.4-.5-.7-.9-.9-.3-.2-.8-.3-1.7-.4-1.1-.1-1.5-.1-4.7-.1Zm0 3.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5.9-2.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg>`;
+    }
+    // linkedin
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8.5h4V23h-4V8.5Zm7 0h3.8v2h.1c.5-.9 1.8-2.2 3.8-2.2 4.1 0 4.9 2.7 4.9 6.2V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5-2.1 0-2.4 1.6-2.4 3.4V23h-4V8.5Z"/></svg>`;
   },
 
   /**
@@ -1463,27 +1475,57 @@ const TeamModule = {
    */
   setupTeamData() {
     this.EXEC = [
-      { name: 'Sanjana Medikurthi', role: 'Founder & President', img: '../media/img2.JPG',
-        desc: 'Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children\'s, and keeps the team aligned on mission and outcomes.' },
-      { name: 'Moksh Doshi', role: 'Vice President', img: '../media/img3.JPG',
-        desc: 'Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.' },
-      { name: 'Lahari Nellore', role: 'Secretary', img: '../media/img4.JPG',
-        desc: 'Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.' },
-      { name: 'Bhuvan Carjala', role: 'Treasurer', img: '../media/img5.JPG',
-        desc: 'Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.' },
-      { name: 'Sahasra Voruganti', role: 'Social Media Manager', img: '../media/img6.JPG',
-        desc: 'Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.' }
+      {
+        name: 'Sanjana Medikurthi',
+        role: 'Founder & President',
+        img: '../media/img2.JPG',
+        desc: `Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children's, and keeps the team aligned on mission and outcomes.
+          <br><br>
+          <a href="https://www.instagram.com/sanjana_med/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
+          <a href="https://www.linkedin.com/in/sanjana-medikurthi-bb39752aa/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
+      },
+      {
+        name: 'Moksh Doshi',
+        role: 'Vice President',
+        img: '../media/img3.JPG',
+        desc: `Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.
+          <br><br>
+          <a href="https://www.instagram.com/mokshdo/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
+          <a href="https://www.linkedin.com/in/moksh-%F0%9F%8E%93-doshi-a90071296/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
+      },
+      {
+        name: 'Lahari Nellore',
+        role: 'Secretary',
+        img: '../media/img4.JPG',
+        desc: `Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.
+          <br><br>
+          <a href="https://www.instagram.com/lahari.nellore/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>`
+      },
+      {
+        name: 'Bhuvan Carjala',
+        role: 'Treasurer',
+        img: '../media/img5.JPG',
+        desc: `Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.
+          <br><br>
+          <a href="https://www.instagram.com/bhuvan_gajarla/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
+          <a href="https://www.linkedin.com/in/bhuvan-gajarla-663ab4323/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
+      },
+      {
+        name: 'Sahasra Voruganti',
+        role: 'Social Media Manager',
+        img: '../media/img6.JPG',
+        desc: `Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.
+          <br><br>
+          <a href="https://www.instagram.com/sahasra.vor/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
+          <a href="https://www.linkedin.com/in/sahasra-voruganti-5a1354334/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
+      }
     ];
 
     this.ADMIN = [
-      { name: 'Laasya Chintamani', role: 'Head of Development', img: '../media/img7.JPG',
-        desc: 'Supports sponsorships, donor relations, and grant opportunities. Creates materials that clearly communicate impact and needs.' },
-      { name: 'Samina Ali', role: 'Head of Community Outreach', img: '../media/img8.JPG',
-        desc: 'Builds partnerships with schools, cultural orgs, and local groups. Coordinates volunteers and helps recruit new members.' },
-      { name: 'Omkar Page', role: 'Head of Technology', img: '../media/img9.JPG',
-        desc: 'Oversees the website and digital tools, streamlines workflows, and supports event tech (ticketing, forms, analytics).' },
-      { name: 'Saketh Desam', role: 'Head of Volunteer Connections', img: '../media/img10.JPG',
-        desc: 'Leads volunteer intake, onboarding, and scheduling. Ensures volunteers are trained, supported, and recognized.' }
+      { name: 'Laasya Chintamani', role: 'Head of Development', img: '../media/img7.JPG' },
+      { name: 'Samina Ali', role: 'Head of Community Outreach', img: '../media/img8.JPG' },
+      { name: 'Omkar Page', role: 'Head of Technology', img: '../media/img9.JPG' },
+      { name: 'Saketh Desam', role: 'Head of Volunteer Connections', img: '../media/img10.JPG' }
     ];
   },
 
@@ -1491,32 +1533,37 @@ const TeamModule = {
    * Render team sections
    */
   renderTeams() {
-    this.renderTeam(this.EXEC.slice(0, 3), 'exec-row-top', 'exec');
-    this.renderTeam(this.EXEC.slice(3), 'exec-row-bottom', 'exec');
-    this.renderTeam(this.ADMIN.slice(0, 3), 'admin-row-top', 'admin');
-    this.renderTeam(this.ADMIN.slice(3), 'admin-row-bottom', 'admin');
+    // Pass correct offsets so each button's data-i reflects the true index in the full array
+    this.renderTeam(this.EXEC.slice(0, 3), 'exec-row-top', 'exec', 0);
+    this.renderTeam(this.EXEC.slice(3), 'exec-row-bottom', 'exec', 3);
+
+    this.renderTeam(this.ADMIN.slice(0, 3), 'admin-row-top', 'admin', 0);
+    this.renderTeam(this.ADMIN.slice(3), 'admin-row-bottom', 'admin', 3);
   },
 
   /**
-   * Render individual team section
-   * @param {Array} list - Team members list
-   * @param {string} mountId - Container ID
-   * @param {string} dataList - Data list identifier
+   * Render a team grid
+   * @param {Array} list - subset to render
+   * @param {string} mountId - container id
+   * @param {string} dataList - 'exec' | 'admin'
+   * @param {number} offset - starting index in full list for data-i
    */
-  renderTeam(list, mountId, dataList) {
+  renderTeam(list, mountId, dataList, offset = 0) {
     const container = document.getElementById(mountId);
-    if (!container) {
-      return;
-    }
+    if (!container) return;
 
-    const html = list.map((person, i) => `
-      <button class="member" data-i="${i}" data-list="${dataList}">
+    const html = list
+      .map(
+        (person, i) => `
+      <button class="member" data-i="${i + offset}" data-list="${dataList}">
         <div class="avatar"><img src="${person.img}" alt="${person.name}"></div>
         <div class="member-name">${person.name}</div>
         <div class="member-role">${person.role}</div>
       </button>
-    `).join('');
-    
+    `
+      )
+      .join('');
+
     container.innerHTML = html;
   },
 
@@ -1537,61 +1584,62 @@ const TeamModule = {
   },
 
   /**
-   * Setup modal event listeners
+   * Event listeners
    */
   setupEventListeners() {
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.member');
       if (btn) {
-        const idx = parseInt(btn.dataset.i);
+        const idx = parseInt(btn.dataset.i, 10);
         const listName = btn.dataset.list;
-        const list = (listName === 'exec') ? this.EXEC : this.ADMIN;
+
+        // Admin cards don't open the modal
+        if (listName === 'admin') return;
+
+        const list = listName === 'exec' ? this.EXEC : this.ADMIN;
         const person = list[idx];
         const key = `${listName}|${idx}`;
 
         // Toggle behavior (click same card closes)
-        if (this.openKey === key && this.modal.getAttribute('aria-hidden') === 'false') {
+        if (
+          this.openKey === key &&
+          this.modal &&
+          this.modal.getAttribute('aria-hidden') === 'false'
+        ) {
           this.closeModal();
         } else if (person) {
           this.openModal(person, key);
         }
       }
-      
+
       // Backdrop click closes
-      if (e.target.id === 'team-modal') {
+      if (e.target && e.target.id === 'team-modal') {
         this.closeModal();
       }
     });
 
-    if (this.closeX) {
-      this.closeX.addEventListener('click', () => this.closeModal());
-    }
-    if (this.closeB) {
-      this.closeB.addEventListener('click', () => this.closeModal());
-    }
-    
+    if (this.closeX) this.closeX.addEventListener('click', () => this.closeModal());
+    if (this.closeB) this.closeB.addEventListener('click', () => this.closeModal());
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.closeModal();
-      }
+      if (e.key === 'Escape') this.closeModal();
     });
   },
 
   /**
-   * Open modal with person details
-   * @param {Object} person - Team member data
-   * @param {string} key - Modal key for tracking
+   * Open modal
    */
   openModal(person, key) {
-    if (!this.modal) {
-      return;
-    }
+    if (!this.modal) return;
 
     this.tmA.src = person.img;
     this.tmA.alt = person.name;
     this.tmN.textContent = person.name;
     this.tmR.textContent = person.role;
-    this.tmD.textContent = person.desc;
+
+    // Use innerHTML so links in desc render as real links
+    this.tmD.innerHTML = person.desc || '';
+
     this.modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     this.openKey = key;
@@ -1601,15 +1649,14 @@ const TeamModule = {
    * Close modal
    */
   closeModal() {
-    if (!this.modal) {
-      return;
-    }
+    if (!this.modal) return;
 
     this.modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     this.openKey = null;
   }
 };
+
 
 /* --- Category Hero wiring (index only) --- */
 // ===== Category hero (index) dynamic copy + image =====
