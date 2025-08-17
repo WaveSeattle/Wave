@@ -3093,7 +3093,7 @@ color: var(--dark-navy); }
 
 /* ===== TESTIMONIALS CAROUSEL ===== */
 .testimonial-viewport {
-  width: 100%;
+  
   overflow: hidden;
   margin-top: 2rem;
 }
