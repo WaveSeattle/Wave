@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TTA Convention Booth • WAVE</title>
+  <title>Patient Stories • WAVE</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" href="../media/logo.png" type="image/png">
@@ -11,144 +11,295 @@
 </head>
 <body>
 
-
-<!-- NAVBAR (events/*) -->
+<!-- NAVBAR (same as index, with folder-correct paths) -->
 <header class="navbar">
-    <div class="container nav-content">
-      <div class="nav-main">
-        <div class="brand">
-          <a href="../index.html" class="brand-link">
-            <img src="../media/logo.png" alt="WAVE Logo" class="logo-img">
-            <span class="brand-name">WAVE</span>
-          </a>
-        </div>
-  
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          aria-label="Toggle navigation menu"
-          aria-controls="nav-links"
-          aria-expanded="false">
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
-          <span class="hamburger"></span>
-        </button>
-  
-        <ul class="nav-links" id="nav-links">
-          <li class="dropdown-container">
-            <span class="nav-dropdown-trigger">About Us</span>
-            <ul class="dropdown">
-              <li><a href="../about-us/mission.html">Mission</a></li>
-              <li><a href="../about-us/impact.html">Impact</a></li>
-              <li><a href="../about-us/patient-stories.html">Patient Stories</a></li>
-            </ul>
-          </li>
-  
-          <li><a class="nav-link" href="../about-us/meet-the-team.html">Meet the Team</a></li>
-  
-          <li class="dropdown-container">
-            <span class="nav-dropdown-trigger">Events</span>
-            <ul class="dropdown">
-              <li><a href="../events/bollywood-ball.html">Bollywood Ball</a></li>
-              <li><a href="../events/dandiya-night-2023.html">Dandiya Night 2023</a></li>
-              
-              <li><a href="../events/iacs-summer-fest-booth.html">TTA</a></li>
-              <li><a href="../events/index.html">View All Events</a></li>
-            </ul>
-          </li>
-  
-          <li><a class="nav-link" href="../join-us.html">Join Us</a></li>
-        </ul>
+  <div class="container nav-content">
+    <div class="nav-main">
+      <div class="brand">
+        <a href="../index.html" class="brand-link">
+          <img src="../media/logo.png" alt="WAVE Logo" class="logo-img">
+          <span class="brand-name">WAVE</span>
+        </a>
       </div>
-  
-      <div class="nav-actions">
-        <a class="donate-cta" href="../donate.html">Donate</a>
-      </div>
-    </div>
-  </header>
-  
 
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle navigation menu"
+        aria-controls="nav-links"
+        aria-expanded="false">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
 
-<!-- HERO -->
-<section class="event-hero">
-  <div class="container event-hero-grid">
-    <figure class="hero-art">
-      <!-- test hero image from /media; swap to a real TTA photo when ready -->
-      <img src="../media/img4.JPG" alt="TTA Convention Booth" />
-    </figure>
+      <ul class="nav-links" id="nav-links">
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">About Us</span>
+          <ul class="dropdown">
+            <li><a href="../about-us/mission.html">Mission</a></li>
+            <li><a href="../about-us/impact.html">Impact</a></li>
+            <li><a href="../about-us/patient-stories.html">Patient Stories</a></li>
+          </ul>
+        </li>
 
-    <div class="hero-info">
-      <h1>TTA Convention Booth</h1>
-      <ul class="hero-meta">
-        <li><strong>Date:</strong> May 24–26th, 2024</li>
-        <li><strong>Location:</strong> Seattle, WA</li>
+        <li><a class="nav-dropdown-trigger nav-link" href="../about-us/meet-the-team.html">Meet the Team</a></li>
+
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">Events</span>
+          <ul class="dropdown">
+            <li><a href="../events/bollywood-ball.html">Bollywood Ball</a></li>
+            <li><a href="../events/dandiya-night-2023.html">Dandiya Night 2023</a></li>
+            <li><a href="../events/iacs-summer-fest-booth.html">TTA</a></li>
+            <li><a href="../events/index.html">View All Events</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-dropdown-trigger nav-link" href="../join-us.html">Join Us</a></li>
       </ul>
-      <p class="hero-desc">
-        We hosted a booth at the TTA Convention, sharing WAVE’s mission and connecting with hundreds
-        of attendees about the importance of funding pediatric cancer research and uncompensated care
-        at Seattle Children’s.
-      </p>
+    </div>
 
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="kpi counter" data-target="4200" data-prefix="$">0</div>
-          <div class="kpi-label">Donations</div>
-        </div>
-        <div class="stat">
-          <div class="kpi counter" data-target="900">0</div>
-          <div class="kpi-label">Visitors</div>
-        </div>
-        <div class="stat">
-          <div class="kpi counter" data-target="18">0</div>
-          <div class="kpi-label">Volunteers</div>
-        </div>
-      </div>
+    <div class="nav-actions">
+      <a class="donate-cta" href="../donate.html">Donate</a>
     </div>
   </div>
+</header>
+
+<!-- HERO (same style as index with new title) -->
+<section class="hero indexhero">
+  <video class="hero-video" autoplay muted loop playsinline poster="../media/2023 - Check Presentation/Check3.jpeg" aria-hidden="true">
+    <source src="../media/vid.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content container">
+    <h1>Patient Stories</h1>
+    <p>Real journeys of courage, care, and hope—powered by our community’s support.</p>
+    <a class="pulse-border" target="_blank" href="https://give.seattlechildrens.org/fundraiser/5028615">Donate Now</a>
+  </div>
+
   <div class="wave-animation"></div>
 </section>
 
-<!-- GALLERY -->
-<section class="event-gallery">
-  <div class="gallery-wrap" id="bb-gallery"></div>
+<!-- STORIES (alternating sections; first uses `intro mission`, second `intro`, etc.) -->
+
+<!-- 1. Hailee (text left, video right) -->
+<section class="intro mission">
+  <div class="container intro-content">
+    <div class="text">
+      <h2>Meet Hailee</h2>
+      <p>Hailee’s joyful spirit lights up every room, even as she faces the challenges of spinal stenosis. Her journey at Seattle Children’s included critical surgery and lifelong care, but financial assistance lifted a heavy burden from her family. With resilience and courage, Hailee continues to build coping tools that prepare her for a bright future—proving she is far more than her diagnosis.</p>
+    </div>
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/r7dKWzUquhs?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Hailee" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Seeley (video left, text right) -->
+<section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/cJf3sRAt3EQ?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Seeley" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="text">
+      <h2>Meet Seeley</h2>
+      <p>Seeley’s big personality shines despite her battle with high-risk leukemia. When no donor match was found, her mother became her half-match for a life-saving bone marrow transplant. Thanks to expert care at Seattle Children’s, Seeley is thriving today, smiling through challenges and inspiring strength. Her journey shows how relentless medical teams—and a family’s unwavering love—can transform fear into hope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Lyla -->
+<section class="intro mission">
+  <div class="container intro-content">
+    <div class="text">
+      <h2>Meet Lyla</h2>
+      <p>Athletic and full of life, Lyla was stunned to learn she had severe scoliosis requiring surgery. With expert spinal care at Seattle Children’s, she received life-changing treatment that not only corrected her spine but allowed her to play her final lacrosse season and walk down the aisle with confidence. Lyla’s story reflects resilience, healing, and the power of expert pediatric care.</p>
+    </div>
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/npi1dAl0MO8?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Lyla" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Aisley -->
+<section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/bzcQrC30cy8?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Aisley" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="text">
+      <h2>Meet Aisley</h2>
+      <p>When persistent headaches revealed a life-threatening brain tumor, Aisley and her family faced surgery, chemotherapy, and proton radiation. Through world-class care and relentless support at Seattle Children’s, she not only survived but thrived—regaining her spark, energy, and joy for life. Aisley’s story shows the difference innovative treatments and compassionate care make in giving kids their futures back.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Hatch Family -->
+<section class="intro mission">
+  <div class="container intro-content">
+    <div class="text">
+      <h2>Meet the Hatch Family</h2>
+      <p>For the Hatch family, both Penny and William faced life-threatening conditions at the same time. With one child battling cancer and another born with a serious heart defect, Seattle Children’s provided not just expert medical care, but critical financial and emotional support. Today, both children are thriving, and their parents are filled with renewed hope, gratitude, and joy for the future.</p>
+    </div>
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/9LyF0MyTP6o?autoplay=0&rel=0&modestbranding=1"
+        title="Meet the Hatch Family" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Faye -->
+<section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/S-2E-wz8f6M?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Faye" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="text">
+      <h2>Meet Faye</h2>
+      <p>An avid swimmer and young adult, Faye’s leukemia diagnosis changed her world. Through grueling treatments, she drew strength from her passion for swimming and the unwavering support of her care team at Seattle Children’s. Today, Faye is thriving, back in the pool, and chasing limitless dreams—proof of the resilience of the human spirit and the impact of expert pediatric oncology care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Jiana -->
+<section class="intro mission">
+  <div class="container intro-content">
+    <div class="text">
+      <h2>Meet Jiana</h2>
+      <p>Jiana was diagnosed with a rare brain malformation causing uncontrollable seizures. Facing a hemispherectomy, her parents placed their trust in Seattle Children’s world-renowned neurosurgeons. The surgery gave her a second chance at life. Today, Jiana is vibrant, intelligent, and thriving—running, playing, and living fully. Her journey shows the incredible resilience of children and the life-saving expertise of specialized care.</p>
+    </div>
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/iAwtkg58BoE?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Jiana" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Hudson -->
+<section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/2onxQxpGZ5Y?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Hudson" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="text">
+      <h2>Meet Hudson</h2>
+      <p>Hudson’s journey with muscular dystrophy led to heart failure at just 10 years old. After receiving a life-saving LVAD and then a heart transplant, his resilience amazed everyone around him. Thanks to expert care at Seattle Children’s, Hudson is back home, full of joy, energy, and dreams for the future. His story embodies courage, strength, and the gift of renewed life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Ellia -->
+<section class="intro mission">
+  <div class="container intro-content">
+    <div class="text">
+      <h2>Meet Ellia</h2>
+      <p>At just three years old, Ellia was diagnosed with acute lymphoblastic leukemia. Fear turned to hope as she responded well to treatment at Seattle Children’s, where compassionate doctors, nurses, and child life specialists guided her family every step. Today, Ellia is in remission—confident, energetic, and thriving. Her story is a testament to medical innovation, resilience, and the power of community support.</p>
+    </div>
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/YhmkHn4fA1w?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Ellia" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Malachi -->
+<section class="intro">
+  <div class="container intro-content">
+    <div class="video">
+      <iframe
+        width="100%" height="500"
+        src="https://www.youtube.com/embed/KRn-jLims54?autoplay=0&rel=0&modestbranding=1"
+        title="Meet Malachi" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="text">
+      <h2>Meet Malachi</h2>
+      <p>Born with spina bifida, Malachi underwent multiple surgeries in his first days of life. Despite daunting challenges, his joyful spirit shines through, thanks to expert care and the community that surrounds him at Seattle Children’s. With ongoing support and strength, Malachi’s future is filled with possibility. His story reflects resilience, love, and the hope that donor support makes possible for every child.</p>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container footer-content">
-    <div class="footer-3col">
-      <div class="footer-social">
-        <a href="https://www.instagram.com/wave_seattle/" aria-label="Instagram" target="_blank" rel="noopener">
-          <img src="../media/Insta.png" alt="Instagram" />
-        </a>
-        <a href="https://www.facebook.com/people/Wave-Guild/pfbid02pGg3sQadUXTjCAgSzN8zrMdZnJz6LAHbeEDLwrrZCckAoBpZUopzAxHdpZHr3ZyTl/" aria-label="Facebook" target="_blank" rel="noopener">
-          <img src="../media/FaceBook.png" alt="Facebook" />
-        </a>
-        <a href="https://www.tiktok.com/@wave_seattle" aria-label="TikTok" target="_blank" rel="noopener">
-          <img src="../media/Tiktok.png" alt="TikTok" />
-        </a>
-        <a href="https://linktr.ee/wave_seattle" aria-label="Linktree" target="_blank" rel="noopener">
-          <img src="../media/linkTree.png" alt="Linktree" />
-        </a>
-      </div>
-      <p class="footer-copy">&copy; 2025 WAVE. All Rights Reserved.</p>
-      <div class="footer-contact">
-        <div class="label">Email</div>
-        <a href="mailto:wave.seattle.123@gmail.com">wave.seattle.123@gmail.com</a>
+    <div class="container footer-content">
+      <div class="footer-3col">
+        <div class="footer-social">
+          <a href="https://www.instagram.com/wave_seattle/" aria-label="Instagram" target="_blank" rel="noopener">
+            <img src="../media/Insta.png" alt="Instagram" />
+          </a>
+          <a href="https://www.facebook.com/people/Wave-Guild/pfbid02pGg3sQadUXTjCAgSzN8zrMdZnJz6LAHbeEDLwrrZCckAoBpZUopzAxHdpZHr3ZyTl/" aria-label="Facebook" target="_blank" rel="noopener">
+            <img src="../media/FaceBook.png" alt="Facebook" />
+          </a>
+          <a href="https://www.tiktok.com/@wave_seattle" aria-label="TikTok" target="_blank" rel="noopener">
+            <img src="../media/Tiktok.png" alt="TikTok" />
+          </a>
+          <a href="https://linktr.ee/wave_seattle?fbclid=PAY2xjawJqoNxleHRuA2FlbQIxMQABp4_n_kbdopcxn5vjgW3mNvMXeR1de_c41Jz1orFaFKkNtSAL-JyaZEQ9arfe_aem_6kghGS2ERX3b-GrDIuQv9A" aria-label="Linktree" target="_blank" rel="noopener">
+            <img src="../media/linkTree.png" alt="Linktree" />
+          </a>
+        </div>
+        <p class="footer-copy">&copy; 2025 WAVE. All Rights Reserved.</p>
+        <div class="footer-contact">
+          <div class="label">Email</div>
+          <a href="mailto:wave.seattle.123@gmail.com">wave.seattle.123@gmail.com</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-
-<!-- Scripts -->
-<script src="../script.js"></script>
-<script>
-  /* Uses the shared gallery builder from script.js.
-     Test set for now — replace with real TTA photos when ready. */
-  buildEventGallery('bb-gallery', [
-    'img1.JPG','img2.JPG','img3.JPG','img4.JPG','img5.JPG','img6.JPG',
-    'img7.JPG','img8.JPG','img9.JPG','img10.JPG','img11.JPG','img12.JPG'
-  ], '../media/');
-</script>
-</body>
-</html>
+  </footer>
+  
+  <script src="../script.js"></script>
+  </body>
+  </html>
