@@ -3431,4 +3431,82 @@ color: var(--dark-navy); }
     .tpage { grid-template-columns: 1fr; }
     .tcard { min-height: 220px; }
   }
-  
+  /* ===============================
+   FIX 1 — Category tabs cut off
+   (your container is .cat-tabs, not .category-buttons)
+   =============================== */
+@media (max-width: 640px) {
+  /* If your tabs are wrapped in a positioned container, reset it too */
+  .cat-tabs-wrap,
+  .category-rail {
+    position: static !important;
+    transform: none !important;
+    margin-top: .75rem;
+  }
+
+  .cat-tabs {
+    position: static !important;
+    transform: none !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 0 .75rem; /* keeps pills away from edges */
+    overflow: visible;
+    width: 100%;
+  }
+
+  .cat-tabs button {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;         /* allow label wrapping */
+    overflow: visible;           /* no clipping */
+  }
+}
+
+/* ===============================
+   FIX 2 — Footer icons look tiny
+   =============================== */
+@media (max-width: 640px) {
+  /* Keep the touch target big */
+  .footer .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Enlarge the actual graphic */
+  .footer .footer-social a > img {
+    width: 32px !important;
+    height: 32px !important;
+    display: block;
+  }
+}
+
+/* ===============================
+   FIX 3 — Mission intro text too wide / cut on right
+   (your mission hero uses <section class="intro mission">)
+   =============================== */
+@media (max-width: 640px) {
+  .intro.mission .container.intro-content {
+    display: block;        /* ensure stacking works */
+    padding: 0;            /* reset odd container padding if any */
+  }
+
+  .intro.mission .text {
+    margin: 0;
+    padding: 0 1rem;       /* bring text safely inside the viewport */
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .intro.mission .video {
+    margin-top: 1rem;      /* space below text */
+  }
+
+  /* Optional: slightly smaller heading on phones to avoid wrap push */
+  .intro.mission .text h2 {
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+  }
+}
