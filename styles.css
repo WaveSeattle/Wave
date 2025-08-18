@@ -3553,7 +3553,7 @@ color: var(--dark-navy); }
   .category-buttons {
     position: absolute !important; 
     top: 8px;                       /* distance from top of the image */
-    right: 25px;                    /* anchor to the right side */
+    right: 12px;                    /* anchor to the right side */
     left: auto;                     /* disable left anchoring */
     width: auto;                    /* container shrinks to fit content */
 
