@@ -547,7 +547,7 @@ const EventsRoadmap = {
         href: "tta-convention-booth.html", img:"../media/TTA/TTA2.png" },
       { title: "IACS Diwali x WAVE", date: "2023-11-18", displayDate: "November 18th, 2023",
         excerpt: "At the annual IACS Diwali celebration, WAVE hosted a vibrant booth to engage youth in conversations about empowerment and wellness. We also shared resources and invited attendees to get involved in our mission.",
-        href: "iacs-diwali-x-wave.html", img: "../media/LW IAS -  WAVE Booth/IAS3.png" },
+        href: "iacs-diwali-x-wave.html", img: "../media/LW IAS -  WAVE Booth/IAS6.jpg" },
       { title: "Dandiya Night 2023 w/ Hopes and Smiles", date: "2023-10-20", displayDate: "October 20th, 2023",
         excerpt: "WAVE partnered with Hopes and Smiles for a festive evening filled with dance, music, and cultural celebration. The event spotlighted South Asian traditions while raising awareness for cancer research in our community.",
         href: "dandiya-night-2023.html", img: "../media/Dandiya 2023/Dandiya23event13.jpg" }
