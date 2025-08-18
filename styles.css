@@ -3459,37 +3459,6 @@ color: var(--dark-navy); }
    MOBILE FIX: Mission + Category pills
    ========================= */
 @media (max-width: 640px) {
-  /* --- A) CATEGORY PILLS (show + keep above hero) --- */
-  /* Cover both names you’ve used for the pills */
-  .cat-tabs,
-  .category-buttons {
-    position: relative !important;
-    z-index: 6 !important;          /* above hero image/video */
-    display: flex !important;        /* some older CSS hid them */
-    gap: 12px;
-    padding: 0 .75rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    width: 100%;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  .cat-tabs button,
-  .category-buttons button {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    scroll-snap-align: start;
-  }
-
-  /* If any wrapper was absolutely positioned over the hero, reset it */
-  .cat-tabs-wrap,
-  .category-rail {
-    position: static !important;
-    transform: none !important;
-    margin-top: .75rem;
-  }
-
   /* --- B) MISSION INTRO: remove desktop layout/padding + center --- */
   .intro,
   .intro.mission {
@@ -3549,3 +3518,51 @@ color: var(--dark-navy); }
   .intro, .intro * { box-sizing: border-box; }
 }
 
+/* =========================
+   MOBILE: Category hero fixes
+   ========================= */
+   @media (max-width: 640px) {
+    /* 1) Make sure the hero image and the text card never overflow */
+    #cat-hero {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      border-radius: 16px;
+    }
+    #cat-panel {
+      max-width: 100% !important;
+      margin: 0 12px;                 /* keep panel inside screen */
+      padding: 16px;                   /* comfy padding for the card */
+      box-sizing: border-box;
+    }
+  
+    /* 2) Pills: force visible, no overlay, two neat rows */
+    .cat-tabs,
+    .category-buttons {
+      position: static !important;     /* don’t overlay the image */
+      visibility: visible !important;
+      opacity: 1 !important;
+      display: grid !important;        /* 2 rows grid */
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 10px;                  /* row/column gap */
+      padding: 12px;                   /* breathing room */
+      margin-top: 8px;
+      width: 100%;
+      overflow: visible !important;    /* no horizontal scroll */
+      z-index: 3;
+    }
+  
+    .cat-tabs button,
+    .category-buttons button {
+      /* slightly smaller “pill” buttons */
+      font-size: 0.9rem;
+      line-height: 1.1;
+      padding: 10px 12px;
+      border-radius: 14px;
+      width: 100%;                     /* each grid cell = full width */
+      justify-self: stretch;
+      white-space: nowrap;             /* keep one-line labels */
+    }
+  }
+  
