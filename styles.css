@@ -3522,47 +3522,73 @@ color: var(--dark-navy); }
    MOBILE: Category hero fixes
    ========================= */
    @media (max-width: 640px) {
-    /* 1) Make sure the hero image and the text card never overflow */
-    #cat-hero {
-      display: block;
-      width: 100% !important;
-      height: auto !important;
-      max-width: 100% !important;
+
+    /* kill any accidental horizontal scroll */
+    html, body { overflow-x: hidden; }
+  
+    /* stack the layout (no 2-col grid on mobile) */
+    .cat-grid { display: block; }
+  
+    /* Edge-to-edge image frame that ignores container padding */
+    .cat-media { margin: 0; }
+    .cat-media-frame {
+      position: relative;
+      width: 100vw;                 /* exactly the viewport width */
+      margin-left: 50%;
+      transform: translateX(-50%);  /* center the 100vw block in the page */
+      overflow: hidden;
       border-radius: 16px;
     }
-    #cat-panel {
-      max-width: 100% !important;
-      margin: 0 12px;                 /* keep panel inside screen */
-      padding: 16px;                   /* comfy padding for the card */
-      box-sizing: border-box;
+  
+    /* Image never overflows */
+    #cat-hero {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
     }
   
-    /* 2) Pills: force visible, no overlay, two neat rows */
+    /* Tabs sit ON TOP of the image in two rows */
     .cat-tabs,
     .category-buttons {
-      position: static !important;     /* don’t overlay the image */
+      position: absolute !important;
+      top: 8px;
+      left: 0;
+      right: 0;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr); /* two columns = two neat rows */
+      gap: 8px 8px;
+      padding: 12px;
+      margin: 0;
+      z-index: 3;
       visibility: visible !important;
       opacity: 1 !important;
-      display: grid !important;        /* 2 rows grid */
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 10px;                  /* row/column gap */
-      padding: 12px;                   /* breathing room */
-      margin-top: 8px;
-      width: 100%;
-      overflow: visible !important;    /* no horizontal scroll */
-      z-index: 3;
     }
   
     .cat-tabs button,
     .category-buttons button {
-      /* slightly smaller “pill” buttons */
+      width: 100%;
       font-size: 0.9rem;
       line-height: 1.1;
       padding: 10px 12px;
       border-radius: 14px;
-      width: 100%;                     /* each grid cell = full width */
-      justify-self: stretch;
-      white-space: nowrap;             /* keep one-line labels */
+      white-space: nowrap;
+    }
+  
+    /* Right-side card fills screen width without overflow */
+    .cat-panel {
+      width: 100%;
+      max-width: 100%;
+      margin: 12px 0 0;             /* spacing under the image */
+      padding: 16px;
+      box-sizing: border-box;        /* padding stays inside width */
+      overflow-wrap: anywhere;       /* long words/links won’t push width */
+      border-radius: 16px;
+    }
+  
+    .cat-title,
+    .cat-copy {
+      margin-right: 0;
     }
   }
   
