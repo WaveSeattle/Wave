@@ -711,10 +711,9 @@ const EventGallery = {
     if (!gallery) {
       return;
     }
-
+v
     const imageList = [
-      "img1.JPG", "img2.JPG", "img3.JPG", "img4.JPG", "img5.JPG", "img6.JPG",
-      "img7.JPG", "img8.JPG", "img9.JPG", "img10.JPG", "img11.JPG", "img12.JPG"
+      
     ];
 
     this.buildGallery(gallery, imageList, "../media/");
