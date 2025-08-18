@@ -3233,21 +3233,29 @@ color: var(--dark-navy); }
   z-index: 2;                  /* top-most */
   color: #fff;
 }
-
 /* =========================================================
-   MOBILE-ONLY FIXES (max-width: 640px)
+   UNIVERSAL SAFETY (keeps media from causing side-scroll)
    ========================================================= */
    @media (max-width: 640px) {
-    /* 0) Safety: kill stray horizontal scroll on all pages */
+    img, video, iframe {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* =========================================================
+     MOBILE-ONLY FIXES (max-width: 640px)
+     ========================================================= */
+  @media (max-width: 640px) {
+    /* Kill stray horizontal scroll sitewide */
     html, body { overflow-x: hidden; }
     .container { max-width: 100%; }
   
-    /* 1) Home: "Our Impact" number cards — center each card */
+    /* 1) Home/Impact/Donate: center number cards */
     .stat-card { 
       margin: 0 auto; 
       max-width: 320px; 
     }
-    /* If your impact cards sit in a grid/row, center items */
     .stats-grid,
     .impact-stats,
     .donate-stats,
@@ -3259,7 +3267,7 @@ color: var(--dark-navy); }
       justify-items: center;
     }
   
-    /* 2) Home: Category buttons cut off — stack and center */
+    /* 2) Home: Category buttons (stack + full width) */
     .category-buttons {
       display: grid !important;
       grid-template-columns: 1fr !important;
@@ -3268,43 +3276,13 @@ color: var(--dark-navy); }
     }
     .category-buttons button { width: 100%; }
   
-    /* 3) Footer social logos: make the icons larger */
+    /* 3) Footer social logos: make icons larger */
     .footer .footer-social a img {
-      width: 28px;   /* was visually tiny; increase icon graphic */
+      width: 28px;
       height: 28px;
     }
   
-    /* 4 & 8) Mobile nav: make hamburger toggle + links usable */
-    .navbar .nav-main { position: relative; }
-    .navbar .menu-toggle { z-index: 1001; } /* keep button above everything */
-    .navbar .nav-links {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      border-top: 1px solid rgba(0,0,0,.06);
-      padding: .5rem 1rem;
-      z-index: 1000;
-    }
-    .navbar .nav-links.active { display: flex; }
-    .navbar .nav-links a,
-    .navbar .nav-links .nav-dropdown-trigger { 
-      padding: .75rem 0; 
-    }
-    /* Dropdowns open as simple blocks on mobile (tap-friendly) */
-    .navbar .dropdown-container .dropdown {
-      position: static;
-      display: block;
-      background: transparent;
-      box-shadow: none;
-      padding-left: .75rem;
-    }
-  
-    /* 5) Mission page: side-by-side sections -> stack w/ image below text */
-    /* Works for any 2-column split sections you used */
+    /* 5) Mission & other two-column sections: stack, image under text */
     .intro .container.intro-content,
     .event-hero-grid,
     .split,
@@ -3314,7 +3292,6 @@ color: var(--dark-navy); }
       flex-direction: column !important;
       gap: 1.25rem;
     }
-    /* Put image/video under text on mobile */
     .intro .text { order: 1; }
     .intro .video,
     .split .media,
@@ -3323,7 +3300,7 @@ color: var(--dark-navy); }
     .intro .video iframe,
     .intro .video video { height: auto; }
   
-    /* 6) Impact page: “Impact by the numbers” — center cards */
+    /* 6) Impact page: “Impact by the numbers” — center */
     .impact-numbers,
     .impact-cards,
     .impact-cards-row {
@@ -3335,7 +3312,7 @@ color: var(--dark-navy); }
     .impact-numbers .stat-card,
     .impact-cards .stat-card { margin: 0 auto; }
   
-    /* 7) Donate page: impact cards center */
+    /* 7) Donate page: center impact cards */
     .donate-impact,
     .donate-impact-cards {
       display: grid !important;
@@ -3345,7 +3322,7 @@ color: var(--dark-navy); }
     }
     .donate-impact .stat-card { margin: 0 auto; }
   
-    /* 9) Individual event pages: kill horizontal scroll from hero/video */
+    /* 9) Individual event pages: prevent horizontal scroll from media */
     .hero .hero-video-bg video,
     .hero .hero-video-bg iframe {
       width: 100% !important;
@@ -3358,11 +3335,8 @@ color: var(--dark-navy); }
       overflow: hidden;
     }
   
-    /* 10) Our Events hero text not visible — stronger mobile overlay */
-    .hero-events .hero-overlay {
-      position: relative;
-      z-index: 3;
-    }
+    /* 10) Our Events hero text visibility (stronger tint on mobile) */
+    .hero-events { position: relative; }
     .hero-events::before {
       content: "";
       position: absolute;
@@ -3377,6 +3351,10 @@ color: var(--dark-navy); }
           rgba(0,0,0,.55) 100%
         ),
         linear-gradient(0deg, rgba(12,27,51,.35), rgba(12,27,51,.35));
+    }
+    .hero-events .hero-overlay {
+      position: relative;
+      z-index: 3; /* above tint */
     }
     .hero-events .hero-overlay h1,
     .hero-events .hero-overlay p {
@@ -3402,71 +3380,55 @@ color: var(--dark-navy); }
       transition: transform 0.1s ease;
     }
   }
-  /* ===== Mobile nav (matches setupMenuToggle) ===== */
-@media (max-width: 768px) {
-  .navbar {
-    position: sticky; /* or fixed if you prefer */
-    top: 0;
-    z-index: 1000;
+  
+  /* =========================================================
+     TESTIMONIALS LAYOUT (works with your JS; 3/2/1 per row)
+     ========================================================= */
+  .testimonial-viewport { overflow: hidden; }
+  .testimonial-track { display: flex; will-change: transform; }
+  
+  /* A “page” of 3 cards — JS wraps cards into .tpage blocks */
+  .tpage {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
-
-  /* Hide the list by default on mobile */
-  .nav-links {
-    position: fixed;           /* overlay panel */
-    inset: 64px 0 0 0;         /* below header; adjust header height if needed */
-    display: none;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 1.25rem;
-    background: #fff;
-    z-index: 1001;             /* above header bg/video/etc. */
-    max-height: calc(100dvh - 64px);
-    overflow-y: auto;
-    box-shadow: 0 12px 24px rgba(0,0,0,.12);
-  }
-
-  /* When JS toggles .active, show it */
-  .nav-links.active {
+  
+  /* Card styling — grid-driven (no flex-basis fights) */
+  .tcard {
+    min-height: 260px;
+    background: var(--white, #fff);
+    color: var(--dark-navy, #0b1b2b);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08),
+                0 4px 12px rgba(29, 78, 137, 0.1);
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    touch-action: manipulation;
   }
-
-  /* Make links big & easy to tap */
-  .nav-links li a,
-  .nav-links .nav-dropdown-trigger {
+  .tcard p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+  .tcard span {
     display: block;
-    padding: 0.875rem 0.5rem;
-    font-size: 1.05rem;
-    line-height: 1.2;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--deep-blue);
   }
-
-  /* Optional: collapse dropdowns into simple stacked lists on mobile */
-  .dropdown-container .dropdown {
-    position: static;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    box-shadow: none;
-    background: transparent;
-    padding-left: 0.75rem;
+  
+  /* Tablet: 2 per page */
+  @media (max-width: 900px) {
+    .tpage { grid-template-columns: repeat(2, 1fr); }
   }
-  .dropdown-container.open .dropdown {
-    display: block;
+  
+  /* Phone: 1 per page */
+  @media (max-width: 640px) {
+    .tpage { grid-template-columns: 1fr; }
+    .tcard { min-height: 220px; }
   }
-
-  /* Hamburger touch target */
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px; height: 44px;
-    z-index: 1002; /* above panel */
-  }
-}
-@media (max-width: 640px) {
-  img, video, iframe {
-    max-width: 100%;
-    height: auto;
-  }
-}
-.hero-events { position: relative; }
+  
