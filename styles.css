@@ -3558,7 +3558,7 @@ color: var(--dark-navy); }
     width: auto;                    /* container shrinks to fit content */
 
     display: grid !important;
-    grid-template-columns: 1fr;     /* stack vertically by default */
+    grid-template-columns:  repeat(2, auto);     /* stack vertically by default */
     gap: 8px;
     padding: 0;
 
