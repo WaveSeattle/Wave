@@ -3522,61 +3522,75 @@ color: var(--dark-navy); }
    MOBILE: Category hero fixes
    ========================= */
    @media (max-width: 640px) {
-    /* keep the image full viewport width without overflow */
-    .cat-media-frame {
+    /* stop any horizontal scroll */
+    html, body { overflow-x: hidden; }
+  
+    .cat-grid { display: block; }
+    .cat-media { margin: 0; }
+  
+    /* Full-bleed image without transform (so children position correctly) */
+    .cat-media-frame{
       position: relative;
       width: 100vw;
-      margin-left: 50%;
-      transform: translateX(-50%);
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;   /* bleed to left edge */
+      margin-right: -50vw;  /* bleed to right edge */
       overflow: hidden;
       border-radius: 16px;
+      box-sizing: border-box;
     }
   
-    #cat-hero {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-width: 100%;
+    #cat-hero{
+      display:block;
+      width:100%;
+      height:auto;
+      max-width:100%;
     }
   
-    /* buttons: 2x2 grid centered across the image */
+    /* Tabs ON the image, centered, 2x2 grid — no more shifting left */
     .cat-tabs,
-    .category-buttons {
-      position: absolute !important;
-      top: 8px;
-      left: 50%;                        /* center anchor */
-      transform: translateX(-50%);      /* pull grid back to center */
-      display: grid !important;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      width: calc(100% - 24px);         /* breathing room inside image */
-      max-width: 400px;                 /* keep from getting too stretched */
-      padding: 0;
-      margin: 0;
-      z-index: 3;
-      visibility: visible !important;
-      opacity: 1 !important;
+    .category-buttons{
+      position:absolute !important;
+      top:8px;
+      left:0;               /* anchor to both sides of the frame */
+      right:0;
+      width:auto;           /* let left/right control the width */
+      margin:0 auto;        /* center the grid area */
+      padding:12px;
+      display:grid !important;
+      grid-template-columns:repeat(2, 1fr);
+      gap:8px;
+      z-index:5;
+      visibility:visible !important;
+      opacity:1 !important;
+      box-sizing:border-box;
     }
   
     .cat-tabs button,
-    .category-buttons button {
-      width: 100%;
-      font-size: 0.9rem;
-      line-height: 1.1;
-      padding: 10px 12px;
-      border-radius: 14px;
-      white-space: nowrap;
-      text-align: center;
+    .category-buttons button{
+      width:100%;
+      font-size:0.9rem;
+      line-height:1.1;
+      padding:10px 12px;
+      border-radius:14px;
+      white-space:nowrap;
+      text-align:center;
     }
   
-    /* card stays inside screen */
-    .cat-panel {
-      width: 100%;
-      max-width: 100%;
-      margin: 12px 0 0;
-      padding: 16px;
-      box-sizing: border-box;
-      border-radius: 16px;
+    /* Card/text never overflow */
+    .cat-panel{
+      width:100%;
+      max-width:100%;
+      margin:12px 0 0;
+      padding:16px;
+      box-sizing:border-box;
+      border-radius:16px;
+      overflow-wrap:anywhere;
     }
+  }
+  @media (max-width: 640px){
+    .cat-tabs{ backdrop-filter: blur(6px); }
+    .cat-tabs button{ background: rgba(255,255,255,.92); }
   }
   
