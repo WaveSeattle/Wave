@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTA Convention Booth • WAVE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Poppins:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../media/logo.png" type="image/png">
+  <link rel="shortcut icon" href="../media/logo.png" type="image/png">
+</head>
+<body>
+
+
+<!-- NAVBAR (events/*) -->
+<header class="navbar">
+  <div class="container nav-content">
+    <div class="nav-main">
+      <div class="brand">
+        <a href="../index.html" class="brand-link">
+          <img src="../media/logo.png" alt="WAVE Logo" class="logo-img">
+          <span class="brand-name">WAVE</span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">About Us</span>
+          <ul class="dropdown">
+            <li><a href="../about-us/mission.html">Mission</a></li>
+            <li><a href="../about-us/impact.html">Impact</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-dropdown-trigger" href="../about-us/meet-the-team.html">Meet the Team</a></li>
+
+        <li class="dropdown-container">
+          <span class="nav-dropdown-trigger">Events</span>
+          <ul class="dropdown">
+            <li><a href="bollywood-ball.html">Bollywood Ball</a></li>
+            <li><a href="dandiya-night-2023.html">Dandiya Night 2023</a></li>
+            <li><a href="tta-convention-booth.html">TTA</a></li>
+            <li><a href="index.html">View All Events</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-dropdown-trigger" href="../join-us.html">Join Us</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-actions">
+      <a class="donate-cta" href="../donate.html">Donate</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="event-hero">
+  <div class="container event-hero-grid">
+    <figure class="hero-art">
+      <!-- test hero image from /media; swap to a real TTA photo when ready -->
+      <img src="../media/img4.JPG" alt="TTA Convention Booth" />
+    </figure>
+
+    <div class="hero-info">
+      <h1>TTA Convention Booth</h1>
+      <ul class="hero-meta">
+        <li><strong>Date:</strong> May 24–26th, 2024</li>
+        <li><strong>Location:</strong> Seattle, WA</li>
+      </ul>
+      <p class="hero-desc">
+        We hosted a booth at the TTA Convention, sharing WAVE’s mission and connecting with hundreds
+        of attendees about the importance of funding pediatric cancer research and uncompensated care
+        at Seattle Children’s.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="kpi counter" data-target="4200" data-prefix="$">0</div>
+          <div class="kpi-label">Donations</div>
+        </div>
+        <div class="stat">
+          <div class="kpi counter" data-target="900">0</div>
+          <div class="kpi-label">Visitors</div>
+        </div>
+        <div class="stat">
+          <div class="kpi counter" data-target="18">0</div>
+          <div class="kpi-label">Volunteers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-animation"></div>
+</section>
+
+<!-- GALLERY -->
+<section class="event-gallery">
+  <div class="gallery-wrap" id="bb-gallery"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="footer-3col">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/wave_seattle/" aria-label="Instagram" target="_blank" rel="noopener">
+          <img src="../media/Insta.png" alt="Instagram" />
+        </a>
+        <a href="https://www.facebook.com/people/Wave-Guild/pfbid02pGg3sQadUXTjCAgSzN8zrMdZnJz6LAHbeEDLwrrZCckAoBpZUopzAxHdpZHr3ZyTl/" aria-label="Facebook" target="_blank" rel="noopener">
+          <img src="../media/FaceBook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.tiktok.com/@wave_seattle" aria-label="TikTok" target="_blank" rel="noopener">
+          <img src="../media/Tiktok.png" alt="TikTok" />
+        </a>
+        <a href="https://linktr.ee/wave_seattle" aria-label="Linktree" target="_blank" rel="noopener">
+          <img src="../media/linkTree.png" alt="Linktree" />
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2025 WAVE. All Rights Reserved.</p>
+      <div class="footer-contact">
+        <div class="label">Email</div>
+        <a href="mailto:wave.seattle.123@gmail.com">wave.seattle.123@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="../script.js"></script>
+<script>
+  /* Uses the shared gallery builder from script.js.
+     Test set for now — replace with real TTA photos when ready. */
+  buildEventGallery('bb-gallery', [
+    'img1.JPG','img2.JPG','img3.JPG','img4.JPG','img5.JPG','img6.JPG',
+    'img7.JPG','img8.JPG','img9.JPG','img10.JPG','img11.JPG','img12.JPG'
+  ], '../media/');
+</script>
+</body>
+</html>
