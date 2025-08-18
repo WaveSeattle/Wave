@@ -533,23 +533,23 @@ const EventsRoadmap = {
    */
   getEventsData() {
     return [
-      { title: "Bollywood Ball @ Lake Washington High School", date: "2025-01-15", displayDate: "January 15th, 2025",
-        excerpt: "Our first-ever youth-only dance with mocktails and an empowering playlist that brought Seattle's youth together.",
+      { title: "Bollywood Ball @ Lake Washington High School", date: "2025-01-25", displayDate: "January 25th, 2025",
+        excerpt: "The Bollywood Ball was WAVE’s first-ever youth-only dance! With music, mocktails, and an amazing playlist, the night brought together youth from all over Seattle to celebrate empowerment and unity.",
         href: "bollywood-ball.html", img: "../media/img1.JPG" },
       { title: "Dandiya Night 2024 w/ Hopes and Smiles", date: "2024-10-19", displayDate: "October 19th, 2024",
-        excerpt: "A joyful cultural celebration supporting youth mental health projects and community pride.",
+        excerpt: "In our second annual Dandiya Night collaboration, WAVE and Hopes and Smiles brought together people for a night of joy, community, and cultural pride. Proceeds supported ongoing youth mental health projects.",
         href: "dandiya-night.html", img: "../media/img2.JPG" },
       { title: "IACS Summer Fest Booth", date: "2024-06-23", displayDate: "June 23rd, 2024",
-        excerpt: "Sold Italian Sodas to raise funds for uncompensated care and met new families in the community.",
+        excerpt: "During the lively IACS Summer Fest, WAVE’s booth sold Italian sodas to raise money for uncompensated care. It was an amazing opportunity to meet new families and grow our impact locally.",
         href: "iacs-summer-fest-booth.html", img: "../media/img3.JPG" },
       { title: "TTA Convention Booth", date: "2024-05-24", displayDate: "May 24–26th, 2024",
-        excerpt: "We hosted a booth, shared our mission, and connected with hundreds about the importance of research.",
+        excerpt: "WAVE was honored to host a booth at the TTA Mega Convention, connecting with thousands of community members. We spread awareness about our mission and the importance of uncompensated care.",
         href: "tta-convention-booth.html", img: "../media/img4.JPG" },
       { title: "IACS Diwali x WAVE", date: "2023-11-18", displayDate: "November 18th, 2023",
-        excerpt: "A vibrant booth engaging youth about empowerment and wellness; inviting them to join our mission.",
+        excerpt: "At the annual IACS Diwali celebration, WAVE hosted a vibrant booth to engage youth in conversations about empowerment and wellness. We also shared resources and invited attendees to get involved in our mission.",
         href: "iacs-diwali-x-wave.html", img: "../media/img5.JPG" },
       { title: "Dandiya Night 2023 w/ Hopes and Smiles", date: "2023-10-20", displayDate: "October 20th, 2023",
-        excerpt: "A festive evening spotlighting South Asian traditions while raising awareness for pediatric cancer research.",
+        excerpt: "WAVE partnered with Hopes and Smiles for a festive evening filled with dance, music, and cultural celebration. The event spotlighted South Asian traditions while raising awareness for cancer research in our community.",
         href: "dandiya-night-2023.html", img: "../media/img6.JPG" }
     ].sort((a, b) => new Date(b.date) - new Date(a.date));
   },
