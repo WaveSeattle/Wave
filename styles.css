@@ -3522,25 +3522,16 @@ color: var(--dark-navy); }
    MOBILE: Category hero fixes
    ========================= */
    @media (max-width: 640px) {
-
-    /* kill any accidental horizontal scroll */
-    html, body { overflow-x: hidden; }
-  
-    /* stack the layout (no 2-col grid on mobile) */
-    .cat-grid { display: block; }
-  
-    /* Edge-to-edge image frame that ignores container padding */
-    .cat-media { margin: 0; }
+    /* keep the image full viewport width without overflow */
     .cat-media-frame {
       position: relative;
-      width: 100vw;                 /* exactly the viewport width */
+      width: 100vw;
       margin-left: 50%;
-      transform: translateX(-50%);  /* center the 100vw block in the page */
+      transform: translateX(-50%);
       overflow: hidden;
       border-radius: 16px;
     }
   
-    /* Image never overflows */
     #cat-hero {
       display: block;
       width: 100%;
@@ -3548,17 +3539,19 @@ color: var(--dark-navy); }
       max-width: 100%;
     }
   
-    /* Tabs sit ON TOP of the image in two rows */
+    /* buttons: 2x2 grid centered across the image */
     .cat-tabs,
     .category-buttons {
       position: absolute !important;
       top: 8px;
-      left: 0;
-      right: 0;
+      left: 50%;                        /* center anchor */
+      transform: translateX(-50%);      /* pull grid back to center */
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr); /* two columns = two neat rows */
-      gap: 8px 8px;
-      padding: 12px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: calc(100% - 24px);         /* breathing room inside image */
+      max-width: 400px;                 /* keep from getting too stretched */
+      padding: 0;
       margin: 0;
       z-index: 3;
       visibility: visible !important;
@@ -3573,22 +3566,17 @@ color: var(--dark-navy); }
       padding: 10px 12px;
       border-radius: 14px;
       white-space: nowrap;
+      text-align: center;
     }
   
-    /* Right-side card fills screen width without overflow */
+    /* card stays inside screen */
     .cat-panel {
       width: 100%;
       max-width: 100%;
-      margin: 12px 0 0;             /* spacing under the image */
+      margin: 12px 0 0;
       padding: 16px;
-      box-sizing: border-box;        /* padding stays inside width */
-      overflow-wrap: anywhere;       /* long words/links won’t push width */
+      box-sizing: border-box;
       border-radius: 16px;
-    }
-  
-    .cat-title,
-    .cat-copy {
-      margin-right: 0;
     }
   }
   
