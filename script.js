@@ -1368,7 +1368,7 @@ const TeamModule = {
       {
         name: 'Sanjana Medikurthi',
         role: 'Founder & President',
-        img: '../media/img2.JPG',
+        img: '../media/Team/sanjana.webp',
         desc: `Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children's, and keeps the team aligned on mission and outcomes.
           <br><br>
           <a href="https://www.instagram.com/sanjana_med/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
@@ -1377,7 +1377,7 @@ const TeamModule = {
       {
         name: 'Moksh Doshi',
         role: 'Vice President',
-        img: '../media/img3.JPG',
+        img: '../media/Team/moksh.webp',
         desc: `Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.
           <br><br>
           <a href="https://www.instagram.com/mokshdo/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
@@ -1386,7 +1386,7 @@ const TeamModule = {
       {
         name: 'Lahari Nellore',
         role: 'Secretary',
-        img: '../media/img4.JPG',
+        img: '../media/Team/lahari.webp',
         desc: `Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.
           <br><br>
           <a href="https://www.instagram.com/lahari.nellore/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>`
@@ -1394,7 +1394,7 @@ const TeamModule = {
       {
         name: 'Bhuvan Carjala',
         role: 'Treasurer',
-        img: '../media/img5.JPG',
+        img: '../media/Team/bhuvan.webp',
         desc: `Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.
           <br><br>
           <a href="https://www.instagram.com/bhuvan_gajarla/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
@@ -1403,7 +1403,7 @@ const TeamModule = {
       {
         name: 'Sahasra Voruganti',
         role: 'Social Media Manager',
-        img: '../media/img6.JPG',
+        img: '../media/Team/sahasra.webp',
         desc: `Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.
           <br><br>
           <a href="https://www.instagram.com/sahasra.vor/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
@@ -1412,10 +1412,10 @@ const TeamModule = {
     ];
 
     this.ADMIN = [
-      { name: 'Laasya Chintamani', role: 'Head of Development', img: '../media/img7.JPG' },
-      { name: 'Samina Ali', role: 'Head of Community Outreach', img: '../media/img8.JPG' },
-      { name: 'Omkar Page', role: 'Head of Technology', img: '../media/img9.JPG' },
-      { name: 'Saketh Desam', role: 'Head of Volunteer Connections', img: '../media/img10.JPG' }
+      { name: 'Laasya Chintamani', role: 'Head of Development', img: '../media/Team/waveLogo.webp' },
+      { name: 'Samina Ali', role: 'Head of Community Outreach', img: '../media/Team/samina.webp' },
+      { name: 'Omkar Page', role: 'Head of Technology', img: '../media/Team/omkar.webp' },
+      { name: 'Saketh Desam', role: 'Head of Volunteer Connections', img: '../media/Team/waveLogo.webp' }
     ];
   },
 
