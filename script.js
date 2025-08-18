@@ -1560,26 +1560,22 @@ const TeamModule = {
     wellness: {
       img: 'media/hero1.jpg',
       title: 'Wellness',
-      copy: `We champion healthy habits for students and families—mindfulness, movement,
-             and balance—so our volunteers bring their best selves to the cause and to one another.`
+      copy: `Every child deserves the chance to grow, laugh, and play without the shadow of illness holding them back. By ensuring access to essential medical care, we give families the hope of seeing their children healthy and thriving, even in the face of life’s toughest challenges.`
     },
     awareness: {
       img: 'media/hero2.jpg',
       title: 'Awareness',
-      copy: `We spotlight pediatric cancer facts, amplify community stories, and host campaigns that
-             educate peers, families, and neighbors about early detection and support resources.`
+      copy: `Behind every child’s care is a story that often goes untold. By raising awareness about uncompensated care at Seattle Children’s Hospital, we invite our community to step into these stories, understand their impact, and become part of a movement that saves lives.`
     },
     vision: {
       img: 'media/img5.jpg',
       title: 'Vision',
-      copy: `Our long-term vision is a community where every child receives cutting-edge care—no matter
-             their circumstances—backed by relentless youth energy and leadership.`
+      copy: `We imagine a world where no child is left waiting, worried, or unheard because of financial barriers. Every action we take is driven by the hope that children can grow strong, families can breathe easier, and a brighter, healthier future is possible for all.`
     },
     empowerment: {
       img: 'media/img10.jpg',
       title: 'Empowerment',
-      copy: `Through events, service, and leadership opportunities, we help young people find their voice,
-             build real-world skills, and make measurable impact for Seattle Children’s.`
+      copy: ` Families facing medical uncertainty deserve strength and support at every turn. By empowering them with guidance, resources, and encouragement, we help them navigate fear with courage, transforming worry into hope and struggle into resilience.`
     }
   };
 
