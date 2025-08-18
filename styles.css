@@ -3614,3 +3614,38 @@ color: var(--dark-navy); }
   
   text-align: center;
 }
+
+
+/* Layout */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;              /* no background bleed */
+}
+
+/* Replace old .label styling */
+.contact-label {
+  font-weight: 700;
+  color: #ffffff;
+  background: transparent !important;   /* kill any gradient */
+  box-shadow: none !important;
+}
+
+/* Nuke decorative bars some themes add */
+.contact-item::before,
+.contact-label::before,
+.contact-label::after {
+  content: none !important;
+  background: none !important;
+}
+
+/* Email link style */
+.contact-link {
+  color: #25c1d3;                       /* your teal */
+  text-decoration: none;
+}
+.contact-link:hover,
+.contact-link:focus {
+  text-decoration: underline;
+}
