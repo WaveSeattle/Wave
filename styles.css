@@ -3431,37 +3431,6 @@ color: var(--dark-navy); }
     .tpage { grid-template-columns: 1fr; }
     .tcard { min-height: 220px; }
   }
-  /* ===============================
-   FIX 1 — Category tabs cut off
-   (your container is .cat-tabs, not .category-buttons)
-   =============================== */
-@media (max-width: 640px) {
-  /* If your tabs are wrapped in a positioned container, reset it too */
-  .cat-tabs-wrap,
-  .category-rail {
-    position: static !important;
-    transform: none !important;
-    margin-top: .75rem;
-  }
-
-  .cat-tabs {
-    position: static !important;
-    transform: none !important;
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-    padding: 0 .75rem; /* keeps pills away from edges */
-    overflow: visible;
-    width: 100%;
-  }
-
-  .cat-tabs button {
-    width: 100%;
-    max-width: 100%;
-    white-space: normal;         /* allow label wrapping */
-    overflow: visible;           /* no clipping */
-  }
-}
 
 /* ===============================
    FIX 2 — Footer icons look tiny
@@ -3484,29 +3453,83 @@ color: var(--dark-navy); }
   }
 }
 
+
+
 /* ===============================
-   FIX 3 — Mission intro text too wide / cut on right
-   (your mission hero uses <section class="intro mission">)
+   MOBILE-ONLY FIXES
    =============================== */
-@media (max-width: 640px) {
-  .intro.mission .container.intro-content {
-    display: block;        /* ensure stacking works */
-    padding: 0;            /* reset odd container padding if any */
-  }
-
-  .intro.mission .text {
-    margin: 0;
-    padding: 0 1rem;       /* bring text safely inside the viewport */
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .intro.mission .video {
-    margin-top: 1rem;      /* space below text */
-  }
-
-  /* Optional: slightly smaller heading on phones to avoid wrap push */
-  .intro.mission .text h2 {
-    font-size: clamp(1.5rem, 5vw, 1.9rem);
-  }
-}
+   @media (max-width: 640px) {
+    /* ----- 1) Category buttons: make visible + not cut off ----- */
+    /* Your tabs container names vary across pages; cover both */
+    .cat-tabs-wrap,
+    .category-rail {
+      position: static !important;
+      transform: none !important;
+      margin-top: .75rem;
+    }
+  
+    .cat-tabs,
+    .category-buttons {
+      position: relative !important;
+      z-index: 5;                 /* sit ABOVE the hero image/video */
+      display: flex !important;
+      gap: 12px;
+      padding: 0 .75rem;
+      overflow-x: auto;           /* horizontal scroll if needed */
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      width: 100%;
+    }
+  
+    .cat-tabs button,
+    .category-buttons button {
+      flex: 0 0 auto;             /* keep pill size */
+      max-width: 100%;
+      white-space: nowrap;        /* pills stay on one line */
+      scroll-snap-align: start;
+    }
+  
+    /* If you had any “hidden”/absolute versions still hanging around */
+    .cat-tabs[style*="display:none"],
+    .category-buttons[style*="display:none"] {
+      display: flex !important;
+    }
+  
+    /* ----- 2) Mission page intro text too far right ----- */
+    /* Stack + center with safe inner padding */
+    .intro,
+    .intro.mission {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    .intro .container,
+    .intro.mission .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      max-width: 100%;
+    }
+  
+    .intro .container.intro-content,
+    .intro.mission .container.intro-content {
+      display: block;             /* force stacking */
+    }
+  
+    .intro .text,
+    .intro.mission .text {
+      margin: 0 auto;
+      padding: 0;                 /* remove extra right padding */
+      max-width: 680px;           /* keeps lines comfortable */
+      width: 100%;
+    }
+  
+    .intro .video,
+    .intro.mission .video {
+      margin-top: 1rem;
+    }
+  
+    .intro .text h2,
+    .intro.mission .text h2 {
+      font-size: clamp(1.5rem, 5vw, 1.9rem);
+    }
+   }
