@@ -3550,33 +3550,33 @@ color: var(--dark-navy); }
   
     /* Tabs ON the image, centered, 2x2 grid — no more shifting left */
     .cat-tabs,
-    .category-buttons{
-      position:absolute !important;
-      top:8px;
-      left:0;               /* anchor to both sides of the frame */
-      right:0;
-      width:auto;           /* let left/right control the width */
-      margin:0 auto;        /* center the grid area */
-      padding:12px;
-      display:grid !important;
-      grid-template-columns:repeat(2, 1fr);
-      gap:8px;
-      z-index:5;
-      visibility:visible !important;
-      opacity:1 !important;
-      box-sizing:border-box;
-    }
-  
-    .cat-tabs button,
-    .category-buttons button{
-      width:100%;
-      font-size:0.9rem;
-      line-height:1.1;
-      padding:10px 12px;
-      border-radius:14px;
-      white-space:nowrap;
-      text-align:center;
-    }
+  .category-buttons {
+    position: absolute !important; 
+    top: 8px;                       /* distance from top of the image */
+    right: 50px;                    /* anchor to the right side */
+    left: auto;                     /* disable left anchoring */
+    width: auto;                    /* container shrinks to fit content */
+
+    display: grid !important;
+    grid-template-columns: 1fr;     /* stack vertically by default */
+    gap: 8px;
+    padding: 0;
+
+    z-index: 5;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .cat-tabs button,
+  .category-buttons button {
+    min-width: 120px;               /* make sure buttons have some width */
+    font-size: 0.9rem;
+    line-height: 1.1;
+    padding: 10px 12px;
+    border-radius: 14px;
+    white-space: nowrap;
+    text-align: center;
+  }
   
     /* Card/text never overflow */
     .cat-panel{
