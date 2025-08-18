@@ -3441,95 +3441,111 @@ color: var(--dark-navy); }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 60px;
+    height: 60px;
   }
 
   /* Enlarge the actual graphic */
   .footer .footer-social a > img {
-    width: 60px !important;
-    height: 60px !important;
+    width: 100px !important;
+    height: 100px !important;
     display: block;
   }
 }
 
 
 
-/* ===============================
-   MOBILE-ONLY FIXES
-   =============================== */
-   @media (max-width: 640px) {
-    /* ----- 1) Category buttons: make visible + not cut off ----- */
-    /* Your tabs container names vary across pages; cover both */
-    .cat-tabs-wrap,
-    .category-rail {
-      position: static !important;
-      transform: none !important;
-      margin-top: .75rem;
-    }
-  
-    .cat-tabs,
-    .category-buttons {
-      position: relative !important;
-      z-index: 5;                 /* sit ABOVE the hero image/video */
-      display: flex !important;
-      gap: 12px;
-      padding: 0 .75rem;
-      overflow-x: auto;           /* horizontal scroll if needed */
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      width: 100%;
-    }
-  
-    .cat-tabs button,
-    .category-buttons button {
-      flex: 0 0 auto;             /* keep pill size */
-      max-width: 100%;
-      white-space: nowrap;        /* pills stay on one line */
-      scroll-snap-align: start;
-    }
-  
-    /* If you had any “hidden”/absolute versions still hanging around */
-    .cat-tabs[style*="display:none"],
-    .category-buttons[style*="display:none"] {
-      display: flex !important;
-    }
-  
-    /* ----- 2) Mission page intro text too far right ----- */
-    /* Stack + center with safe inner padding */
-    .intro,
-    .intro.mission {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  
-    .intro .container,
-    .intro.mission .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      max-width: 100%;
-    }
-  
-    .intro .container.intro-content,
-    .intro.mission .container.intro-content {
-      display: block;             /* force stacking */
-    }
-  
-    .intro .text,
-    .intro.mission .text {
-      margin: 0 auto;
-      padding: 0;                 /* remove extra right padding */
-      max-width: 680px;           /* keeps lines comfortable */
-      width: 100%;
-    }
-  
-    .intro .video,
-    .intro.mission .video {
-      margin-top: 1rem;
-    }
-  
-    .intro .text h2,
-    .intro.mission .text h2 {
-      font-size: clamp(1.5rem, 5vw, 1.9rem);
-    }
-   }
+/* =========================
+   MOBILE FIX: Mission + Category pills
+   ========================= */
+@media (max-width: 640px) {
+  /* --- A) CATEGORY PILLS (show + keep above hero) --- */
+  /* Cover both names you’ve used for the pills */
+  .cat-tabs,
+  .category-buttons {
+    position: relative !important;
+    z-index: 6 !important;          /* above hero image/video */
+    display: flex !important;        /* some older CSS hid them */
+    gap: 12px;
+    padding: 0 .75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .cat-tabs button,
+  .category-buttons button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+
+  /* If any wrapper was absolutely positioned over the hero, reset it */
+  .cat-tabs-wrap,
+  .category-rail {
+    position: static !important;
+    transform: none !important;
+    margin-top: .75rem;
+  }
+
+  /* --- B) MISSION INTRO: remove desktop layout/padding + center --- */
+  .intro,
+  .intro.mission {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .intro .container,
+  .intro.mission .container {
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    overflow: hidden;                 /* kill any stray horizontal bleed */
+  }
+
+  /* Force the side-by-side block to stack + center */
+  .intro .container.intro-content,
+  .intro.mission .container.intro-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem;
+  }
+
+  /* Text block: full width, no extra right padding */
+  .intro .text,
+  .intro.mission .text {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  /* Media block: full width under text */
+  .intro .video,
+  .intro.mission .video {
+    width: 100% !important;
+    margin-top: 1rem;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  .intro .video img,
+  .intro .video video,
+  .intro .video iframe {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    border-radius: 16px;
+  }
+
+  /* Make sure everything measures inside the viewport */
+  .intro, .intro * { box-sizing: border-box; }
+}
+
