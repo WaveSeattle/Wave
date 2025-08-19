@@ -535,7 +535,7 @@ const EventsRoadmap = {
     return [
       { title: "Bollywood Ball @ Lake Washington High School", date: "2025-01-25", displayDate: "January 25th, 2025",
         excerpt: "The Bollywood Ball was WAVE’s first-ever youth-only dance! With music, mocktails, and an amazing playlist, the night brought together youth from all over Seattle to celebrate empowerment and unity.",
-        href: "bollywood-ball.html", img: "../media/Bollywood Ball 2025/BB18.jpg" },
+        href: "bollywood-ball.html", img: "../media/Bollywood Ball 2025/BB18.JPG" },
       { title: "Dandiya Night 2024 w/ Hopes and Smiles", date: "2024-10-19", displayDate: "October 19th, 2024",
         excerpt: "In our second annual Dandiya Night collaboration, WAVE and Hopes and Smiles brought together people for a night of joy, community, and cultural pride. Proceeds supported ongoing youth mental health projects.",
         href: "dandiya-night.html", img: "../media/Dandiya 2024/Dandiya24event3.jpg" },
