@@ -1557,22 +1557,22 @@ const TeamModule = {
 
   const MAP = {
     wellness: {
-      img: 'media/hero1.jpg',
+      img: 'media/Top Pics/Top1.jpg',
       title: 'Wellness',
       copy: `Every child deserves the chance to grow, laugh, and play without the shadow of illness holding them back. By ensuring access to essential medical care, we give families the hope of seeing their children healthy and thriving, even in the face of life’s toughest challenges.`
     },
     awareness: {
-      img: 'media/hero2.jpg',
+      img: 'media/Top Pics/Top2.jpg',
       title: 'Awareness',
       copy: `Behind every child’s care is a story that often goes untold. By raising awareness about uncompensated care at Seattle Children’s Hospital, we invite our community to step into these stories, understand their impact, and become part of a movement that saves lives.`
     },
     vision: {
-      img: 'media/img5.JPG',
+      img: 'media/Top Pics/Top5.jpeg',
       title: 'Vision',
       copy: `We imagine a world where no child is left waiting, worried, or unheard because of financial barriers. Every action we take is driven by the hope that children can grow strong, families can breathe easier, and a brighter, healthier future is possible for all.`
     },
     empowerment: {
-      img: 'media/img10.JPG',
+      img: 'media/Top Pics/Top7.png',
       title: 'Empowerment',
       copy: ` Families facing medical uncertainty deserve strength and support at every turn. By empowering them with guidance, resources, and encouragement, we help them navigate fear with courage, transforming worry into hope and struggle into resilience.`
     }
