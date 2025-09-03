@@ -863,76 +863,76 @@ const TimelineVisualization = {
   getTimelineData() {
     return [
       {
-        date: "2023-02-01",
+        date: "02/01/2023",
         title: "Vision Takes Shape",
         description: "Founder Sanjana Medikurthi began exploring the process of starting a nonprofit, reaching out to mentors, and laying the foundation for what would become WAVE.",
         image: "../media/hero1.jpg",
         href: "about-us/mission.html"
       },
       {
-        date: "2023-06-01",
+        date: "06/01/2023",
         title: "Executive Team Onboarded",
         description: "The first executive team members officially joined, stepping into their leadership roles and uniting behind a shared purpose.",
-        image: "../media/image5.JPG",
+        image: "../media/Top Pics/Top9.jpg",
         href: "about-us/meet-the-team.html"
       },
       {
-        date: "2023-07-01",
+        date: "07/01/2023",
         title: "First Informal Member Meeting",
         description: "WAVE hosted its first informal Zoom gathering with prospective members. The excitement and energy in the virtual room marked the start of a growing movement.",
-        image: "../media/image9.JPG",
+        image: "../media/Top Pics/Top5.jpeg",
         href: "about-us/impact.html"
       },
       {
-        date: "2023-10-20",
+        date: "10/20/2023",
         title: "Dandiya Night 2023 w/ Hopes and Smiles",
         description: "WAVE partnered with Hopes and Smiles to co-host Dandiya Night 2023 — the very first community-facing event. The night of dance and culture spotlighted WAVE’s mission and potential impact.",
         image: "../media/Dandiya 2023/Dandiya23event13.jpg",
         href: "events/dandiya-night-2023.html"
       },
       {
-        date: "2023-11-18",
+        date: "11/18/2023",
         title: "IACS Diwali x WAVE",
         description: "At the annual IACS Diwali celebration, WAVE hosted a booth to engage youth in conversations about empowerment and wellness, sharing resources and building community connections.",
         image: "../media/LW IAS -  WAVE Booth/IAS6.jpg",
         href: "events/iacs-diwali-x-wave.html"
       },
       {
-        date: "2024-01-31",
+        date: "01/31/2024",
         title: "Official Nonprofit Status",
         description: "WAVE received official IRS nonprofit recognition under Seattle Children’s Hospital, marking the day the dream officially became a reality.",
         image: "../media/hero2.jpg",
         href: "about-us/mission.html"
       },
       {
-        date: "2024-05-24",
+        date: "05/24/2024",
         title: "TTA Convention Booth",
         description: "WAVE hosted a booth at the TTA Mega Convention, connecting with thousands of attendees and spreading awareness about uncompensated care and youth empowerment.",
         image: "../media/TTA/TTA2.png",
         href: "events/tta-convention-booth.html"
       },
       {
-        date: "2024-06-23",
+        date: "06/23/2024",
         title: "IACS Summer Fest Booth",
         description: "At IACS Summer Fest, WAVE ran a booth selling Italian sodas to raise money for uncompensated care while connecting with new families and supporters.",
         image: "../media/IACS Spring Fest - WAVE Booth/IACS.png",
         href: "events/iacs-summer-fest-booth.html"
       },
       {
-        date: "2024-10-19",
+        date: "10/19/2024",
         title: "Dandiya Night 2024 w/ Hopes and Smiles",
         description: "In its second annual collaboration with Hopes and Smiles, WAVE hosted another vibrant Dandiya Night. The cultural celebration raised funds to support youth mental health projects.",
         image: "../media/Dandiya 2024/Dandiya24event3.jpg",
         href: "events/dandiya-night.html"
       },
       {
-        date: "2025-01-25",
+        date: "01/25/2025",
         title: "Bollywood Ball @ Lake Washington High School",
         description: "WAVE’s first-ever youth-only dance brought together students across Seattle. With music, mocktails, and an uplifting atmosphere, the Bollywood Ball celebrated empowerment and unity.",
         image: "../media/Bollywood Ball 2025/BB18.JPG",
         href: "events/bollywood-ball.html"
       }
-    
+      
     ];
   },
 

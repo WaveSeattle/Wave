@@ -1157,6 +1157,52 @@ linear-gradient(
   /* ------------------------------
      TIMELINE (Horizontal, RTL Loop)
   ------------------------------ */
+  /* =========================
+   Mission Timeline — auto-growing cards + taller track
+   ========================= */
+.missionTimeline .timeline-wrapper {
+  min-height: 520px;   /* base minimum */
+  height: auto;        /* wrapper grows with tallest card */
+  padding-top: 30px;   /* extra space above */
+  padding-bottom: 40px;/* extra space below */
+}
+
+.missionTimeline .timeline-track {
+  align-items: stretch;
+  min-height: calc(100% + 60px); /* track is always taller than cards */
+  padding-bottom: 20px;          /* ensures dots never touch the bottom */
+}
+
+.missionTimeline .timeline-item {
+  height: auto !important;  
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 32px;
+  overflow: hidden;
+}
+
+.missionTimeline .timeline-image {
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.missionTimeline .timeline-date,
+.missionTimeline .timeline-title,
+.missionTimeline .timeline-description {
+  flex-shrink: 0;
+}
+
+.missionTimeline .timeline-description {
+  margin-top: 0.5rem;
+  line-height: 1.55;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
   .timeline { background: var(--white); color: var(--dark-navy); padding: 5rem 0; position: relative; overflow: hidden; }
   .timeline-viewport { --img-size: 170px; position: relative; overflow: hidden; height: 600px; mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%); }
   .timeline-track { position: relative; display: flex; align-items: center; gap: 4rem; will-change: transform; transition: none; }
