@@ -1733,6 +1733,7 @@ linear-gradient(
   }
 }
 
+
 /* Large Mobile/Small Tablet (481px to 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .hero {

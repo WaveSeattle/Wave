@@ -82,9 +82,9 @@
 
 <!-- HERO -->
 
-<section class="hero indexhero">
+<section class="hero indexhero" id="homeHero">
   <!-- Background video -->
-  <video class="hero-video" autoplay muted loop playsinline poster="media/hero1.jpg" aria-hidden="true">
+  <video class="hero-video" autoplay loop playsinline poster="media/hero1.jpg">
     <source src="media/HomeHero.mp4" type="video/mp4" />
   </video>
 
@@ -94,11 +94,14 @@
   <div class="hero-content container">
     <h1>Every Child Deserves a Fighting Chance</h1>
     <p>Join Seattle’s youth-led movement supporting research and uncompensated care at Seattle Children’s Hospital.</p>
-    <a class="pulse-border" target="_blank" href="https://give.seattlechildrens.org/give/651798/#!/donation/checkout">Donate Now</a>
+    <a class="pulse-border" target="_blank" href="https://give.seattlechildrens.org/give/651798/#!/donation/checkout">
+      Donate Now
+    </a>
   </div>
 
   <div class="wave-animation"></div>
 </section>
+
 
 <!-- SOCIAL PROOF -->
 <section class="social-proof">
@@ -251,6 +254,47 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+  (() => {
+    const hero = document.getElementById('homeHero');
+    if (!hero) return;
+  
+    const video = hero.querySelector('.hero-video');
+    if (!video) return;
+  
+    // Ensure it's not muted
+    video.muted = false;
+  
+    // IntersectionObserver: play only when ≥50% visible
+    const io = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+  
+      if (entry.isIntersecting) {
+        video.play().catch(err => console.warn('Video play failed:', err));
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.5 });
+  
+    io.observe(hero);
+  
+    // Pause when tab is hidden, resume when back and visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        video.pause();
+      } else {
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const mid = vh * 0.5;
+        const inView = rect.top < mid && rect.bottom > mid;
+        if (inView) video.play().catch(() => {});
+      }
+    });
+  })();
+  </script>
+  
 </body>
 </html>
+
 
