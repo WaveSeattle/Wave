@@ -3696,3 +3696,8 @@ color: var(--dark-navy); }
 .contact-link:focus {
   text-decoration: underline;
 }
+.timeline-item {
+  text-decoration: none;   /* removes underline */
+  color: inherit;          /* keeps the text color consistent */
+  display: block;          /* makes the whole card clickable */
+}
