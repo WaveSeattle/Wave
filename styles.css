@@ -997,7 +997,7 @@ linear-gradient(
   /* CALCULATED WIDTH: Accommodates all images for smooth loop */
   width: calc(240px * 24); /* 12 images x 2 sets */
   /* SMOOTH INFINITE ANIMATION: 60-second loop */
-  animation: scroll 60s linear infinite;
+  animation: scroll 25s linear infinite;
   will-change: transform;
   padding: 1rem 0;
 }

@@ -1427,7 +1427,7 @@ const TeamModule = {
         name: 'Sanjana Medikurthi',
         role: 'Founder & President',
         img: '../media/Team/sanjana.webp',
-        desc: `Leads strategy and vision, fosters inclusive culture, represents WAVE to partners, the public, and Seattle Children's, and keeps the team aligned on mission and outcomes.
+        desc: `
           <br><br>
           <a href="https://www.instagram.com/sanjana_med/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
           <a href="https://www.linkedin.com/in/sanjana-medikurthi-bb39752aa/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
@@ -1436,7 +1436,7 @@ const TeamModule = {
         name: 'Moksh Doshi',
         role: 'Vice President',
         img: '../media/Team/moksh.webp',
-        desc: `Partners with the President on strategy and operations, supports leads across events, and steps in wherever needed to keep programs running smoothly.
+        desc: `
           <br><br>
           <a href="https://www.instagram.com/mokshdo/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
           <a href="https://www.linkedin.com/in/moksh-%F0%9F%8E%93-doshi-a90071296/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
@@ -1445,7 +1445,7 @@ const TeamModule = {
         name: 'Lahari Nellore',
         role: 'Secretary',
         img: '../media/Team/lahari.webp',
-        desc: `Owns internal communication and documentation, meeting agendas and notes, and ensures action items move forward on schedule.
+        desc: `
           <br><br>
           <a href="https://www.instagram.com/lahari.nellore/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>`
       },
@@ -1453,7 +1453,7 @@ const TeamModule = {
         name: 'Bhuvan Carjala',
         role: 'Treasurer',
         img: '../media/Team/bhuvan.webp',
-        desc: `Manages budgets, donation reconciliation, and financial reporting. Works with event leads to plan costs and track progress toward goals.
+        desc: `
           <br><br>
           <a href="https://www.instagram.com/bhuvan_gajarla/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
           <a href="https://www.linkedin.com/in/bhuvan-gajarla-663ab4323/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
@@ -1462,7 +1462,7 @@ const TeamModule = {
         name: 'Sahasra Voruganti',
         role: 'Social Media Manager',
         img: '../media/Team/sahasra.webp',
-        desc: `Runs content calendars, creative assets, and engagement across platforms to grow awareness and amplify event campaigns.
+        desc: `
           <br><br>
           <a href="https://www.instagram.com/sahasra.vor/" target="_blank" rel="noopener noreferrer">📸 Instagram</a> •
           <a href="https://www.linkedin.com/in/sahasra-voruganti-5a1354334/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>`
