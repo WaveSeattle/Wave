@@ -84,7 +84,7 @@
 
 <section class="hero indexhero" id="homeHero">
   <!-- Background video -->
-  <video class="hero-video" autoplay loop playsinline poster="media/HomeHero.mp4">
+  <video class="hero-video" autoplay loop playsinline poster="media/hero2.jpg">
     <source src="media/HomeHero.mp4" type="video/mp4" />
   </video>
 
@@ -263,7 +263,7 @@
     if (!video) return;
   
     // Ensure it's not muted
-    video.muted = false;
+    video.muted = true;
   
     // IntersectionObserver: play only when ≥50% visible
     const io = new IntersectionObserver((entries) => {
