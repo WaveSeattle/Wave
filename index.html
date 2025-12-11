@@ -81,24 +81,57 @@
 
 
 <!-- HERO -->
-
 <section class="hero indexhero" id="homeHero">
-  <!-- Background video -->
-  <video class="hero-video" autoplay loop playsinline poster="media/hero2.jpg">
-    <source src="media/HomeHero.mp4" type="video/mp4" />
-  </video>
-
-  <!-- Overlay tint for readability -->
-  <div class="hero-overlay" aria-hidden="true"></div>
-
   <div class="hero-content container">
-    <h1>Every Child Deserves a Fighting Chance</h1>
-    <p>Join Seattle’s youth-led movement supporting research and uncompensated care at Seattle Children’s Hospital.</p>
-    <a class="pulse-border" target="_blank" href="https://give.seattlechildrens.org/give/651798/#!/donation/checkout">
-      Donate Now
-    </a>
+    <div class="hero-layout">
+      <!-- LEFT: photos + video -->
+      <div class="hero-media-column">
+        <!-- Top photo strip -->
+        <div class="hero-photo-strip hero-photo-strip--top">
+          <img src="media/Top Pics/Top3.jpeg" alt="WAVE volunteers at event" />
+          <img src="media/hero2.jpg" alt="WAVE booth at fundraiser" />
+        </div>
+
+        <!-- Video in the middle -->
+        <div class="hero-video-frame">
+          <video
+            class="hero-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="media/hero2.jpg"
+          >
+            <source src="media/HomeHero.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- Bottom photo strip -->
+        <div class="hero-photo-strip hero-photo-strip--bottom">
+          <img src="media/Top Pics/Top7.png" alt="Community members at event" />
+          <img src="media/hero1.jpg" alt="Group photo of WAVE team" />
+        </div>
+      </div>
+
+      <!-- RIGHT: title + text + button -->
+      <div class="hero-text-column">
+        <h1>Every Child Deserves a Fighting Chance</h1>
+        <p>
+          Join Seattle’s youth-led movement supporting research and uncompensated
+          care at Seattle Children’s Hospital.
+        </p>
+        <a
+          class="pulse-border"
+          target="_blank"
+          href="https://give.seattlechildrens.org/give/651798/#!/donation/checkout"
+        >
+          Donate Now
+        </a>
+      </div>
+    </div>
   </div>
 
+  <!-- Keep your existing wave decoration -->
   <div class="wave-animation"></div>
 </section>
 
