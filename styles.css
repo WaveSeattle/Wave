@@ -1999,6 +1999,202 @@ linear-gradient(
   }
 }
 
+/* ------------------------------
+   FOOTER STYLES
+------------------------------ */
+
+/* Main Footer Container */
+.footer {
+  /* Solid deep navy gradient */
+  background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+  color: var(--white);
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+/* Remove Glare/Bloom */
+.footer::before {
+  display: none; 
+}
+
+/* TOP SECTION LAYOUT */
+.footer-top-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 1rem 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Column Sizing */
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* --- ABOUT COLUMN CHANGES --- */
+.about-col {
+  flex: 2; /* Takes up 2x the space of other columns */
+  min-width: 320px; /* Slightly wider minimum to prevent squishing */
+  padding-right: 3rem; /* Adds breathing room between text and links */
+}
+
+/* Headings */
+.footer-heading {
+  color: var(--white);
+  font-size: 1.1rem; /* Slightly larger heading */
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Cyan Underline */
+.heading-underline {
+  width: 40px;
+  height: 3px;
+  background-color: var(--aqua);
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+/* --- BIGGER TEXT FOR ABOUT SECTION --- */
+.footer-desc {
+  color: rgba(255, 255, 255, 0.9); /* Slightly brighter for readability */
+  font-size: 1.05rem; /* Increased from 0.9rem to 1.05rem */
+  line-height: 1.7;   /* Increased line height for better reading */
+  margin: 0;
+  text-align: left;
+}
+
+/* LINK ALIGNMENT FIX */
+.footer-link-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-link-list li a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem; /* Increased link size slightly to match about text */
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-link-list li a:hover {
+  color: var(--aqua);
+  transform: translateX(5px);
+}
+
+/* DARKER LOWER FOOTER */
+.footer-bottom-wrapper {
+  background-color: #0B1120;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  padding: 1.5rem 0;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Social Buttons */
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; /* Slightly bigger touch target */
+  height: 38px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.footer-social a:hover {
+  background: var(--aqua);
+  transform: translateY(-2px);
+}
+
+.footer-social img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ------------------------------
+   RESPONSIVE ADJUSTMENTS
+------------------------------ */
+
+/* Tablet (Portrait) and smaller Laptops */
+@media (max-width: 992px) {
+  .footer-top-content {
+    padding: 3rem 2rem; /* Add side padding so text doesn't hit edges */
+    gap: 2rem;
+  }
+  
+  .about-col {
+    flex: 100%; /* Force about section to take full width on tablets */
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-desc {
+    max-width: 800px; /* Prevent text from being too long to read comfortably */
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .footer-top-content {
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+
+  /* Reduce font slightly on mobile so it doesn't look huge */
+  .footer-desc {
+    font-size: 1rem; 
+  }
+
+  .footer-bottom-content {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+}
+
 /* ============================================
    COMPREHENSIVE RESPONSIVE DESIGN
    ============================================ */
