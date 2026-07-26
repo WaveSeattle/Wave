@@ -1484,12 +1484,8 @@ const TeamModule = {
    * Render team sections
    */
   renderTeams() {
-    // Pass correct offsets so each button's data-i reflects the true index in the full array
-    this.renderTeam(this.EXEC.slice(0, 3), 'exec-row-top', 'exec', 0);
-    this.renderTeam(this.EXEC.slice(3), 'exec-row-bottom', 'exec', 3);
-
-    this.renderTeam(this.ADMIN.slice(0, 3), 'admin-row-top', 'admin', 0);
-    this.renderTeam(this.ADMIN.slice(3), 'admin-row-bottom', 'admin', 3);
+    // Admin board renders as a single 4-across row
+    this.renderTeam(this.ADMIN, 'admin-row-top', 'admin', 0);
   },
 
   /**
