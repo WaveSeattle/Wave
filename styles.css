@@ -3566,6 +3566,8 @@ color: var(--dark-navy); }
   fill: #fff;
 }
 
+.exec-trio .leader-socials { min-height: 34px; }
+
 .leader-role {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
